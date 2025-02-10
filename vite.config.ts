@@ -58,7 +58,7 @@ export default defineConfig({
         "src/api/**",
         "src/components/**",
         "src/hooks/**",
-        "src/layouts/*/index.tsx",
+        "src/layouts/*",
         "src/store/**",
         "src/hooks/**",
         "src/utils/**",

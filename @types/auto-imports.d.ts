@@ -7,6 +7,7 @@
 export {}
 declare global {
   const Button: (typeof import("antd"))["Button"];
+  const Canvas: (typeof import("../src/components/Canvas/index"))["default"];
   const ColorPicker: (typeof import("antd"))["ColorPicker"];
   const Dropdown: (typeof import("antd"))["Dropdown"];
   const InputNumber: (typeof import("antd"))["InputNumber"];

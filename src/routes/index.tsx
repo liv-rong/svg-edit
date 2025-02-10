@@ -1,13 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
-
+import { Layout } from "antd";
+import Header from "@/components/Header";
+import Option from "@/components/Operate";
+import Canvas from "@/components/Canvas";
+const { Content } = Layout;
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
 function Index() {
   return (
-    <div className="p-2">
-      <h3>Welcome Home!</h3>
-    </div>
+    <Layout className="w-screen h-screen">
+      <Header></Header>
+      <Layout>
+        <Option />
+        <Content>
+          <Canvas />
+        </Content>
+      </Layout>
+    </Layout>
   );
 }
