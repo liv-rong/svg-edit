@@ -17,6 +17,9 @@ dependencies:
   antd:
     specifier: ^5.23.4
     version: 5.23.4(react-dom@18.3.1)(react@18.3.1)
+  konva:
+    specifier: ^9.3.18
+    version: 9.3.18
   react:
     specifier: ^18.3.1
     version: 18.3.1
@@ -4362,6 +4365,13 @@ packages:
     dependencies:
       json-buffer: 3.0.1
     dev: true
+
+  /konva@9.3.18:
+    resolution:
+      {
+        integrity: sha512-ad5h0Y9phUrinBrKXyIISbURRHQO7Rx5cz7mAEEfdVCs45gDqRD8Y0I0nJRk8S6iqEbiRE87CEZu5GVSnU8oow==,
+      }
+    dev: false
 
   /levn@0.4.1:
     resolution:

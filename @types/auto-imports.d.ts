@@ -10,11 +10,13 @@ declare global {
   const Canvas: (typeof import("../src/components/Canvas/index"))["default"];
   const ColorPicker: (typeof import("antd"))["ColorPicker"];
   const Dropdown: (typeof import("antd"))["Dropdown"];
+  const Header: (typeof import("../src/components/Header/index"))["default"];
   const InputNumber: (typeof import("antd"))["InputNumber"];
   const Link: (typeof import("@tanstack/react-router"))["Link"];
   const Modal: (typeof import("antd"))["Modal"];
   const NavLink: (typeof import("react-router-dom"))["NavLink"];
   const Navigate: (typeof import("react-router-dom"))["Navigate"];
+  const Operate: (typeof import("../src/components/Operate/index"))["default"];
   const Outlet: (typeof import("@tanstack/react-router"))["Outlet"];
   const Radio: (typeof import("antd"))["Radio"];
   const Route: (typeof import("react-router-dom"))["Route"];
