@@ -14,7 +14,7 @@ function Index() {
       <Header></Header>
       <Layout>
         <Option />
-        <Content>
+        <Content className="overflow-y-auto">
           <Canvas />
         </Content>
       </Layout>

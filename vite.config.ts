@@ -16,7 +16,6 @@ export default defineConfig({
       include: [/\.[tj]sx?$/, /\.md$/],
       imports: [
         "react",
-        "react-router-dom",
         {
           classnames: [["default", "classNames"]],
           antd: [
