@@ -1,12 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Layout } from "antd";
-import Header from "@/components/Header";
-import Option from "@/components/Operate";
-import Canvas from "@/components/Canvas";
-const { Content } = Layout;
-export const Route = createFileRoute("/")({
-  component: Index,
-});
+import { createFileRoute } from '@tanstack/react-router'
+import { Layout } from 'antd'
+import Header from '@/components/Header'
+import Option from '@/components/Operate'
+import Canvas from '@/components/Canvas'
+const { Content } = Layout
+export const Route = createFileRoute('/')({
+  component: Index
+})
 
 function Index() {
   return (
@@ -14,10 +14,10 @@ function Index() {
       <Header></Header>
       <Layout>
         <Option />
-        <Content className="overflow-y-auto">
+        <Content className="overflow-y-auto flex justify-center items-center">
           <Canvas />
         </Content>
       </Layout>
     </Layout>
-  );
+  )
 }

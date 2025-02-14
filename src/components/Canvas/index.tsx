@@ -1,37 +1,35 @@
-import { useEffect } from "react";
-import Konva from "konva";
+import { useEffect } from 'react'
+import Konva from 'konva'
 
 const Canvas = () => {
   useEffect(() => {
-    const stage = new Konva.Stage({
-      container: "container", // id of container <div>
-      width: 500,
-      height: 500,
-      color: "red",
-      backgroundColor: "blue",
-    });
+    // const stage = new Konva.Stage({
+    //   container: 'container', // id of container <div>
+    //   width: 600,
+    //   height: 800,
+    //   color: 'red',
+    //   backgroundColor: 'blue'
+    // })
 
-    const layer = new Konva.Layer();
-    const circle = new Konva.Circle({
-      x: stage.width() / 2,
-      y: stage.height() / 2,
-      radius: 70,
-      fill: "red",
-      stroke: "black",
-      strokeWidth: 4,
-    });
+    var json =
+      '{"attrs":{"width":578,"height":200},"className":"Stage","children":[{"attrs":{},"className":"Layer","children":[{"attrs":{"x":100,"y":100,"sides":6,"radius":70,"fill":"red","stroke":"black","strokeWidth":4},"className":"RegularPolygon"}]}]}'
 
-    layer.add(circle);
-    stage.add(layer);
-    layer.draw();
+    var stage = Konva.Node.create(json, 'container')
+
+    // anim.start()
 
     // Cleanup function
     return () => {
-      stage.destroy();
-    };
-  }, []);
+      stage.destroy()
+    }
+  }, [])
 
-  return <div id="container" className="bg-red-50"></div>;
-};
+  return (
+    <div
+      id="container"
+      className="bg-white w-[600px] h-[800px]"
+    ></div>
+  )
+}
 
-export default Canvas;
+export default Canvas
