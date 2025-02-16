@@ -77,8 +77,9 @@ const Option = () => {
       ))}
 
       {OperateType && (
-        <div className="absolute w-[200px] h-full bg-gray-300 left-16 top-0  ">
-          {OperateMap.get(OperateType)?.name}
+        <div className="absolute w-[200px] h-full bg-gray-300 left-16 top-0  p-1">
+          <div className="text-base"> {OperateMap.get(OperateType)?.name}</div>
+          {OperateMap.get(OperateType)?.component}
         </div>
       )}
     </Layout.Sider>
