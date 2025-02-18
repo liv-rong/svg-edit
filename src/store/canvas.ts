@@ -4,16 +4,16 @@ import { immer } from 'zustand/middleware/immer'
 import { OperateEnum } from '@/types/operate'
 
 interface State {
-  canvasList: []
-  currentCanvasId: string | null
+  canvasData: any
+  currentId: string | null
   OperateType: OperateEnum | null
 }
 
 interface Actions {}
 
 const initialState: State = {
-  canvasList: [],
-  currentCanvasId: null,
+  canvasData: null,
+  currentId: null,
   OperateType: null
 }
 
@@ -26,8 +26,8 @@ export const useCanvasStore = create<State & Actions>()(
       name: 'canvasList_store',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
-        canvasList: state.canvasList,
-        currentCanvasId: state.currentCanvasId
+        canvasData: state.canvasData,
+        currentId: state.currentId
       })
     }
   )

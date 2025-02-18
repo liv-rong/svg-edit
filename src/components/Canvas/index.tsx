@@ -1,7 +1,14 @@
-import { useEffect } from 'react'
 import Konva from 'konva'
+import { useCanvasStore } from '@/store/canvas'
+import { useShallow } from 'zustand/shallow'
 
 const Canvas = () => {
+  const { canvasData } = useCanvasStore(
+    useShallow((state) => ({
+      canvasData: state.canvasData
+    }))
+  )
+
   useEffect(() => {
     // const stage = new Konva.Stage({
     //   container: 'container', // id of container <div>
