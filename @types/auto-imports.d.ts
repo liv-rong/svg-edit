@@ -39,6 +39,7 @@ declare global {
   const memo: (typeof import('react'))['memo']
   const startTransition: (typeof import('react'))['startTransition']
   const useCallback: (typeof import('react'))['useCallback']
+  const useCanvas: (typeof import('../src/hooks/use-canvas'))['useCanvas']
   const useCanvasStore: (typeof import('../src/store/canvas'))['useCanvasStore']
   const useContext: (typeof import('react'))['useContext']
   const useDebugValue: (typeof import('react'))['useDebugValue']
