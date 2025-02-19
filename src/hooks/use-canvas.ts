@@ -1,6 +1,8 @@
 import Konva from 'konva'
 import { useCanvasStore } from '@/store/canvas'
 import { useShallow } from 'zustand/shallow'
+import type { Stage } from 'konva/lib/Stage'
+import { Layer } from 'konva/lib/Layer'
 
 export const useCanvas = () => {
   const { canvasData } = useCanvasStore(
@@ -8,15 +10,21 @@ export const useCanvas = () => {
       canvasData: state.canvasData
     }))
   )
+
+  const [stage, setState] = useState<Stage>()
+
+  const [layer, setLayer] = useState<Layer>()
+
   const initCanvas = () => {
     const stage = new Konva.Stage({
-      container: 'container', // id of container <div>
+      container: 'container',
       width: 600,
-      height: 800,
-      draggable: true
+      height: 800
     })
+    setState(stage)
 
     const layer = new Konva.Layer()
+    setLayer(layer)
     stage.add(layer)
 
     var rect1 = new Konva.Rect({
@@ -41,13 +49,16 @@ export const useCanvas = () => {
     })
     layer.add(rect2)
 
-    const tr = new Konva.Transformer()
+    const tr = new Konva.Transformer({
+      borderStroke: 'blue'
+    })
+
     layer.add(tr)
 
     tr.nodes([rect1, rect2])
 
-    var selectionRectangle = new Konva.Rect({
-      fill: 'rgba(0,0,255,0.2)',
+    const selectionRectangle = new Konva.Rect({
+      fill: 'rgba(0,0,255,0.1)',
       visible: false,
       listening: false
     })
@@ -60,6 +71,7 @@ export const useCanvas = () => {
     let selecting = false
 
     stage.on('mousedown touchstart', (e) => {
+      console.log('mousedown touchstart')
       if (e.target !== stage) {
         return
       }
@@ -88,18 +100,18 @@ export const useCanvas = () => {
         visible: true,
         x: Math.min(x1, x2),
         y: Math.min(y1, y2),
-        width: Math.abs(x2 - x1), // 修正宽度计算
-        height: Math.abs(y2 - y1) // 修正高度计算
+        width: Math.abs(x2 - x1),
+        height: Math.abs(y2 - y1)
       })
     })
 
     stage.on('mouseup touchend', (e) => {
-      selecting = true
+      selecting = false
       if (!selectionRectangle.visible()) {
         return
       }
       e.evt.preventDefault()
-      // selectionRectangle.visible(false)
+      selectionRectangle.visible(false)
       var shapes = stage.find('.rect')
       var box = selectionRectangle.getClientRect()
       var selected = shapes.filter((shape) =>
@@ -150,9 +162,30 @@ export const useCanvas = () => {
     return { stage, layer, x1, y1, x2, y2 }
   }
 
+  const handleSvg = (data: string) => {
+    if (!layer) return
+    const svgPath = new Konva.Path({
+      x: 0,
+      y: 0,
+      data
+    })
+    layer.add(svgPath)
+  }
+
+  const handleImg = (url: string) => {
+    if (!layer) return
+    Konva.Image.fromURL(url, (image) => {
+      layer?.add(image)
+    })
+  }
+
   useEffect(() => {}, [canvasData])
 
   return {
-    initCanvas
+    initCanvas,
+    handleSvg,
+    handleImg,
+    stage,
+    layer
   }
 }
