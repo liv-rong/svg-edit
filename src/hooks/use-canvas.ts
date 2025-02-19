@@ -15,6 +15,8 @@ export const useCanvas = () => {
 
   const [layer, setLayer] = useState<Layer>()
 
+  const [transformer, setTransformer] = useState<Konva.Transformer>()
+
   const initCanvas = () => {
     const stage = new Konva.Stage({
       container: 'container',
@@ -52,6 +54,7 @@ export const useCanvas = () => {
     const tr = new Konva.Transformer({
       borderStroke: 'blue'
     })
+    setTransformer(tr)
 
     layer.add(tr)
 
@@ -113,6 +116,7 @@ export const useCanvas = () => {
       e.evt.preventDefault()
       selectionRectangle.visible(false)
       var shapes = stage.find('.rect')
+      console.log(shapes, 'shapesshapes')
       var box = selectionRectangle.getClientRect()
       var selected = shapes.filter((shape) =>
         Konva.Util.haveIntersection(box, shape.getClientRect())
@@ -133,9 +137,9 @@ export const useCanvas = () => {
       }
 
       // do nothing if clicked NOT on our rectangles
-      if (!e.target.hasName('rect')) {
-        return
-      }
+      // if (!e.target.hasName('rect')) {
+      //   return
+      // }
 
       // do we pressed shift or ctrl?
       const metaPressed = e.evt.shiftKey || e.evt.ctrlKey || e.evt.metaKey
@@ -163,18 +167,25 @@ export const useCanvas = () => {
   }
 
   const handleSvg = (data: string) => {
-    if (!layer) return
-    const svgPath = new Konva.Path({
-      x: 0,
-      y: 0,
+    console.log('handleSvg', data, layer)
+    // if (!layer) return
+    var path = new Konva.Path({
+      x: 50,
+      y: 40,
       data
     })
-    layer.add(svgPath)
+
+    layer?.add(path)
   }
 
   const handleImg = (url: string) => {
     if (!layer) return
     Konva.Image.fromURL(url, (image) => {
+      image.setAttrs({
+        x: 200,
+        y: 50,
+        draggable: true
+      })
       layer?.add(image)
     })
   }

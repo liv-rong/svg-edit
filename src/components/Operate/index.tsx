@@ -2,7 +2,7 @@ import { Layout } from 'antd'
 import { useCanvasStore } from '@/store/canvas'
 import { useShallow } from 'zustand/react/shallow'
 import { OperateEnum } from '@/types/operate'
-import { AppstoreOutlined, FontSizeOutlined } from '@ant-design/icons'
+import { AppstoreOutlined } from '@ant-design/icons'
 import type { ReactNode } from 'react'
 import Shape from './components/Shape'
 import Font from './components/Font'
@@ -15,47 +15,61 @@ interface OperateMapType {
   component: ReactNode
   name: string
 }
-const OperateMap = new Map<OperateEnum, OperateMapType>([
-  [
-    OperateEnum.Material,
-    {
-      icon: <AppstoreOutlined className="text-2xl" />,
-      component: <Material />,
-      name: '素材'
-    }
-  ],
-  [
-    OperateEnum.Color,
-    {
-      icon: <ColorIcon className="text-2xl" />,
-      component: <Color />,
-      name: '颜色'
-    }
-  ],
-  [
-    OperateEnum.Shape,
-    {
-      icon: <ShapeIcon className="text-2xl" />,
-      component: <Shape />,
-      name: '形状'
-    }
-  ],
-  [
-    OperateEnum.Font,
-    {
-      icon: <TextIcon className="text-2xl" />,
-      component: <Font />,
-      name: '字体'
-    }
-  ]
-])
 
-const Option = () => {
+interface Props {
+  handleSvg: (data: string) => void
+  handleImg: (url: string) => void
+}
+
+const Option = (props: Props) => {
+  const { handleSvg, handleImg } = props
+
   const { OperateType } = useCanvasStore(
     useShallow((state) => ({
       OperateType: state.OperateType
     }))
   )
+
+  const OperateMap = new Map<OperateEnum, OperateMapType>([
+    [
+      OperateEnum.Material,
+      {
+        icon: <AppstoreOutlined className="text-2xl" />,
+        component: (
+          <Material
+            handleSvg={handleSvg}
+            handleImg={handleImg}
+          />
+        ),
+        name: '素材'
+      }
+    ],
+    [
+      OperateEnum.Color,
+      {
+        icon: <ColorIcon className="text-2xl" />,
+        component: <Color />,
+        name: '颜色'
+      }
+    ],
+    [
+      OperateEnum.Shape,
+      {
+        icon: <ShapeIcon className="text-2xl" />,
+        component: <Shape />,
+        name: '形状'
+      }
+    ],
+    [
+      OperateEnum.Font,
+      {
+        icon: <TextIcon className="text-2xl" />,
+        component: <Font />,
+        name: '字体'
+      }
+    ]
+  ])
+
   return (
     <Layout.Sider
       className="!bg-white relative"

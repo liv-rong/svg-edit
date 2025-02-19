@@ -7,6 +7,8 @@ import { useCanvasStore } from '@/store/canvas'
 import { useShallow } from 'zustand/shallow'
 import { useCanvas } from '@/hooks/use-canvas'
 const { Content } = Layout
+import { useEffect } from 'react'
+
 export const Route = createFileRoute('/')({
   component: Index
 })
@@ -18,17 +20,21 @@ function Index() {
     }))
   )
 
-  const { initCanvas } = useCanvas()
+  const { initCanvas, handleSvg, handleImg } = useCanvas()
 
   useEffect(() => {
     initCanvas()
     return () => {}
   }, [])
+
   return (
     <Layout className="w-screen h-screen">
       <Header></Header>
       <Layout>
-        <Option />
+        <Option
+          handleSvg={handleSvg}
+          handleImg={handleImg}
+        />
         <Content className="overflow-y-auto flex justify-center items-center">
           <Canvas />
         </Content>
