@@ -19,10 +19,11 @@ interface OperateMapType {
 interface Props {
   handleSvg: (data: string) => void
   handleImg: (url: string) => void
+  handleSvgParser: (svgString: string) => void
 }
 
 const Option = (props: Props) => {
-  const { handleSvg, handleImg } = props
+  const { handleSvg, handleImg, handleSvgParser } = props
 
   const { OperateType } = useCanvasStore(
     useShallow((state) => ({
@@ -39,6 +40,7 @@ const Option = (props: Props) => {
           <Material
             handleSvg={handleSvg}
             handleImg={handleImg}
+            handleSvgParser={handleSvgParser}
           />
         ),
         name: '素材'
@@ -91,7 +93,7 @@ const Option = (props: Props) => {
       ))}
 
       {OperateType && (
-        <div className="absolute w-[200px] h-full bg-gray-300 left-16 top-0  p-1">
+        <div className="absolute w-[240px] h-full bg-gray-300 left-16 top-0  p-1">
           <div className="text-base"> {OperateMap.get(OperateType)?.name}</div>
           {OperateMap.get(OperateType)?.component}
         </div>

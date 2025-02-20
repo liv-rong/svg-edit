@@ -4,3 +4,8 @@ export enum OperateEnum {
   Font = 'font',
   Material = 'material'
 }
+
+export interface ElementDataType {
+  tagName: string
+  [key: string]: string
+}

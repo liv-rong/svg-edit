@@ -1,35 +1,42 @@
 import text1 from '@/assets/svg/text1.svg'
 import text2 from '@/assets/svg/text2.svg'
 import text3 from '@/assets/svg/test3.svg'
+import text4 from '@/assets/svg/text4.svg'
+import { ShapeIcon, ColorIcon, TextIcon, LoadingSvg, ShareLinkSvg } from '@/assets/svg/index'
 
 interface Props {
   handleSvg: (data: string) => void
   handleImg: (url: string) => void
+  handleSvgParser: (svgString: string) => void
 }
 
 const Material = (props: Props) => {
-  const { handleSvg, handleImg } = props
+  const { handleSvg, handleImg, handleSvgParser } = props
+
+  const handleSvgLoad = async (svgUrl: string) => {
+    const response = await fetch(svgUrl)
+    const svgText = await response.text()
+    handleSvgParser(svgText)
+  }
+
+  // const svgElement = [ShapeIcon, ColorIcon, TextIcon, LoadingSvg, ShareLinkSvg]
+
+  const svgElement = [LoadingSvg]
+
+  const svgElement2 = [text1, text2, text3, text4]
 
   return (
     <div className="space-y-1">
-      <img
-        onClick={() => handleImg(text1)}
-        src={text1}
-        alt=""
-        className="h-16 w-16 border bg-white cursor-pointer"
-      />
-      <img
-        onClick={() => handleSvg(text2)}
-        src={text2}
-        alt=""
-        className="h-16 w-16 border bg-white cursor-pointer"
-      />
-      <img
-        onClick={() => handleSvg(text3)}
-        src={text3}
-        alt=""
-        className="h-16 w-16 border bg-white cursor-pointer"
-      />
+      {svgElement2.map((item, index) => (
+        <div key={index}>
+          <img
+            onClick={() => handleSvgLoad(item)}
+            src={item}
+            alt=""
+            className="h-16 w-16 border bg-white cursor-pointer"
+          />
+        </div>
+      ))}
     </div>
   )
 }
