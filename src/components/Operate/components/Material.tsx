@@ -8,10 +8,11 @@ interface Props {
   handleSvg: (data: string) => void
   handleImg: (url: string) => void
   handleSvgParser: (svgString: string) => void
+  addShape: (value: string) => void
 }
 
 const Material = (props: Props) => {
-  const { handleSvg, handleImg, handleSvgParser } = props
+  const { handleSvg, handleImg, handleSvgParser, addShape } = props
 
   const handleSvgLoad = async (svgUrl: string) => {
     const response = await fetch(svgUrl)

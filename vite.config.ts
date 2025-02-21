@@ -5,6 +5,7 @@ import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import ViteCompression from 'vite-plugin-compression'
+import Icons from 'unplugin-icons/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -12,6 +13,7 @@ export default defineConfig({
     TanStackRouterVite({ autoCodeSplitting: true }),
     react(),
     tailwindcss(),
+    Icons({ compiler: 'jsx', jsx: 'react' }),
     AutoImport({
       include: [/\.[tj]sx?$/, /\.md$/],
       imports: [
@@ -39,7 +41,8 @@ export default defineConfig({
             'useMemo',
             'useContext',
             'useImperativeHandle',
-            'ReactNode'
+            'ReactNode',
+            'CSSProperties'
           ],
           '@tanstack/react-router': ['createRootRoute', 'Link', 'Outlet', 'createFileRoute']
         }

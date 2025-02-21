@@ -20,10 +20,11 @@ interface Props {
   handleSvg: (data: string) => void
   handleImg: (url: string) => void
   handleSvgParser: (svgString: string) => void
+  addShape: (value: string) => void
 }
 
 const Option = (props: Props) => {
-  const { handleSvg, handleImg, handleSvgParser } = props
+  const { handleSvg, handleImg, handleSvgParser, addShape } = props
 
   const { OperateType } = useCanvasStore(
     useShallow((state) => ({
@@ -41,6 +42,7 @@ const Option = (props: Props) => {
             handleSvg={handleSvg}
             handleImg={handleImg}
             handleSvgParser={handleSvgParser}
+            addShape={addShape}
           />
         ),
         name: '素材'
@@ -58,7 +60,7 @@ const Option = (props: Props) => {
       OperateEnum.Shape,
       {
         icon: <ShapeIcon className="text-2xl" />,
-        component: <Shape />,
+        component: <Shape addShape={addShape} />,
         name: '形状'
       }
     ],
@@ -81,9 +83,9 @@ const Option = (props: Props) => {
         <div
           key={key}
           className={classNames(
-            'border-b h-16 w-full border-gray-200 flex justify-center items-center cursor-pointer hover:bg-gray-300',
+            'border-b h-16 w-full border-gray-200 flex justify-center items-center cursor-pointer hover:bg-blue-50',
             {
-              'bg-gray-100': OperateType === key
+              'bg-blue-50': OperateType === key
             }
           )}
           onClick={() => useCanvasStore.setState({ OperateType: key })}
@@ -93,7 +95,7 @@ const Option = (props: Props) => {
       ))}
 
       {OperateType && (
-        <div className="absolute w-[240px] h-full bg-gray-300 left-16 top-0  p-1">
+        <div className="absolute w-[240px] h-full bg-white shadow left-16 top-0  p-1">
           <div className="text-base"> {OperateMap.get(OperateType)?.name}</div>
           {OperateMap.get(OperateType)?.component}
         </div>

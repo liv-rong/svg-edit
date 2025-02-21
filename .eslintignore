@@ -1,0 +1,10 @@
+build/*
+config/*
+docs/*
+node_modules/*
+public/*
+scripts/*
+mock/*
+*.css
+package.json
+.eslintrc.json

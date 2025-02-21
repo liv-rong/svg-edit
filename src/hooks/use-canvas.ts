@@ -276,6 +276,27 @@ export const useCanvas = () => {
     console.log(allEle, 'allEle')
   }
 
+  const addShape = (type: string) => {
+    const newShape = new Konva.Shape({
+      x: 50,
+      y: 120,
+      width: 100,
+      height: 100,
+      fill: 'blue',
+      draggable: true,
+      sceneFunc(context, shape) {
+        context.beginPath()
+        context.moveTo(200, 50)
+        context.lineTo(420, 80)
+        context.quadraticCurveTo(300, 100, 260, 170)
+        context.closePath()
+        // Konva specific method
+        context.fillStrokeShape(shape)
+      }
+    })
+    layer?.add(newShape)
+  }
+
   useEffect(() => {}, [canvasData])
 
   return {
@@ -283,6 +304,7 @@ export const useCanvas = () => {
     handleSvg,
     handleImg,
     handleSvgParser,
+    addShape,
     stage,
     layer
   }
