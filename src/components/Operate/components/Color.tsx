@@ -1,4 +1,4 @@
-import { Slider } from 'antd'
+import { Divider, Slider } from 'antd'
 import { useState } from 'react'
 import tinycolor from 'tinycolor2'
 
@@ -60,6 +60,15 @@ const Color = () => {
           value={saturation}
           onChange={handleSaturationChange}
         />
+      </div>
+      <Divider />
+      <div>
+        <p className="text-base font-bold mb-2">描边线</p>
+        <ColorPicker defaultValue="#1677ff" />
+      </div>
+      <Divider />
+      <div>
+        <p className="text-base font-bold mb-2">填充色</p>
       </div>
     </div>
   )

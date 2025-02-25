@@ -5,6 +5,8 @@ import type { Stage } from 'konva/lib/Stage'
 import { Layer } from 'konva/lib/Layer'
 import { ElementDataType } from '@/types/operate'
 import { types } from 'util'
+import { CanvasUtils } from '@/utils/Canvas'
+import type { ShapeEnum } from '@/types/shape'
 
 export const useCanvas = () => {
   const { canvasData } = useCanvasStore(
@@ -54,7 +56,7 @@ export const useCanvas = () => {
     layer.add(rect2)
 
     const tr = new Konva.Transformer({
-      borderStroke: 'blue'
+      borderStroke: 'red'
     })
     setTransformer(tr)
 
@@ -276,28 +278,28 @@ export const useCanvas = () => {
     console.log(allEle, 'allEle')
   }
 
-  const addShape = (type: string) => {
-    const newShape = new Konva.Shape({
-      x: 50,
-      y: 120,
-      width: 100,
-      height: 100,
-      fill: 'blue',
-      draggable: true,
-      sceneFunc(context, shape) {
-        context.beginPath()
-        context.moveTo(200, 50)
-        context.lineTo(420, 80)
-        context.quadraticCurveTo(300, 100, 260, 170)
-        context.closePath()
-        // Konva specific method
-        context.fillStrokeShape(shape)
-      }
+  const addShape = (type: ShapeEnum, customConfig?: Partial<Konva.ShapeConfig>) => {
+    CanvasUtils.createShape(type, customConfig)
+    const newShape = new Konva.Rect({
+      x: 250,
+      y: 100,
+      width: 150,
+      height: 90,
+      fill: 'green',
+      name: 'rect',
+      draggable: true
     })
+
     layer?.add(newShape)
+
+    // transformer?.nodes([newShape])
   }
 
-  useEffect(() => {}, [canvasData])
+  useEffect(() => {
+    return () => {
+      stage?.destroy()
+    }
+  }, [])
 
   return {
     initCanvas,

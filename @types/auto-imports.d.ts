@@ -24,6 +24,7 @@ declare global {
   const Modal: (typeof import('antd'))['Modal']
   const Operate: (typeof import('../src/components/Operate/index'))['default']
   const OperateEnum: (typeof import('../src/components/Operate/components/OperateConent'))['OperateEnum']
+  const OperateItem: (typeof import('../src/components/Common/OperateItem'))['default']
   const Outlet: (typeof import('@tanstack/react-router'))['Outlet']
   const Radio: (typeof import('antd'))['Radio']
   const ReactNode: (typeof import('react'))['ReactNode']

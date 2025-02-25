@@ -20,7 +20,7 @@ function Index() {
     }))
   )
 
-  const { initCanvas, handleSvg, handleImg, handleSvgParser } = useCanvas()
+  const { initCanvas, handleSvg, addShape, handleImg, handleSvgParser } = useCanvas()
 
   useEffect(() => {
     initCanvas()
@@ -32,6 +32,7 @@ function Index() {
       <Header></Header>
       <Layout>
         <Option
+          addShape={addShape}
           handleSvg={handleSvg}
           handleImg={handleImg}
           handleSvgParser={handleSvgParser}

@@ -96,7 +96,7 @@ const Option = (props: Props) => {
 
       {OperateType && (
         <div className="absolute w-[240px] h-full bg-white shadow left-16 top-0  p-1">
-          <div className="text-base"> {OperateMap.get(OperateType)?.name}</div>
+          <div className="text-lg px-1 font-bold"> {OperateMap.get(OperateType)?.name}</div>
           {OperateMap.get(OperateType)?.component}
         </div>
       )}
