@@ -210,19 +210,21 @@ export const useCanvas = () => {
   const handleSvg = (data: string) => {
     console.log('handleSvg', data, layer)
     // if (!layer) return
-    const path = new Konva.Path({
-      x: 50,
-      y: 40,
-      data: 'M8 45.5a16 1.5 0 1 0 32 0a16 1.5 0 1 0-32 0',
-      fill: 'green',
-      draggable: true
+    Konva.Image.fromURL(data, (imageNode) => {
+      layer?.add(imageNode)
+      imageNode.setAttrs({
+        width: 150,
+        height: 150,
+        draggable: true,
+        data: data
+      })
+      transformer?.setZIndex(999)
     })
-
-    layer?.add(path)
   }
 
   const handleImg = (url: string) => {
     if (!layer) return
+
     Konva.Image.fromURL(url, (image) => {
       image.setAttrs({
         x: 200,
@@ -301,10 +303,6 @@ export const useCanvas = () => {
   }, [])
 
   const handleStyleCSS = (value: any) => {
-    // console.log('11111111111111111')
-    // const currentShape = layer?.getChildren()
-    // console.log(currentShape, 'layer?.getChildren()')
-
     const currentShape = transformer?.getNodes()
     currentShape?.forEach((ele) => {
       const currentAttrs = ele.getAttrs()
@@ -316,12 +314,34 @@ export const useCanvas = () => {
     console.log(currentShape, 'transformer?.getChildren()')
   }
 
+  const handleAIChangeColor = (value: any) => {
+    console.log(value, 'handleAIChangeColor')
+    const currentShape = transformer?.getNodes()
+    currentShape?.forEach(async (ele) => {
+      const currentAttrs = await ele.getAttrs()
+      if (currentAttrs?.data) {
+        console.log(currentAttrs?.data)
+
+        const parser = new DOMParser()
+        const svgDoc = parser.parseFromString(currentAttrs?.data, 'image/svg+xml')
+        const svgElement = svgDoc.documentElement
+
+        console.log(svgElement, 'svgElement')
+      }
+      // const currentAttrs3 = await ele.toSvg()
+      // console.log(currentAttrs4, 'handleAIChangeColor')
+
+      // console.log(currentAttrs3, 'handleAIChangeColor')
+    })
+  }
+
   return {
     initCanvas,
     handleSvg,
     handleImg,
     handleSvgParser,
     addShape,
+    handleAIChangeColor,
     stage,
     layer,
     handleStyleCSS

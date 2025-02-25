@@ -40,6 +40,15 @@ const Material = (props: Props) => {
           />
         </div>
       ))}
+      <div className="border-t">
+        <p>svg整体导入</p>
+        <img
+          onClick={() => handleSvg(text3)}
+          src={text3}
+          alt=""
+          className="h-16 w-16 border bg-white cursor-pointer"
+        />
+      </div>
     </div>
   )
 }

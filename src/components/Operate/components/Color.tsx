@@ -4,15 +4,18 @@ import tinycolor from 'tinycolor2'
 
 interface Props {
   handleStyleCSS: (value: any) => void
+  handleAIChangeColor: (value?: any) => void
 }
 
 const Color = (props: Props) => {
-  const { handleStyleCSS } = props
+  const { handleStyleCSS, handleAIChangeColor } = props
   const [hue, setHue] = useState(0)
   const [saturation, setSaturation] = useState(100)
 
   const handleHueChange = (value) => {
     setHue(value)
+    const resColor = getColor()
+    handleAIChangeColor()
   }
 
   const handleSaturationChange = (value) => {

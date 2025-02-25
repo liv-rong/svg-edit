@@ -24,10 +24,12 @@ interface Props {
   handleSvgParser: (svgString: string) => void
   addShape: (type: ShapeEnum, customConfig?: Partial<Konva.ShapeConfig>) => void
   handleStyleCSS: (value: any) => void
+  handleAIChangeColor: (value?: any) => void
 }
 
 const Option = (props: Props) => {
-  const { handleSvg, handleImg, handleSvgParser, addShape, handleStyleCSS } = props
+  const { handleSvg, handleImg, handleSvgParser, addShape, handleStyleCSS, handleAIChangeColor } =
+    props
 
   const { OperateType } = useCanvasStore(
     useShallow((state) => ({
@@ -55,7 +57,12 @@ const Option = (props: Props) => {
       OperateEnum.Color,
       {
         icon: <ColorIcon className="text-2xl" />,
-        component: <Color handleStyleCSS={handleStyleCSS} />,
+        component: (
+          <Color
+            handleStyleCSS={handleStyleCSS}
+            handleAIChangeColor={handleAIChangeColor}
+          />
+        ),
         name: '颜色'
       }
     ],
