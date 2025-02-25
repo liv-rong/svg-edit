@@ -11,87 +11,89 @@ import TrapezoidIcon from '~icons/icon-park-outline/trapezoid'
 import RhombusIcon from '~icons/mdi/rhombus-outline'
 import RoundedRectangleIcon from '~icons/tabler/rectangle'
 import CurveIcon from '~icons/fad/softclipcurve'
+import { ShapeEnum } from '@/types/shape'
+import type Konva from 'konva'
 
 const ShapeArr = [
   {
     icon: <LineIcon />,
     tooltip: '直线',
-    type: 'Line'
+    type: ShapeEnum.Line
   },
   {
     icon: <StraightArrowIcon />,
     tooltip: '直线箭头',
-    type: 'StraightLine'
+    type: ShapeEnum.Line
   },
   {
     icon: <DoubleArrowIcon />,
     tooltip: '双向箭头',
-    type: 'DoubleArrow'
+    type: ShapeEnum.Line
   },
   {
     icon: <CurveIcon />,
     tooltip: '曲线',
-    type: 'Curve'
+    type: ShapeEnum.Line
   },
   {
     icon: <LineIcon />,
     tooltip: '双箭头空心',
-    type: 'StraightLine'
+    type: ShapeEnum.Line
   },
   {
     icon: <LineIcon />,
     tooltip: '空心单箭头',
-    type: 'StraightLine'
+    type: ShapeEnum.Line
   },
   {
     icon: <EllipseIcon />,
     tooltip: '椭圆',
-    type: 'EllipseIcon'
+    type: ShapeEnum.Ellipse
   },
   {
     icon: <CircleIcon />,
     tooltip: '圆',
-    type: 'Circle'
+    type: ShapeEnum.Circle
   },
   {
     icon: <ConeIcon />,
     tooltip: '圆锥',
-    type: 'Cone'
+    type: ShapeEnum.Circle
   },
   {
     icon: <RectangleIcon />,
     tooltip: '矩形',
-    type: 'Rectangle'
+    type: ShapeEnum.Rect
   },
   {
     icon: <RoundedRectangleIcon />,
     tooltip: '圆角矩形',
-    type: 'RoundedRectangle'
+    type: ShapeEnum.Rect
   },
   {
     icon: <ParallelogramIcon />,
     tooltip: '平行四边形',
-    type: 'Parallelogram'
+    type: ShapeEnum.Rect
   },
   {
     icon: <TrapezoidIcon />,
     tooltip: '梯形',
-    type: 'Trapezoid'
+    type: ShapeEnum.Rect
   },
   {
     icon: <TriangleIcon />,
     tooltip: '三角形',
-    type: 'Triangle'
+    type: ShapeEnum.Rect
   },
   {
     icon: <RhombusIcon />,
     tooltip: '菱形',
-    type: 'Rhombus'
+    type: ShapeEnum.Rect
   }
 ]
 
 interface Props {
-  addShape: (value: string) => void
+  addShape: (type: ShapeEnum, customConfig?: Partial<Konva.ShapeConfig>) => void
 }
 
 const Shape = (props: Props) => {

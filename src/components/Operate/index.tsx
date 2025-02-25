@@ -9,6 +9,8 @@ import Font from './components/Font'
 import Material from './components/Material'
 import Color from './components/Color'
 import { ShapeIcon, ColorIcon, TextIcon } from '@/assets/svg'
+import Konva from 'konva'
+import type { ShapeEnum } from '@/types/shape'
 
 interface OperateMapType {
   icon: ReactNode
@@ -20,11 +22,12 @@ interface Props {
   handleSvg: (data: string) => void
   handleImg: (url: string) => void
   handleSvgParser: (svgString: string) => void
-  addShape: (value: string) => void
+  addShape: (type: ShapeEnum, customConfig?: Partial<Konva.ShapeConfig>) => void
+  handleStyleCSS: (value: any) => void
 }
 
 const Option = (props: Props) => {
-  const { handleSvg, handleImg, handleSvgParser, addShape } = props
+  const { handleSvg, handleImg, handleSvgParser, addShape, handleStyleCSS } = props
 
   const { OperateType } = useCanvasStore(
     useShallow((state) => ({
@@ -52,7 +55,7 @@ const Option = (props: Props) => {
       OperateEnum.Color,
       {
         icon: <ColorIcon className="text-2xl" />,
-        component: <Color />,
+        component: <Color handleStyleCSS={handleStyleCSS} />,
         name: '颜色'
       }
     ],

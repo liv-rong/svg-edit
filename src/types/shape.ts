@@ -24,7 +24,9 @@ export const baseShapeConfig = {
   y: 20,
   fill: 'white',
   stroke: 'black',
-  strokeWidth: 2
+  strokeWidth: 2,
+  name: 'rect',
+  draggable: true
 }
 
 interface ShapeType<T extends Konva.ShapeConfig = Konva.ShapeConfig> {
@@ -73,7 +75,7 @@ export const ShapeMap = new Map<ShapeEnum, ShapeType<any>>([
     {
       defaultConfig: {
         points: [5, 70, 140, 23, 250, 60, 300, 20],
-        stroke: 'red',
+        stroke: 'black',
         strokeWidth: 15,
         lineCap: 'round',
         lineJoin: 'round'

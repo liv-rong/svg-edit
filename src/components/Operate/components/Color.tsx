@@ -2,7 +2,12 @@ import { Divider, Slider } from 'antd'
 import { useState } from 'react'
 import tinycolor from 'tinycolor2'
 
-const Color = () => {
+interface Props {
+  handleStyleCSS: (value: any) => void
+}
+
+const Color = (props: Props) => {
+  const { handleStyleCSS } = props
   const [hue, setHue] = useState(0)
   const [saturation, setSaturation] = useState(100)
 
@@ -21,6 +26,8 @@ const Color = () => {
 
   return (
     <div className="p-2">
+      <p className="text-base font-bold mb-2">AI 一键改色</p>
+
       <div>
         <div className="w-full  justify-start flex gap-4 items-center">
           <span>色相度</span>
@@ -64,11 +71,39 @@ const Color = () => {
       <Divider />
       <div>
         <p className="text-base font-bold mb-2">描边线</p>
-        <ColorPicker defaultValue="#1677ff" />
+
+        <ColorPicker
+          allowClear
+          defaultValue="#1677ff"
+          onChange={(value) => {
+            handleStyleCSS({ stroke: value.toHexString() })
+          }}
+        />
+        <div className="space-x-1">
+          <span className="text-xs">边线粗细</span>
+          <InputNumber
+            size="small"
+            suffix="px"
+            changeOnWheel
+            min={0}
+            max={100}
+            className="!w-20"
+            onChange={(value) => {
+              handleStyleCSS({ strokeWidth: value })
+            }}
+          />
+        </div>
       </div>
       <Divider />
       <div>
         <p className="text-base font-bold mb-2">填充色</p>
+        <ColorPicker
+          allowClear
+          defaultValue="#1677ff"
+          onChange={(value) => {
+            handleStyleCSS({ fill: value.toHexString() })
+          }}
+        />
       </div>
     </div>
   )

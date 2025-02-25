@@ -20,7 +20,8 @@ function Index() {
     }))
   )
 
-  const { initCanvas, handleSvg, addShape, handleImg, handleSvgParser } = useCanvas()
+  const { initCanvas, handleSvg, addShape, handleImg, handleSvgParser, handleStyleCSS } =
+    useCanvas()
 
   useEffect(() => {
     initCanvas()
@@ -36,6 +37,7 @@ function Index() {
           handleSvg={handleSvg}
           handleImg={handleImg}
           handleSvgParser={handleSvgParser}
+          handleStyleCSS={handleStyleCSS}
         />
         <Content className="overflow-y-auto flex justify-center items-center">
           <Canvas />

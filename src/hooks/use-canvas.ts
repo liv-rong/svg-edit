@@ -4,7 +4,6 @@ import { useShallow } from 'zustand/shallow'
 import type { Stage } from 'konva/lib/Stage'
 import { Layer } from 'konva/lib/Layer'
 import { ElementDataType } from '@/types/operate'
-import { types } from 'util'
 import { CanvasUtils } from '@/utils/Canvas'
 import type { ShapeEnum } from '@/types/shape'
 
@@ -40,7 +39,8 @@ export const useCanvas = () => {
       height: 90,
       fill: 'red',
       name: 'rect',
-      draggable: true
+      draggable: true,
+      id: '1111111111111111'
     })
     layer.add(rect1)
 
@@ -51,18 +51,27 @@ export const useCanvas = () => {
       height: 90,
       fill: 'green',
       name: 'rect',
-      draggable: true
+      draggable: true,
+      stroke: 'black',
+      strokeWidth: 2,
+      id: '222222222222222222222'
     })
     layer.add(rect2)
 
     const tr = new Konva.Transformer({
-      borderStroke: 'red'
+      borderStroke: 'blue',
+      ignoreStroke: true,
+      // manually adjust size of transformer
+      padding: 2,
+      name: 'transformer'
     })
+    tr.setZIndex(-1)
+    layer.draw()
     setTransformer(tr)
 
     layer.add(tr)
 
-    tr.nodes([rect1, rect2])
+    // tr.nodes([rect1, rect2])
 
     const selectionRectangle = new Konva.Rect({
       fill: 'rgba(0,0,255,0.1)',
@@ -279,20 +288,10 @@ export const useCanvas = () => {
   }
 
   const addShape = (type: ShapeEnum, customConfig?: Partial<Konva.ShapeConfig>) => {
-    CanvasUtils.createShape(type, customConfig)
-    const newShape = new Konva.Rect({
-      x: 250,
-      y: 100,
-      width: 150,
-      height: 90,
-      fill: 'green',
-      name: 'rect',
-      draggable: true
-    })
-
-    layer?.add(newShape)
-
-    // transformer?.nodes([newShape])
+    const resShape = CanvasUtils.createShape(type, customConfig)
+    if (!resShape) return
+    layer?.add(resShape)
+    transformer?.setZIndex(999)
   }
 
   useEffect(() => {
@@ -301,6 +300,22 @@ export const useCanvas = () => {
     }
   }, [])
 
+  const handleStyleCSS = (value: any) => {
+    // console.log('11111111111111111')
+    // const currentShape = layer?.getChildren()
+    // console.log(currentShape, 'layer?.getChildren()')
+
+    const currentShape = transformer?.getNodes()
+    currentShape?.forEach((ele) => {
+      const currentAttrs = ele.getAttrs()
+      console.log(currentAttrs, 'currentAttrs')
+      ele.setAttrs({
+        ...value
+      })
+    })
+    console.log(currentShape, 'transformer?.getChildren()')
+  }
+
   return {
     initCanvas,
     handleSvg,
@@ -308,7 +323,8 @@ export const useCanvas = () => {
     handleSvgParser,
     addShape,
     stage,
-    layer
+    layer,
+    handleStyleCSS
   }
 }
 
