@@ -3,6 +3,8 @@ import text2 from '@/assets/svg/text2.svg'
 import text3 from '@/assets/svg/test3.svg'
 import text4 from '@/assets/svg/text4.svg'
 import text5 from '@/assets/svg/text5.svg'
+import svg1 from '@/assets/svg/svg1.svg'
+import svg2 from '@/assets/svg/svg1.svg'
 import { ShapeIcon, ColorIcon, TextIcon, LoadingSvg, ShareLinkSvg } from '@/assets/svg/index'
 import type { ShapeEnum } from '@/types/shape'
 import Konva from 'konva'
@@ -70,6 +72,18 @@ const Material = (props: Props) => {
         <img
           onClick={() => handleSvg(text5)}
           src={text5}
+          alt=""
+          className="h-16 w-16 border bg-white cursor-pointer"
+        />
+        <img
+          onClick={() => handleSvg(svg1)}
+          src={svg1}
+          alt=""
+          className="h-16 w-16 border bg-white cursor-pointer"
+        />
+        <img
+          onClick={() => handleSvg(svg2)}
+          src={svg2}
           alt=""
           className="h-16 w-16 border bg-white cursor-pointer"
         />

@@ -13,11 +13,12 @@ interface HSVCompProps {
   min?: number
   value: number
   key: string
+  step?: number
   handleValue?: (value: number) => void
 }
 
 const HSVComp = (props: HSVCompProps) => {
-  const { label, max, min, value, handleValue } = props
+  const { label, max, min, value, handleValue, step } = props
   return (
     <div>
       <div className="w-full  justify-start flex gap-4 items-center">
@@ -28,6 +29,7 @@ const HSVComp = (props: HSVCompProps) => {
         min={min ?? 0}
         max={max ?? 100}
         value={value}
+        step={step ?? 1}
         onChange={handleValue}
         className="w-[200px]"
       />
@@ -51,19 +53,20 @@ const Color = (props: Props) => {
       value: hue,
       label: '色相',
       key: 'hue',
-      max: 360,
-      min: -360,
+      max: 180,
+      min: -180,
       handleValue: (value: number) => {
         setHue(value)
-        handleStyleCSS({ hue: value })
+        handleStyleCSS({ hue: value + 180 })
       }
     },
     {
       value: saturation,
       label: '饱和度',
       key: 'hue',
-      max: 100,
-      min: -100,
+      max: 10,
+      min: -2,
+      step: 0.01,
       handleValue: (value: number) => {
         setSaturation(value)
         handleStyleCSS({ saturation: value })
@@ -77,10 +80,22 @@ const Color = (props: Props) => {
       min: -100,
       handleValue: (value: number) => {
         setValue(value)
-        handleStyleCSS({ value: value })
+        handleStyleCSS({ value: mapRange(value, -100, 100, -2, 2) })
       }
     }
   ]
+
+  const mapRange = (
+    value: number,
+    inputMin: number,
+    inputMax: number,
+    outputMin: number,
+    outputMax: number
+  ): number => {
+    const mappedValue =
+      ((value - inputMin) * (outputMax - outputMin)) / (inputMax - inputMin) + outputMin
+    return mappedValue
+  }
 
   return (
     <div className="p-2">

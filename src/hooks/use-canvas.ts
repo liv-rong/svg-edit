@@ -65,7 +65,7 @@ export const useCanvas = () => {
       padding: 2,
       name: 'transformer'
     })
-    tr.setZIndex(-1)
+
     layer.draw()
     setTransformer(tr)
 
@@ -223,6 +223,11 @@ export const useCanvas = () => {
       })
       imageNode.cache()
       imageNode.filters([Konva.Filters.HSV])
+      // imageNode.setAttrs({
+      //   hue: 0,
+      //   saturation: 0,
+      //   value: 0
+      // })
       // imageNode.on('click', function (e) {
       //   console.log(e.target, 'click tap')
       // })
@@ -232,6 +237,7 @@ export const useCanvas = () => {
       // imageNode.on('auxclick', function (e) {
       //   console.log(e.target, 'auxclick')
       // })
+      transformer?.nodes([imageNode])
 
       transformer?.setZIndex(999)
     })
@@ -369,6 +375,7 @@ export const useCanvas = () => {
         const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(modifiedSvgText)}`
         console.log(currentAttrs, 'svgDataUrl')
         ele.destroy()
+        transformer?.nodes([])
         handleSvg(svgDataUrl, restAttrs)
       }
       // const currentAttrs3 = await ele.toSvg()
