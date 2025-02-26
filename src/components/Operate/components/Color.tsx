@@ -7,74 +7,93 @@ interface Props {
   handleAIChangeColor: (value?: any) => void
 }
 
+interface HSVCompProps {
+  label: string
+  max?: number
+  min?: number
+  value: number
+  key: string
+  handleValue?: (value: number) => void
+}
+
+const HSVComp = (props: HSVCompProps) => {
+  const { label, max, min, value, handleValue } = props
+  return (
+    <div>
+      <div className="w-full  justify-start flex gap-4 items-center">
+        <span>{label}</span>
+      </div>
+
+      <Slider
+        min={min ?? 0}
+        max={max ?? 100}
+        value={value}
+        onChange={handleValue}
+        className="w-[200px]"
+      />
+    </div>
+  )
+}
+
 const Color = (props: Props) => {
   const { handleStyleCSS, handleAIChangeColor } = props
   const [hue, setHue] = useState(0)
-  const [saturation, setSaturation] = useState(100)
-
-  const handleHueChange = (value) => {
-    setHue(value)
-    const resColor = getColor()
-    handleAIChangeColor()
-  }
-
-  const handleSaturationChange = (value) => {
-    setSaturation(value)
-  }
+  const [saturation, setSaturation] = useState(0)
+  const [value, setValue] = useState(0)
 
   const getColor = () => {
-    const color = tinycolor({ h: hue, s: saturation, v: 100 })
+    const color = tinycolor({ h: hue, s: saturation, v: value })
     return color.toHexString()
   }
+
+  const sliders: HSVCompProps[] = [
+    {
+      value: hue,
+      label: '色相',
+      key: 'hue',
+      max: 360,
+      min: -360,
+      handleValue: (value: number) => {
+        setHue(value)
+        handleStyleCSS({ hue: value })
+      }
+    },
+    {
+      value: saturation,
+      label: '饱和度',
+      key: 'hue',
+      max: 100,
+      min: -100,
+      handleValue: (value: number) => {
+        setSaturation(value)
+        handleStyleCSS({ saturation: value })
+      }
+    },
+    {
+      value: value,
+      label: '亮度',
+      key: 'value',
+      max: 100,
+      min: -100,
+      handleValue: (value: number) => {
+        setValue(value)
+        handleStyleCSS({ value: value })
+      }
+    }
+  ]
 
   return (
     <div className="p-2">
       <p className="text-base font-bold mb-2">AI 一键改色</p>
-
       <div>
-        <div className="w-full  justify-start flex gap-4 items-center">
-          <span>色相度</span>
-          <span
-            style={{
-              backgroundColor: tinycolor({ h: hue, s: 100, v: 100 }).toHexString(),
-              display: 'inline-block',
-              width: '20px',
-              height: '20px'
-            }}
-          ></span>
-        </div>
+        {sliders.map((item) => (
+          <HSVComp {...item} />
+        ))}
+      </div>
 
-        <Slider
-          min={0}
-          max={360}
-          value={hue}
-          onChange={handleHueChange}
-          className="w-[200px]"
-        />
-      </div>
-      <div>
-        <div className="w-full  justify-start flex gap-4 items-center">
-          <span>饱和度</span>
-          <span
-            style={{
-              backgroundColor: tinycolor({ h: hue, s: saturation, v: 100 }).toHexString(),
-              display: 'inline-block',
-              width: '20px',
-              height: '20px'
-            }}
-          ></span>
-        </div>
-        <Slider
-          min={0}
-          max={100}
-          value={saturation}
-          onChange={handleSaturationChange}
-        />
-      </div>
       <Divider />
       <div>
         <p className="text-base font-bold mb-2">描边线</p>
-
         <ColorPicker
           allowClear
           defaultValue="#1677ff"

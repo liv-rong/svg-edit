@@ -38,7 +38,7 @@ export const useCanvas = () => {
       width: 100,
       height: 90,
       fill: 'red',
-      name: 'rect',
+      name: 'transformerShape',
       draggable: true,
       id: '1111111111111111'
     })
@@ -50,7 +50,7 @@ export const useCanvas = () => {
       width: 150,
       height: 90,
       fill: 'green',
-      name: 'rect',
+      name: 'transformerShape',
       draggable: true,
       stroke: 'black',
       strokeWidth: 2,
@@ -129,7 +129,7 @@ export const useCanvas = () => {
       e.evt.preventDefault()
       selectionRectangle.visible(false)
       // const shapes = stage.find('.rect').concat(stage.find('.path'))
-      const shapes = layer.find('.rect')
+      const shapes = layer.find('.transformerShape')
       console.log(shapes, 'shapesshapes')
       const box = selectionRectangle.getClientRect()
       const selected = shapes.filter((shape) =>
@@ -207,17 +207,32 @@ export const useCanvas = () => {
     return { stage, layer, x1, y1, x2, y2 }
   }
 
-  const handleSvg = (data: string) => {
-    console.log('handleSvg', data, layer)
+  const handleSvg = (data: string, config?: Record<string, any>) => {
+    console.log('handleSvg', data)
     // if (!layer) return
     Konva.Image.fromURL(data, (imageNode) => {
+      console.log(imageNode, 'imageNode')
       layer?.add(imageNode)
       imageNode.setAttrs({
         width: 150,
         height: 150,
         draggable: true,
-        data: data
+        data: data,
+        name: 'transformerShape',
+        ...config
       })
+      imageNode.cache()
+      imageNode.filters([Konva.Filters.HSV])
+      // imageNode.on('click', function (e) {
+      //   console.log(e.target, 'click tap')
+      // })
+      // imageNode.on('dblclick', function (e) {
+      //   console.log(e.target, 'dblclick')
+      // })
+      // imageNode.on('auxclick', function (e) {
+      //   console.log(e.target, 'auxclick')
+      // })
+
       transformer?.setZIndex(999)
     })
   }
@@ -229,6 +244,7 @@ export const useCanvas = () => {
       image.setAttrs({
         x: 200,
         y: 50,
+        name: 'transformerShape',
         draggable: true
       })
       layer?.add(image)
@@ -242,10 +258,10 @@ export const useCanvas = () => {
 
     const allEle: ElementDataType[] = []
 
-    console.log(svgElement, '111111111')
+    // console.log(svgElement, '111111111')
 
     Array.from(svgElement.children).forEach((child) => {
-      console.log(child, '111111')
+      // console.log(child, '111111')
       const elementData: ElementDataType = { tagName: child.tagName }
 
       const attributes = child.getAttributeNames()
@@ -270,7 +286,7 @@ export const useCanvas = () => {
         case 'path':
           shape = new Konva.Path({
             data: itemEle.d,
-            name: 'rect',
+            name: 'transformerShape',
             draggable: true,
             x: 300,
             y: 400,
@@ -286,7 +302,7 @@ export const useCanvas = () => {
       }
     })
 
-    console.log(allEle, 'allEle')
+    // console.log(allEle, 'allEle')
   }
 
   const addShape = (type: ShapeEnum, customConfig?: Partial<Konva.ShapeConfig>) => {
@@ -311,22 +327,49 @@ export const useCanvas = () => {
         ...value
       })
     })
-    console.log(currentShape, 'transformer?.getChildren()')
+    // console.log(currentShape, 'transformer?.getChildren()')
   }
 
   const handleAIChangeColor = (value: any) => {
-    console.log(value, 'handleAIChangeColor')
+    // console.log(value, 'handleAIChangeColor')
     const currentShape = transformer?.getNodes()
     currentShape?.forEach(async (ele) => {
       const currentAttrs = await ele.getAttrs()
-      if (currentAttrs?.data) {
-        console.log(currentAttrs?.data)
+      const svgData = await ele.getAttrs()?.data
+      const { image, ...restAttrs } = currentAttrs
 
+      if (svgData) {
+        // console.log(currentAttrs?.data)
+        const response = await fetch(svgData)
+        const svgText = await response.text()
         const parser = new DOMParser()
-        const svgDoc = parser.parseFromString(currentAttrs?.data, 'image/svg+xml')
+        const svgDoc = parser.parseFromString(svgText, 'image/svg+xml')
         const svgElement = svgDoc.documentElement
+        // console.log(svgElement, 'svgElement')
+        //获取类名为classTag的元素  并且更改属性fill为红色  stroke 为blue
 
-        console.log(svgElement, 'svgElement')
+        // 获取类名为 'classTag' 的元素
+        const elements = svgElement.getElementsByClassName('classTag')
+
+        // 更改 fill 和 stroke 属性
+        for (const element of elements) {
+          if (element.hasAttribute('fill')) {
+            element.setAttribute('fill', 'red')
+          }
+          if (element.hasAttribute('stroke')) {
+            element.setAttribute('stroke', 'blue')
+          }
+        }
+
+        const serializer = new XMLSerializer()
+        const modifiedSvgText = serializer.serializeToString(svgElement)
+        // const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(modifiedSvgText)}`
+        //再变成svg 元素 生成图片
+
+        const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(modifiedSvgText)}`
+        console.log(currentAttrs, 'svgDataUrl')
+        ele.destroy()
+        handleSvg(svgDataUrl, restAttrs)
       }
       // const currentAttrs3 = await ele.toSvg()
       // console.log(currentAttrs4, 'handleAIChangeColor')

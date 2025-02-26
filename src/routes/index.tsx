@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Layout } from 'antd'
+import { Layout, Button } from 'antd'
 import Header from '@/components/Header'
 import Option from '@/components/Operate'
 import Canvas from '@/components/Canvas'
@@ -49,6 +49,7 @@ function Index() {
         />
         <Content className="overflow-y-auto flex justify-center items-center">
           <Canvas />
+          <Button onClick={handleAIChangeColor}>test</Button>
         </Content>
       </Layout>
     </Layout>

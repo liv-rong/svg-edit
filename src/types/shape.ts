@@ -25,7 +25,7 @@ export const baseShapeConfig = {
   fill: 'white',
   stroke: 'black',
   strokeWidth: 2,
-  name: 'rect',
+  name: 'transformerShape',
   draggable: true
 }
 

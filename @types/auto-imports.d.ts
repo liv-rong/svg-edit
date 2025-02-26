@@ -9,6 +9,7 @@ declare global {
   const Button: (typeof import('antd'))['Button']
   const CSSProperties: (typeof import('react'))['CSSProperties']
   const Canvas: (typeof import('../src/components/Canvas/index'))['default']
+  const CanvasUtils: (typeof import('../src/utils/Canvas'))['CanvasUtils']
   const Color: (typeof import('../src/components/Operate/components/Color'))['default']
   const ColorIcon: (typeof import('../src/assets/svg/index'))['ColorIcon']
   const ColorPicker: (typeof import('antd'))['ColorPicker']
@@ -60,4 +61,10 @@ declare global {
   const useState: (typeof import('react'))['useState']
   const useSyncExternalStore: (typeof import('react'))['useSyncExternalStore']
   const useTransition: (typeof import('react'))['useTransition']
+}
+// for type re-export
+declare global {
+  // @ts-ignore
+  export type { CanvasUtils } from '../src/utils/Canvas'
+  import('../src/utils/Canvas')
 }
