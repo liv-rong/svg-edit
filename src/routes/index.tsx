@@ -49,7 +49,6 @@ function Index() {
         />
         <Content className="overflow-y-auto flex justify-center items-center">
           <Canvas />
-          <Button onClick={handleAIChangeColor}>test</Button>
         </Content>
       </Layout>
     </Layout>

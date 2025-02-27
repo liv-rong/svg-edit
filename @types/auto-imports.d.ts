@@ -17,6 +17,7 @@ declare global {
   const Dropdown: (typeof import('antd'))['Dropdown']
   const Font: (typeof import('../src/components/Operate/components/Font'))['default']
   const Header: (typeof import('../src/components/Header/index'))['default']
+  const ImgUtils: (typeof import('../src/utils/img'))['ImgUtils']
   const InputNumber: (typeof import('antd'))['InputNumber']
   const Link: (typeof import('@tanstack/react-router'))['Link']
   const LoadingSvg: (typeof import('../src/assets/svg/index'))['LoadingSvg']
@@ -67,4 +68,7 @@ declare global {
   // @ts-ignore
   export type { CanvasUtils } from '../src/utils/Canvas'
   import('../src/utils/Canvas')
+  // @ts-ignore
+  export type { ImgUtils } from '../src/utils/img'
+  import('../src/utils/img')
 }

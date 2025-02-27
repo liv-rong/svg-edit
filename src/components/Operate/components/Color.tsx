@@ -1,7 +1,6 @@
 import { Divider, Slider } from 'antd'
 import { useState } from 'react'
 import tinycolor from 'tinycolor2'
-import { allColorType } from '@/types/color'
 
 interface Props {
   handleStyleCSS: (value: any) => void
@@ -53,8 +52,8 @@ const Color = (props: Props) => {
   const [saturation, setSaturation] = useState(0)
   const [value, setValue] = useState(0)
 
-  const getColor = () => {
-    const color = tinycolor({ h: hue, s: saturation, v: value })
+  const getColor = ({ h, s, v }: { h: number; s: number; v: number }) => {
+    const color = tinycolor({ h, s, v })
     return color.toHexString()
   }
 
@@ -109,35 +108,59 @@ const Color = (props: Props) => {
   return (
     <div className="p-2">
       <p className="text-base font-bold mb-2">AI 一键改色</p>
-      <div>
-        {allColorType.map((item) => (
-          <div
-            key={item}
-            className="space-y-1"
-          >
-            <div className="w-16 h-8">
-              <span className={classNames('w-1/2 h-full', [])} />
-              <span className="w-1/2 h-full" />
+      <div className="flex justify-center items-center w-full ">
+        <div className="w-full grid grid-cols-3 gap-x-2 gap-y-2 mb-2 ">
+          {Array.from({ length: 12 }, (_, index) => (
+            <div
+              key={index}
+              className="w-8 h-8 grid grid-cols-2 grid-rows-2 gap-y-0.5 cursor-pointer"
+              onClick={() => handleAIChangeColor()}
+            >
+              <div
+                style={{
+                  background: getColor({ h: index * 30 + 15, s: 100, v: 100 })
+                }}
+              />
+              <div
+                style={{
+                  background: getColor({ h: index * 30, s: 50, v: 100 })
+                }}
+              />
+              <div
+                style={{
+                  background: getColor({ h: index * 30 - 15, s: 100, v: 100 })
+                }}
+              />
+              <div
+                style={{
+                  background: getColor({ h: index * 30, s: 50, v: 100 })
+                }}
+              />
             </div>
-            <div className="w-16 h-8">
-              <span className="w-1/2 h-full" />
-              <span className="w-1/2 h-full" />
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+
       <div>
         {sliders.map((item) => (
           <HSVComp {...item} />
         ))}
       </div>
 
+      <div>
+        <p className="mb-2">配色自定义精修</p>
+        <ColorPicker
+          defaultValue="red"
+          size="small"
+        />
+      </div>
       <Divider />
       <div>
         <p className="text-base font-bold mb-2">描边线</p>
         <ColorPicker
           allowClear
           defaultValue="#1677ff"
+          size="small"
           onChange={(value) => {
             handleStyleCSS({ stroke: value.toHexString() })
           }}
@@ -163,6 +186,7 @@ const Color = (props: Props) => {
         <ColorPicker
           allowClear
           defaultValue="#1677ff"
+          size="small"
           onChange={(value) => {
             handleStyleCSS({ fill: value.toHexString() })
           }}

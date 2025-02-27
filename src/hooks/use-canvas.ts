@@ -6,6 +6,7 @@ import { Layer } from 'konva/lib/Layer'
 import { ElementDataType } from '@/types/operate'
 import { CanvasUtils } from '@/utils/Canvas'
 import type { ShapeEnum } from '@/types/shape'
+import tinycolor from 'tinycolor2'
 
 export const useCanvas = () => {
   const { canvasData } = useCanvasStore(
@@ -23,7 +24,7 @@ export const useCanvas = () => {
   const initCanvas = () => {
     const stage = new Konva.Stage({
       container: 'container',
-      width: 600,
+      width: 1200,
       height: 800
     })
     setState(stage)
@@ -208,21 +209,18 @@ export const useCanvas = () => {
   }
 
   const handleSvg = (data: string, config?: Record<string, any>) => {
-    console.log('handleSvg', data)
-    // if (!layer) return
+    if (!layer) return
     Konva.Image.fromURL(data, (imageNode) => {
       console.log(imageNode, 'imageNode')
       layer?.add(imageNode)
       imageNode.setAttrs({
-        width: 150,
-        height: 150,
         draggable: true,
         data: data,
         name: 'transformerShape',
         ...config
       })
-      imageNode.cache()
-      imageNode.filters([Konva.Filters.HSV])
+      // imageNode.cache()
+      // imageNode.filters([Konva.Filters.HSV])
       // imageNode.setAttrs({
       //   hue: 0,
       //   saturation: 0,
@@ -241,11 +239,55 @@ export const useCanvas = () => {
 
       transformer?.setZIndex(999)
     })
+
+    // const img = new Image()
+    // img.src = data
+
+    // const newShape = new Konva.Shape({
+    //   width: img.width ?? 100,
+    //   height: img.height ?? 100,
+    //   draggable: true,
+    //   data: data,
+    //   name: 'transformerShape',
+    //   sceneFunc: function (context, shape) {
+    //     const width = shape.width()
+    //     const height = shape.height()
+    //     context.drawImage(img, 0, 0, width, height)
+    //   }
+    // })
+    // // newShape.cache()
+    // // newShape.filters([Konva.Filters.HSV])
+    // newShape.setAttrs({
+    //   draggable: true,
+    //   data: data,
+    //   name: 'transformerShape'
+    // })
+    // layer?.add(newShape)
+    // // transformer?.nodes([triangle])
+    // transformer?.setZIndex(999)
   }
 
-  const handleImg = (url: string) => {
-    if (!layer) return
+  // const handleSvg2Shape = (data: string, config?: Record<string, any>) => {
+  //   const triangle = new Konva.Shape({
+  //     width: 260,
+  //     height: 170,
+  //     draggable: true,
+  //     data: data,
+  //     name: 'transformerShape',
+  //     sceneFunc: function (context, shape) {
+  //       const width = shape.width()
+  //       const height = shape.height()
+  //       context.drawImage(img, 0, 0, width, height)
+  //     },
+  //     fill: '#00D2FF',
+  //     stroke: 'black',
+  //     strokeWidth: 4
+  //   })
+  //   layer?.add(triangle)
+  // }
 
+  const handleImg = (url: string, config?: Record<string, any>) => {
+    if (!layer) return
     Konva.Image.fromURL(url, (image) => {
       image.setAttrs({
         x: 200,
@@ -254,6 +296,16 @@ export const useCanvas = () => {
         draggable: true
       })
       layer?.add(image)
+      image.setAttrs({
+        draggable: true,
+        data: url,
+        name: 'transformerShape',
+        ...config
+      })
+      image.cache()
+      image.filters([Konva.Filters.HSV])
+      transformer?.nodes([image])
+      transformer?.setZIndex(999)
     })
   }
 
@@ -327,13 +379,18 @@ export const useCanvas = () => {
   const handleStyleCSS = (value: any) => {
     const currentShape = transformer?.getNodes()
     currentShape?.forEach((ele) => {
-      const currentAttrs = ele.getAttrs()
-      console.log(currentAttrs, 'currentAttrs')
+      ele.clearCache()
+      ele.filters([Konva.Filters.HSV])
       ele.setAttrs({
         ...value
       })
+      ele.cache({
+        pixelRatio: 6,
+        imageSmoothingEnabled: true
+      })
     })
-    // console.log(currentShape, 'transformer?.getChildren()')
+
+    layer?.batchDraw()
   }
 
   const handleAIChangeColor = (value: any) => {
@@ -358,14 +415,50 @@ export const useCanvas = () => {
         const elements = svgElement.getElementsByClassName('classTag')
 
         // 更改 fill 和 stroke 属性
+        let colorIndex = 0
         for (const element of elements) {
-          if (element.hasAttribute('fill')) {
-            element.setAttribute('fill', 'red')
+          const eleStroke = element.getAttribute('stroke')
+          const eleFill = element.getAttribute('fill')
+          console.log(element, 'elementelementelementelement')
+          const color = [
+            tinycolor({ h: 0.971, s: 0.013, v: 17.38 }).toHex(),
+            tinycolor({ h: 0.936, s: 0.032, v: 17.717 }).toHex(),
+            tinycolor({ h: 0.885, s: 0.062, v: 18.334 }).toHex(),
+            tinycolor({ h: 0.808, s: 0.114, v: 19.571 }).toHex()
+          ]
+          if (eleFill) {
+            // const nowColor = tinycolor(eleFill).toHsv()
+
+            // const newColorH = (nowColor.h + 30) % 360
+            // const newColor = tinycolor({
+            //   h: newColorH,
+            //   s: nowColor.s > 0 ? nowColor.s : 1,
+            //   v: nowColor.v > 0 ? nowColor.v : 1,
+            //   a: nowColor.a // 保留 alpha 通道
+            // }).toHex()
+
+            const newColor = color[colorIndex]
+            colorIndex = (colorIndex % 3) + 1
+
+            element.setAttribute('fill', `#${newColor}`)
+            console.log(newColor, 'asda')
           }
-          if (element.hasAttribute('stroke')) {
-            element.setAttribute('stroke', 'blue')
+          if (eleStroke) {
+            const nowStrokeColor = tinycolor(eleStroke).toHsv()
+
+            const newColorH = (nowStrokeColor.h + 30) % 360
+            const newColor = tinycolor({
+              h: newColorH,
+              s: nowStrokeColor.s > 0 ? nowStrokeColor.s : 1,
+              v: nowStrokeColor.v > 0 ? nowStrokeColor.v : 1,
+              a: nowStrokeColor.a // 保留 alpha 通道
+            }).toHex()
+
+            element.setAttribute('stroke', `#${newColor}`)
           }
+          console.log(element, 'elementelementelementelement')
         }
+        console.log(svgElement, 'elementelementelementelement')
 
         const serializer = new XMLSerializer()
         const modifiedSvgText = serializer.serializeToString(svgElement)
@@ -397,47 +490,3 @@ export const useCanvas = () => {
     handleStyleCSS
   }
 }
-
-const text = `<path fill="#00dba8" d="M44 19c0 11.05-13.5 22.5-20 22.5S4 30.05 4 19S13 1.5 24 1.5S44 8 44 19"/>
-
-
-<path fill="#00ad85" d="M24 38.39c-6.22 0-18.82-10.47-19.91-21C4 17.89 4 18.43 4 19c0 11.05 13.5 22.5 20 22.5S44 30.05 44 19c0-.57 0-1.11-.08-1.65c-1.1 10.57-13.7 21.04-19.92 21.04"/>
-
-
-<path fill="none" stroke="#45413c" stroke-linecap="round" d="M29 30a9 9 0 0 1-10 0"/>
-
-<path fill="#45413c" d="M8 45.5a16 1.5 0 1 0 32 0a16 1.5 0 1 0-32 0" opacity=".15"/>
-
-
-
-<path fill="none" stroke="#45413c" stroke-linecap="round" stroke-linejoin="round" d="M44 19c0 11.05-13.5 22.5-20 22.5S4 30.05 4 19S13 1.5 24 1.5S44 8 44 19"/>
-<path fill="#bf8df2" d="M10.88 12.41c-2.37 1.81-2.44 5.7-.17 8.69s6.28 3.45 9 3.06a8.78 8.78 0 0 0-.41-9.61c-2.3-2.99-6.04-3.94-8.42-2.14"/>
-
-
-
-<path fill="#dabff5" d="M19.3 14.55c-2.27-3-6-3.94-8.42-2.14a5.3 5.3 0 0 0-1.67 5.44a4.64 4.64 0 0 1 1.67-2.71c2.38-1.81 6.15-.85 8.42 2.13A8.24 8.24 0 0 1 20.85 21a8.71 8.71 0 0 0-1.55-6.45"/>
-
-
-
-<path fill="none" stroke="#45413c" stroke-linecap="round" stroke-linejoin="round" d="M10.88 12.41c-2.37 1.81-2.44 5.7-.17 8.69s6.28 3.45 9 3.06a8.78 8.78 0 0 0-.41-9.61c-2.3-2.99-6.04-3.94-8.42-2.14"/>
-
-
-
-<path fill="#bf8df2" d="M37.12 12.41c2.37 1.81 2.44 5.7.17 8.69s-6.28 3.45-9 3.06a8.78 8.78 0 0 1 .41-9.61c2.3-2.99 6.04-3.94 8.42-2.14"/>
-
-
-
-
-
-<path fill="#dabff5" d="M28.7 14.55c2.27-3 6-3.94 8.42-2.14a5.3 5.3 0 0 1 1.67 5.44a4.64 4.64 0 0 0-1.67-2.71c-2.38-1.81-6.15-.85-8.42 2.13A8.24 8.24 0 0 0 27.15 21a8.71 8.71 0 0 1 1.55-6.45"/>
-
-
-
-<path fill="none" stroke="#45413c" stroke-linecap="round" stroke-linejoin="round" d="M37.12 12.41c2.37 1.81 2.44 5.7.17 8.69s-6.28 3.45-9 3.06a8.78 8.78 0 0 1 .41-9.61c2.3-2.99 6.04-3.94 8.42-2.14M25.5 26v1.5m-3-1.5v1.5"/>
-
-
-
-<path fill="#00ad85" d="M10.81 28.17a2.5 1.5 0 1 0 5 0a2.5 1.5 0 1 0-5 0m21.38 0a2.5 1.5 0 1 0 5 0a2.5 1.5 0 1 0-5 0"/>
-
-
-<path fill="#00f5bc" d="M18.04 5.39a6 1.5 0 1 0 12 0a6 1.5 0 1 0-12 0"/>`
