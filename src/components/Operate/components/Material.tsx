@@ -6,6 +6,7 @@ import text5 from '@/assets/svg/text5.svg'
 import svg1 from '@/assets/svg/svg1.svg'
 import svg2 from '@/assets/svg/svg1.svg'
 import svg5 from '@/assets/svg/svg5.svg'
+import svg7 from '@/assets/svg/svg7.svg'
 import image from '@/assets/svg/image.png'
 import { ShapeIcon, ColorIcon, TextIcon, LoadingSvg, ShareLinkSvg } from '@/assets/svg/index'
 import type { ShapeEnum } from '@/types/shape'
@@ -100,6 +101,12 @@ const Material = (props: Props) => {
         <img
           src={svg5}
           onClick={() => handleSvg(svg5)}
+          alt=""
+          className="h-16 w-16 border bg-white cursor-pointer"
+        />
+        <img
+          src={svg7}
+          onClick={() => handleSvg(svg7)}
           alt=""
           className="h-16 w-16 border bg-white cursor-pointer"
         />

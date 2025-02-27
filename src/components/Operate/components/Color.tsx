@@ -22,7 +22,9 @@ const HSVComp = (props: HSVCompProps) => {
   return (
     <div>
       <div className="w-full  justify-between flex  items-center">
-        <span>{label}</span>
+        <span className="bg-red-200">{label}</span>
+        <span className="bg-red-300">{label}</span>
+        <span className="bg-red-400">{label}</span>
         <InputNumber
           min={min ?? 0}
           max={max ?? 100}
@@ -108,6 +110,7 @@ const Color = (props: Props) => {
   return (
     <div className="p-2">
       <p className="text-base font-bold mb-2">AI 一键改色</p>
+
       <div className="flex justify-center items-center w-full ">
         <div className="w-full grid grid-cols-3 gap-x-2 gap-y-2 mb-2 ">
           {Array.from({ length: 12 }, (_, index) => (
@@ -150,7 +153,7 @@ const Color = (props: Props) => {
       <div>
         <p className="mb-2">配色自定义精修</p>
         <ColorPicker
-          defaultValue="red"
+          defaultValue={`oklch(0.971 0.013 17.38)`}
           size="small"
         />
       </div>

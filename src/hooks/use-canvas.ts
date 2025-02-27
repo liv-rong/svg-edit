@@ -416,45 +416,22 @@ export const useCanvas = () => {
 
         // 更改 fill 和 stroke 属性
         let colorIndex = 0
+        const colors = ['#fef2f2', '#ffe2e2', '#ffc9c9', '#ffa2a2', '#ff6467', '#fb2c36']
+        const rec = colors[0]
         for (const element of elements) {
           const eleStroke = element.getAttribute('stroke')
           const eleFill = element.getAttribute('fill')
           console.log(element, 'elementelementelementelement')
-          const color = [
-            tinycolor({ h: 0.971, s: 0.013, v: 17.38 }).toHex(),
-            tinycolor({ h: 0.936, s: 0.032, v: 17.717 }).toHex(),
-            tinycolor({ h: 0.885, s: 0.062, v: 18.334 }).toHex(),
-            tinycolor({ h: 0.808, s: 0.114, v: 19.571 }).toHex()
-          ]
+          const newColor = colors[colorIndex]
+          colorIndex = (colorIndex + 1) % colors.length
           if (eleFill) {
-            // const nowColor = tinycolor(eleFill).toHsv()
+            // Update index correctly
 
-            // const newColorH = (nowColor.h + 30) % 360
-            // const newColor = tinycolor({
-            //   h: newColorH,
-            //   s: nowColor.s > 0 ? nowColor.s : 1,
-            //   v: nowColor.v > 0 ? nowColor.v : 1,
-            //   a: nowColor.a // 保留 alpha 通道
-            // }).toHex()
-
-            const newColor = color[colorIndex]
-            colorIndex = (colorIndex % 3) + 1
-
-            element.setAttribute('fill', `#${newColor}`)
-            console.log(newColor, 'asda')
+            element.setAttribute('fill', `${newColor}`) // Update fill color
+            colorIndex = (colorIndex + 1) % colors.length
           }
           if (eleStroke) {
-            const nowStrokeColor = tinycolor(eleStroke).toHsv()
-
-            const newColorH = (nowStrokeColor.h + 30) % 360
-            const newColor = tinycolor({
-              h: newColorH,
-              s: nowStrokeColor.s > 0 ? nowStrokeColor.s : 1,
-              v: nowStrokeColor.v > 0 ? nowStrokeColor.v : 1,
-              a: nowStrokeColor.a // 保留 alpha 通道
-            }).toHex()
-
-            element.setAttribute('stroke', `#${newColor}`)
+            element.setAttribute('stroke', newColor[colorIndex]) // Update fill color
           }
           console.log(element, 'elementelementelementelement')
         }
