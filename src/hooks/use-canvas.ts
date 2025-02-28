@@ -411,6 +411,35 @@ export const useCanvas = () => {
     layer?.batchDraw()
   }
 
+  const styleStringToObject = (styleString: string | null): Record<string, string> => {
+    const styleObject: Record<string, string> = {}
+
+    if (!styleString) return styleObject
+
+    // Remove any extra spaces and split by semicolon
+    const styles = styleString
+      .split(';')
+      .map((style) => style.trim())
+      .filter(Boolean)
+
+    for (const style of styles) {
+      const [key, value] = style.split(':').map((part) => part.trim())
+      if (key && value) {
+        styleObject[key] = rgbToHex(value)
+      }
+    }
+    return styleObject
+  }
+  //把rgb rgb(180, 189, 225) 字符串转为 hex 格式的 用tinycolor 库来写
+  const rgbToHex = (rgb: string): string => {
+    //判断是不是rgb 字符串 如果不是直接返回
+    if (!rgb.startsWith('rgb')) {
+      return rgb
+    }
+    const color = tinycolor(rgb)
+    return color.toHexString()
+  }
+
   const handleAIChangeColor = ({ s, h, v }: HSVType) => {
     // console.log(value, 'handleAIChangeColor')
     const currentShape = transformer?.getNodes()
@@ -435,24 +464,63 @@ export const useCanvas = () => {
         // console.log(elements, 'svgElement')
         const elements1 = svgElement.querySelectorAll('[fill], [stroke], [style]')
         console.log(elements1, 'svgElement')
+        const colors = ['#fef2f2', '#ffe2e2', '#ffc9c9', '#ffa2a2', '#ff6467', '#fb2c36']
+        const currentColors: string[] = []
+        const colorMap: Map<string, string> = new Map()
         elements1.forEach((element) => {
           // 获取并打印当前颜色
           const currentFill = element.getAttribute('fill')
           const currentStroke = element.getAttribute('stroke')
-          const styleCrrent = element.getAttribute('style')
-          console.log(currentFill, currentStroke, styleCrrent, '11111111111111111111111')
-          // console.log(`Current Fill: ${currentFill}, Current Stroke: ${currentStroke}`)
-
-          // // 修改颜色（示例：将所有填充改为蓝色，描边改为绿色）
-          // if (currentFill) {
-          //   element.setAttribute('fill', '#f761ff') // 新的填充颜色
-          // }
-          // if (currentStroke) {
-          //   element.setAttribute('stroke', '#28a745') // 新的描边颜色
-          // }
-
-          console.log(element, '111111111111111111111111111')
+          const currentStyle = element.getAttribute('style')
+          const styleCurrent = styleStringToObject(element.getAttribute('style'))
+          console.log(
+            currentFill,
+            currentStroke,
+            styleCurrent,
+            currentStyle,
+            '11111111111111111111111'
+          )
+          if (currentFill) {
+            const mapValue = colorMap.has(currentFill)
+            if (mapValue) {
+              element.setAttribute('fill', colorMap.get(currentFill) ?? 'none')
+            } else {
+              colorMap.set(currentFill, colors[Math.floor(Math.random() * colors.length)])
+            }
+          }
+          if (currentStroke) {
+            const mapValue = colorMap.has(currentStroke)
+            if (mapValue) {
+              element.setAttribute('fill', colorMap.get(currentStroke) ?? 'none')
+            } else {
+              colorMap.set(currentStroke, colors[Math.floor(Math.random() * colors.length)])
+            }
+          }
+          if (styleCurrent) {
+            const { fill, stroke, ...rest } = styleCurrent
+            const newStyle = { ...styleCurrent }
+            if (fill) {
+              const mapValue = colorMap.has(fill)
+              if (mapValue) {
+                newStyle.fill = colorMap.get(fill) ?? 'none'
+              }
+            }
+            if (stroke) {
+              const mapValue = colorMap.has(stroke)
+              if (mapValue) {
+                newStyle.stroke = colorMap.get(stroke) ?? 'none'
+              }
+            }
+            element.setAttribute('style', newStyle.toString())
+          }
         })
+
+        const serializer = new XMLSerializer()
+        const modifiedSvgText = serializer.serializeToString(svgElement)
+        const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(modifiedSvgText)}`
+        ele.destroy()
+        transformer?.nodes([])
+        handleSvg(svgDataUrl, restAttrs)
         // const newSvgString = new XMLSerializer().serializeToString(svgElement)
         // console.log(newSvgString) // 输出新的 SVG 字符串
 
@@ -477,24 +545,24 @@ export const useCanvas = () => {
         //   }
 
         //   console.log(eleStyle, `Element: ${eleFill}, Fill: ${eleStroke}`, 'svgElement')
-        // })
-        for (const element of elements) {
-          // const eleStroke = element.getAttribute('stroke')
-          // const eleFill = element.getAttribute('fill')
-          // const eleStyle = element.getAttribute('style')
-          // console.log(eleStroke, eleFill, eleStyle, 'svgElement')
-          // const newColor = colors[colorIndex]
-          // colorIndex = (colorIndex + 1) % colors.length
-          // if (eleFill) {
-          //   // Update index correctly
-          //   element.setAttribute('fill', `${newColor}`) // Update fill color
-          //   colorIndex = (colorIndex + 1) % colors.length
-          // }
-          // if (eleStroke) {
-          //   element.setAttribute('stroke', newColor[colorIndex]) // Update fill color
-          // }
-          // console.log(element, 'elementelementelementelement')
-        }
+        // // })
+        // for (const element of elements) {
+        //   // const eleStroke = element.getAttribute('stroke')
+        //   // const eleFill = element.getAttribute('fill')
+        //   // const eleStyle = element.getAttribute('style')
+        //   // console.log(eleStroke, eleFill, eleStyle, 'svgElement')
+        //   // const newColor = colors[colorIndex]
+        //   // colorIndex = (colorIndex + 1) % colors.length
+        //   // if (eleFill) {
+        //   //   // Update index correctly
+        //   //   element.setAttribute('fill', `${newColor}`) // Update fill color
+        //   //   colorIndex = (colorIndex + 1) % colors.length
+        //   // }
+        //   // if (eleStroke) {
+        //   //   element.setAttribute('stroke', newColor[colorIndex]) // Update fill color
+        //   // }
+        //   // console.log(element, 'elementelementelementelement')
+        // }
         // // 更改 fill 和 stroke 属性
         // let colorIndex = 0
         // const colors = ['#fef2f2', '#ffe2e2', '#ffc9c9', '#ffa2a2', '#ff6467', '#fb2c36']

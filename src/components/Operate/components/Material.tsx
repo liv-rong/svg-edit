@@ -60,25 +60,6 @@ const Material = (props: Props) => {
       <div className="border-t">
         <p>svg整体导入</p>
         <div className="grid grid-cols-3 gap-2">
-          <img
-            onClick={() => handleSvg(text3)}
-            src={text3}
-            alt=""
-            className="h-16 w-16 border bg-white cursor-pointer"
-          />
-          <img
-            onClick={() => handleSvg(text2)}
-            src={text2}
-            alt=""
-            className="h-16 w-16 border bg-white cursor-pointer"
-          />
-          <img
-            onClick={() => handleSvg(svg1Copy)}
-            src={svg1Copy}
-            alt=""
-            className="h-16 w-16 border bg-white cursor-pointer"
-          />
-
           {svgElement.map((item, index) => (
             <div
               key={index}
