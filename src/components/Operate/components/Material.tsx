@@ -3,12 +3,22 @@ import text2 from '@/assets/svg/text2.svg'
 import text3 from '@/assets/svg/test3.svg'
 import text4 from '@/assets/svg/text4.svg'
 import text5 from '@/assets/svg/text5.svg'
-import svg1 from '@/assets/svg/svg1.svg'
-import svg2 from '@/assets/svg/svg1.svg'
-import svg5 from '@/assets/svg/svg5.svg'
-import svg7 from '@/assets/svg/svg7.svg'
-import image from '@/assets/svg/image.png'
-import { ShapeIcon, ColorIcon, TextIcon, LoadingSvg, ShareLinkSvg } from '@/assets/svg/index'
+import img1 from '@/assets/svg/image1.png'
+import svg1Copy from '@/assets/svg/svg1.svg'
+import {
+  svg1,
+  svg2,
+  svg3,
+  svg4,
+  svg5,
+  svg6,
+  svg7,
+  svg8,
+  svg9,
+  svg10,
+  svg11,
+  svg0
+} from '@/assets/svg/svg8'
 import type { ShapeEnum } from '@/types/shape'
 import Konva from 'konva'
 
@@ -28,11 +38,12 @@ const Material = (props: Props) => {
     handleSvgParser(svgText)
   }
 
-  // const svgElement = [ShapeIcon, ColorIcon, TextIcon, LoadingSvg, ShareLinkSvg]
-
-  const svgElement = [LoadingSvg]
+  const svgElement = [svg0, svg1, svg2, svg3, svg4, svg5, svg6, svg7, svg8, svg9, svg10, svg11]
 
   const svgElement2 = [text1, text2, text3, text4]
+
+  const svgDataUri = (svgString: string) =>
+    'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString)
 
   return (
     <div className="space-y-1">
@@ -48,69 +59,41 @@ const Material = (props: Props) => {
       ))}
       <div className="border-t">
         <p>svg整体导入</p>
-        <img
-          onClick={() => handleSvg(text3)}
-          src={text3}
-          alt=""
-          className="h-16 w-16 border bg-white cursor-pointer"
-        />
-        <img
-          onClick={() => handleSvg(text2)}
-          src={text2}
-          alt=""
-          className="h-16 w-16 border bg-white cursor-pointer"
-        />
-        <img
-          onClick={() => handleSvg(text1)}
-          src={text1}
-          alt=""
-          className="h-16 w-16 border bg-white cursor-pointer"
-        />
-        <img
-          onClick={() => handleSvg(text4)}
-          src={text4}
-          alt=""
-          className="h-16 w-16 border bg-white cursor-pointer"
-        />
-        <img
-          onClick={() => handleSvg(text5)}
-          src={text5}
-          alt=""
-          className="h-16 w-16 border bg-white cursor-pointer"
-        />
-        <img
-          onClick={() => handleSvg(svg1)}
-          src={svg1}
-          alt=""
-          className="h-16 w-16 border bg-white cursor-pointer"
-        />
-        {svg1}
-        <img
-          onClick={() => handleSvg(svg2)}
-          src={svg2}
-          alt=""
-          className="h-16 w-16 border bg-white cursor-pointer"
-        />
-        {svg2}
-        <img
-          src={image}
-          onClick={() => handleSvg(image)}
-          alt=""
-          className="h-16 w-16 border bg-white cursor-pointer"
-        />
-        <img
-          src={svg5}
-          onClick={() => handleSvg(svg5)}
-          alt=""
-          className="h-16 w-16 border bg-white cursor-pointer"
-        />
-        <img
-          src={svg7}
-          onClick={() => handleSvg(svg7)}
-          alt=""
-          className="h-16 w-16 border bg-white cursor-pointer"
-        />
-        {svg5}
+        <div className="grid grid-cols-3 gap-2">
+          <img
+            onClick={() => handleSvg(text3)}
+            src={text3}
+            alt=""
+            className="h-16 w-16 border bg-white cursor-pointer"
+          />
+          <img
+            onClick={() => handleSvg(text2)}
+            src={text2}
+            alt=""
+            className="h-16 w-16 border bg-white cursor-pointer"
+          />
+          <img
+            onClick={() => handleSvg(svg1Copy)}
+            src={svg1Copy}
+            alt=""
+            className="h-16 w-16 border bg-white cursor-pointer"
+          />
+
+          {svgElement.map((item, index) => (
+            <div
+              key={index}
+              onClick={() => handleSvg(svgDataUri(item()))}
+              className="flex items-center justify-center h-16 w-16 border border- overflow-hidden cursor-pointer"
+            >
+              {index}
+              <img
+                src={svgDataUri(item())}
+                alt="SVG Image"
+                className="svg-image"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

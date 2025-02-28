@@ -72,6 +72,12 @@ export default defineConfig({
       deleteOriginFile: true
     })
   ],
+  esbuild: {
+    drop: ['console', 'debugger']
+  },
+  server: {
+    host: '0.0.0.0'
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')

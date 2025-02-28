@@ -11,6 +11,7 @@ import Color from './components/Color'
 import { ShapeIcon, ColorIcon, TextIcon } from '@/assets/svg'
 import Konva from 'konva'
 import type { ShapeEnum } from '@/types/shape'
+import type { HSVType } from '@/types/color'
 
 interface OperateMapType {
   icon: ReactNode
@@ -24,7 +25,7 @@ interface Props {
   handleSvgParser: (svgString: string) => void
   addShape: (type: ShapeEnum, customConfig?: Partial<Konva.ShapeConfig>) => void
   handleStyleCSS: (value: any) => void
-  handleAIChangeColor: (value?: any) => void
+  handleAIChangeColor: (value?: HSVType) => void
 }
 
 const Option = (props: Props) => {

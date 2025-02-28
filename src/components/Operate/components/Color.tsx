@@ -1,10 +1,11 @@
 import { Divider, Slider } from 'antd'
 import { useState } from 'react'
 import tinycolor from 'tinycolor2'
+import { HSVType } from '@/types/color'
 
 interface Props {
   handleStyleCSS: (value: any) => void
-  handleAIChangeColor: (value?: any) => void
+  handleAIChangeColor: (value?: HSVType) => void
 }
 
 interface HSVCompProps {
@@ -22,9 +23,7 @@ const HSVComp = (props: HSVCompProps) => {
   return (
     <div>
       <div className="w-full  justify-between flex  items-center">
-        <span className="bg-red-200">{label}</span>
-        <span className="bg-red-300">{label}</span>
-        <span className="bg-red-400">{label}</span>
+        <span className="">{label}</span>
         <InputNumber
           min={min ?? 0}
           max={max ?? 100}
@@ -54,7 +53,7 @@ const Color = (props: Props) => {
   const [saturation, setSaturation] = useState(0)
   const [value, setValue] = useState(0)
 
-  const getColor = ({ h, s, v }: { h: number; s: number; v: number }) => {
+  const getColor = ({ h, s, v }: HSVType) => {
     const color = tinycolor({ h, s, v })
     return color.toHexString()
   }
@@ -117,7 +116,13 @@ const Color = (props: Props) => {
             <div
               key={index}
               className="w-8 h-8 grid grid-cols-2 grid-rows-2 gap-y-0.5 cursor-pointer"
-              onClick={() => handleAIChangeColor()}
+              onClick={() =>
+                handleAIChangeColor({
+                  h: hue,
+                  s: saturation,
+                  v: value
+                })
+              }
             >
               <div
                 style={{
