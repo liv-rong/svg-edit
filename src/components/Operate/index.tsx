@@ -25,7 +25,7 @@ interface Props {
   handleSvgParser: (svgString: string) => void
   addShape: (type: ShapeEnum, customConfig?: Partial<Konva.ShapeConfig>) => void
   handleStyleCSS: (value: any) => void
-  handleAIChangeColor: (value?: HSVType) => void
+  handleAIChangeColor: (value: HSVType) => void
 }
 
 const Option = (props: Props) => {

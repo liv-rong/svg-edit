@@ -5,7 +5,7 @@ import { HSVType } from '@/types/color'
 
 interface Props {
   handleStyleCSS: (value: any) => void
-  handleAIChangeColor: (value?: HSVType) => void
+  handleAIChangeColor: (value: HSVType) => void
 }
 
 interface HSVCompProps {

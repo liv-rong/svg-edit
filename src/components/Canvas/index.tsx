@@ -19,7 +19,7 @@ const Canvas = () => {
   return (
     <div
       id="container"
-      className="bg-white"
+      className="bg-white "
     ></div>
   )
 }

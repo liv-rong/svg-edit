@@ -445,36 +445,59 @@ export const useCanvas = () => {
 
       if (svgData) {
         // console.log(currentAttrs?.data)
+
         const response = await fetch(svgData)
         const svgText = await response.text()
         const parser = new DOMParser()
         const svgDoc = parser.parseFromString(svgText, 'image/svg+xml')
         const svgElement = svgDoc.documentElement
-        console.log(svgElement, 'svgElement')
-        // console.log(svgElement, 'svgElement')
-        //获取类名为classTag的元素  并且更改属性fill为红色  stroke 为blue
 
-        // 获取类名为 'cls-1 cls-2 cls-3 cls-4 ...' 的元素
-        // const elements = svgElement.querySelectorAll('[class^="cls-"]')
-        // console.log(elements, 'svgElement')
         const elements1 = svgElement.querySelectorAll('[fill], [stroke], [style]')
-        console.log(elements1, 'svgElement')
         const colors = ['#fef2f2', '#ffe2e2', '#ffc9c9', '#ffa2a2', '#ff6467', '#fb2c36']
-        const currentColors: string[] = []
         const colorMap: Map<string, string> = new Map()
+
+        console.log(svgElement)
+        // const gradientElements = svgElement.querySelectorAll('linearGradient[id^="未命名的渐变_"]');
+        const gradients = svgElement.querySelectorAll(
+          'radialGradient[id^="未命名的渐变_"], linearGradient[id^="未命名的渐变_"]'
+        )
+        console.log(gradients, 'gradientElements')
+        console.log('gradientElements')
+
+        gradients.forEach((gradient) => {
+          // 你可以在这里修改每个渐变的颜色
+          const stops = gradient.querySelectorAll('stop')
+
+          stops.forEach((stop) => {
+            // 示例：统一修改每个 stop 的颜色
+            const getStopsColor = stop.getAttribute('stop-color')
+            console.log(getStopsColor, 'getStopsColor')
+            if (getStopsColor) {
+              const mapValue = colorMap.has(getStopsColor)
+              if (!mapValue) {
+                colorMap.set(getStopsColor, colors[Math.floor(Math.random() * colors.length)])
+              }
+              const newStopsColor = colorMap.get(getStopsColor) ?? `none`
+              stop.setAttribute('stop-color', newStopsColor)
+            }
+          })
+        })
+        console.log(gradients, 'gradients')
+
         elements1.forEach((element) => {
           // 获取并打印当前颜色
+          // console.log(element, '11111111111111111111111')
           const currentFill = element.getAttribute('fill')
           const currentStroke = element.getAttribute('stroke')
-          const currentStyle = element.getAttribute('style')
+          // const currentStyle = element.getAttribute('style')
           const styleCurrent = styleStringToObject(element.getAttribute('style'))
-          console.log(
-            currentFill,
-            currentStroke,
-            styleCurrent,
-            currentStyle,
-            '11111111111111111111111'
-          )
+          // console.log(
+          //   currentFill,
+          //   currentStroke,
+          //   styleCurrent,
+          //   currentStyle,
+          //   '11111111111111111111111'
+          // )
           if (currentFill) {
             const mapValue = colorMap.has(currentFill)
             if (mapValue) {
@@ -496,19 +519,28 @@ export const useCanvas = () => {
             const newStyle = { ...styleCurrent }
             if (fill) {
               const mapValue = colorMap.has(fill)
-              if (mapValue) {
-                newStyle.fill = colorMap.get(fill) ?? 'none'
+              if (!mapValue) {
+                colorMap.set(fill, colors[Math.floor(Math.random() * colors.length)])
               }
+              newStyle.fill = colorMap.get(fill) ?? 'none'
             }
             if (stroke) {
               const mapValue = colorMap.has(stroke)
-              if (mapValue) {
+              if (!mapValue) {
                 newStyle.stroke = colorMap.get(stroke) ?? 'none'
+                colorMap.set(stroke, colors[Math.floor(Math.random() * colors.length)])
               }
+              newStyle.stroke = colorMap.get(stroke) ?? 'none'
             }
-            element.setAttribute('style', newStyle.toString())
+            element.setAttribute(
+              'style',
+              Object.entries(newStyle)
+                .map(([key, value]) => `${key}: ${value}`)
+                .join(';')
+            )
           }
         })
+        console.log(svgElement)
 
         const serializer = new XMLSerializer()
         const modifiedSvgText = serializer.serializeToString(svgElement)
