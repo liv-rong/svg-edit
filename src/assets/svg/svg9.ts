@@ -19,6 +19,93 @@ const immune1 = () => `
 </svg>
 `
 
+const immune111 = () => `
+<svg
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23938 85.23938">
+    <defs>
+        <style>.cls-1{fill:#f1aea1;}.cls-1,.cls-5{stroke:#78191d;stroke-miterlimit:10;stroke-width:0.2px;}.cls-2{fill:#e67762;}.cls-2,.cls-3{opacity:0.3;}.cls-3,.cls-7{fill:#fff;}.cls-4,.cls-6{fill:#b93a26;}.cls-5{fill:#dd6e60;}.cls-6{opacity:0.4;}.cls-7{opacity:0.6;}</style>
+    </defs>
+    <title>资源 55</title>
+    <g id="图层_2" data-name="图层 2">
+        <g id="图层_1-2" data-name="图层 1">
+            <circle class="cls-1" cx="42.61969" cy="42.61969" r="42.51969" fill="#be9db7" stroke="#731978" style="fill: rgb(190, 157, 183); stroke: rgb(115, 25, 120);"></circle>
+            <path class="cls-2" d="M83.38711,47.884A41.20422,41.20422,0,0,1,50.49235,82.96573c-2.54876.49636-2.9261-1.35427-.63231-2.506C66.15371,72.2786,76.47021,60.88879,82.12216,46.995,82.70474,45.56287,83.60849,46.16,83.38711,47.884Z" fill="#e5cee0" style="fill: rgb(229, 206, 224);"></path>
+            <path class="cls-3" d="M1.74,37.03051A41.20422,41.20422,0,0,1,34.63474,1.94878c2.54877-.49635,2.92611,1.35428.63231,2.506C18.97338,12.63592,8.65689,24.02572,3.00493,37.91955,2.42236,39.35165,1.51861,38.75452,1.74,37.03051Z" fill="#e826bb" style="fill: rgb(232, 38, 187);"></path>
+            <circle class="cls-4" cx="41.74197" cy="46.19864" r="24.58407" fill="#c4e495" style="fill: rgb(196, 228, 149);"></circle>
+            <circle class="cls-5" cx="40.31904" cy="43.61973" r="24.61181" fill="#b08cb2" stroke="#731978" style="fill: rgb(176, 140, 178); stroke: rgb(115, 25, 120);"></circle>
+            <path class="cls-6" d="M63.09416,43.61922A22.80106,22.80106,0,0,1,40.31893,66.39508c-3.84773,0-2.26738-2.41279-.37713-3.28739a44.48815,44.48815,0,0,0,19.881-17.206C60.94984,44.06223,63.09416,40.82137,63.09416,43.61922Z" fill="#c4e495" style="fill: rgb(196, 228, 149);"></path>
+            <path class="cls-7" d="M30.05509,25.80065c.37111.55835-.23811,1.2782-1.16871,1.89672s-1.83018.90148-2.20129.34312.08245-1.51241,1.013-2.13092S29.684,25.24229,30.05509,25.80065Z" fill="#e826bb" style="fill: rgb(232, 38, 187);"></path>
+        </g>
+    </g>
+</svg>
+`
+
+const immune1111 = () => `
+<svg
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23938 85.23938">
+    <defs>
+        <style>.cls-1{fill:#bbd4ef;stroke:#2b72ad;}.cls-1,.cls-5{stroke-miterlimit:10;stroke-width:0.2px;}.cls-2{fill:#83a3cf;}.cls-2,.cls-3{opacity:0.3;}.cls-3,.cls-7{fill:#fff;}.cls-4,.cls-5{fill:#6c8cc0;}.cls-5{stroke:#285192;}.cls-6{fill:#5570ad;opacity:0.4;}.cls-7{opacity:0.6;}</style>
+    </defs>
+    <title>资源 45</title>
+    <g id="图层_2" data-name="图层 2">
+        <g id="图层_1-2" data-name="图层 1">
+            <circle class="cls-1" cx="42.61969" cy="42.61969" r="42.51969"/>
+            <path class="cls-2" d="M83.38711,47.884A41.20422,41.20422,0,56287,83.60849,46.16,83.38711,47.884Z"/>
+            <path class="cls-3" d="M1.74,37.03051A41.20422,41.205,2.42236,39.35165,1.51861,38.75452,1.74,37.03051Z"/>
+            <circle class="cls-4" cx="41.74197" cy="46.19864" r="24.58407"/>
+            <circle class="cls-5" cx="40.31904" cy="43.61973" r="24.61181"/>
+            <path class="cls-6" d="M63.09416,43.61922A22.80106,22.8014.06223,63.09416,40.82137,63.09416,43.61922Z"/>
+            <path class="cls-7" d="M30.05509,25.80065c.37111.4229,30.05509,25.80065Z"/>
+        </g>
+    </g>
+</svg>
+
+`
+
+const immune11111 = () => `
+<svg
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23938 85.23938">
+    <defs>
+        <style>.cls-1{fill:#bbd4ef;stroke:#2b72ad;}.cls-1,.cls-5{stroke-miterlimit:10;stroke-width:0.2px;}.cls-2{fill:#83a3cf;}.cls-2,.cls-3{opacity:0.3;}.cls-3,.cls-7{fill:#fff;}.cls-4,.cls-5{fill:#6c8cc0;}.cls-5{stroke:#285192;}.cls-6{fill:#5570ad;opacity:0.4;}.cls-7{opacity:0.6;}</style>
+    </defs>
+    <title>资源 45</title>
+    <g id="图层_2" data-name="图层 2">
+        <g id="图层_1-2" data-name="图层 1">
+            <circle class="cls-1" cx="42.61969" cy="42.61969" r="42.51969" fill="#e5cee0" stroke="#a62bad" style="fill: rgb(229, 206, 224); stroke: rgb(166, 43, 173);"></circle>
+            <path class="cls-2" d="M83.38711,47.884A41.6.16,83.38711,47.884Z" fill="#b08cb2" style="fill: rgb(176, 140, 178);"></path>
+            <path class="cls-3" d="M1.74,37.03051A41.20422,4137.03051Z" fill="#ebdae7" style="fill: rgb(235, 218, 231);"></path>
+            <circle class="cls-4" cx="41.74197" cy="46.19864" r="24.58407" fill="#bc6cc0" style="fill: rgb(188, 108, 192);"></circle>
+            <circle class="cls-5" cx="40.31904" cy="43.61973" r="24.61181" fill="#bc6cc0" stroke="#8c2892" style="fill: rgb(188, 108, 192); stroke: rgb(140, 40, 146);"></circle>
+            <path class="cls-6" d="M63.09416,43.61920.82137,63.09416,43.61922Z" fill="#be9db7" style="fill: rgb(190, 157, 183);"></path>
+            <path class="cls-7" d="M30.055025.80065Z" fill="#ebdae7" style="fill: rgb(235, 218, 231);"></path>
+        </g>
+    </g>
+</svg>
+
+`
+
+const immune111111 = () => `
+<svg
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23938 85.23938">
+    <defs>
+        <style>.cls-1{fill:#bbd4ef;stroke:#2b72ad;}.cls-1,.cls-5{stroke-miterlimit:10;stroke-width:0.2px;}.cls-2{fill:#83a3cf;}.cls-2,.cls-3{opacity:0.3;}.cls-3,.cls-7{fill:#fff;}.cls-4,.cls-5{fill:#6c8cc0;}.cls-5{stroke:#285192;}.cls-6{fill:#5570ad;opacity:0.4;}.cls-7{opacity:0.6;}</style>
+    </defs>
+    <title>资源 45</title>
+    <g id="图层_2" data-name="图层 2">
+        <g id="图层_1-2" data-name="图层 1">
+            <circle class="cls-1" cx="42.61969" cy="42.61969" r="42.51969" fill="#cde8da" stroke="#2bad74" style="fill: rgb(205, 232, 218); stroke: rgb(43, 173, 116);"></circle>
+            <path class="cls-2" d="M83.38770474,45.56287,83.60849,46.16,83.38711,47.884Z" fill="#85c4a3" style="fill: rgb(133, 196, 163);"></path>
+            <path class="cls-3" d="M1.74,37.03051A.51861,38.75452,1.74,37.03051Z" fill="#d9eee3" style="fill: rgb(217, 238, 227);"></path>
+            <circle class="cls-4" cx="41.74197" cy="46.19864" r="24.58407" fill="#70b597" style="fill: rgb(112, 181, 151);"></circle>
+            <circle class="cls-5" cx="40.31904" cy="43.61973" r="24.61181" fill="#70b597" stroke="#289264" style="fill: rgb(112, 181, 151); stroke: rgb(40, 146, 100);"></circle>
+            <path class="cls-6" d="M63.09416,43.61922A22.80106,22.80106,0,63.09416,43.61922Z" fill="#55ad87" style="fill: rgb(85, 173, 135);"></path>
+            <path class="cls-7" d="M30.05500065Z" fill="#d9eee3" style="fill: rgb(217, 238, 227);"></path>
+        </g>
+    </g>
+</svg>
+
+`
+
 const immune2 = () => `
 <svg
     xmlns="http://www.w3.org/2000/svg"

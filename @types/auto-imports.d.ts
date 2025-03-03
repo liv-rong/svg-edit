@@ -13,6 +13,7 @@ declare global {
   const Color: (typeof import('../src/components/Operate/components/Color'))['default']
   const ColorIcon: (typeof import('../src/assets/svg/index'))['ColorIcon']
   const ColorPicker: (typeof import('antd'))['ColorPicker']
+  const ColorUtils: (typeof import('../src/utils/color'))['ColorUtils']
   const CommonIcon: (typeof import('../src/components/Common/CommonIcon'))['default']
   const Dropdown: (typeof import('antd'))['Dropdown']
   const Font: (typeof import('../src/components/Operate/components/Font'))['default']
@@ -42,6 +43,19 @@ declare global {
   const createRef: (typeof import('react'))['createRef']
   const createRootRoute: (typeof import('@tanstack/react-router'))['createRootRoute']
   const forwardRef: (typeof import('react'))['forwardRef']
+  const immune1: (typeof import('../src/assets/svg/svg9'))['immune1']
+  const immune10: (typeof import('../src/assets/svg/svg9'))['immune10']
+  const immune11: (typeof import('../src/assets/svg/svg9'))['immune11']
+  const immune12: (typeof import('../src/assets/svg/svg9'))['immune12']
+  const immune13: (typeof import('../src/assets/svg/svg9'))['immune13']
+  const immune2: (typeof import('../src/assets/svg/svg9'))['immune2']
+  const immune3: (typeof import('../src/assets/svg/svg9'))['immune3']
+  const immune4: (typeof import('../src/assets/svg/svg9'))['immune4']
+  const immune5: (typeof import('../src/assets/svg/svg9'))['immune5']
+  const immune6: (typeof import('../src/assets/svg/svg9'))['immune6']
+  const immune7: (typeof import('../src/assets/svg/svg9'))['immune7']
+  const immune8: (typeof import('../src/assets/svg/svg9'))['immune8']
+  const immune9: (typeof import('../src/assets/svg/svg9'))['immune9']
   const lazy: (typeof import('react'))['lazy']
   const memo: (typeof import('react'))['memo']
   const startTransition: (typeof import('react'))['startTransition']
@@ -80,6 +94,9 @@ declare global {
   // @ts-ignore
   export type { CanvasUtils } from '../src/utils/Canvas'
   import('../src/utils/Canvas')
+  // @ts-ignore
+  export type { ColorUtils } from '../src/utils/color'
+  import('../src/utils/color')
   // @ts-ignore
   export type { ImgUtils } from '../src/utils/img'
   import('../src/utils/img')

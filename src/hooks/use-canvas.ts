@@ -410,6 +410,8 @@ export const useCanvas = () => {
   }
   //把rgb rgb(180, 189, 225) 字符串转为 hex 格式的 用tinycolor 库来写
 
+  //获取当前svg的所有颜色
+
   const handleAIChangeColor = (color: AllColorsEnum) => {
     const colors = allColorsMap.get(color)?.colors ?? []
     console.log(colors, 'colors')
@@ -430,53 +432,17 @@ export const useCanvas = () => {
         const svgDoc = parser.parseFromString(svgText, 'image/svg+xml')
         const svgElement = svgDoc.documentElement
 
-        const elements1 = svgElement.querySelectorAll('[fill], [stroke], [style]')
-        console.log(svgElement)
-        // const gradientElements = svgElement.querySelectorAll('linearGradient[id^="未命名的渐变_"]');
-        const gradients = svgElement.querySelectorAll(
-          'radialGradient[id^="未命名的渐变_"], linearGradient[id^="未命名的渐变_"]'
-        )
-        console.log(gradients, 'gradientElements')
-        console.log('gradientElements')
+        // 获取类的class="cls-*" 的元素
+        console.log(svgElement, 'elements')
+        const elements = svgElement.querySelectorAll('[class^="cls-"]') // 修改选择器
 
-        gradients.forEach((gradient) => {
-          // 你可以在这里修改每个渐变的颜色
-          const stops = gradient.querySelectorAll('stop')
-
-          stops.forEach((stop) => {
-            // 示例：统一修改每个 stop 的颜色
-            const getStopsColor = ColorUtils.rgbToHex(stop.getAttribute('stop-color') ?? 'none')
-            console.log(getStopsColor, 'getStopsColor')
-            if (getStopsColor === 'none') return
-            if (getStopsColor) {
-              const mapValue = currentColorsMap.has(getStopsColor)
-              if (!mapValue) {
-                currentColorsMap.set(
-                  getStopsColor,
-                  colors[Math.floor(Math.random() * colors.length)]
-                )
-              }
-              const newStopsColor = currentColorsMap.get(getStopsColor) ?? `none`
-              stop.setAttribute('stop-color', newStopsColor)
-            }
-          })
-        })
-        console.log(gradients, 'gradients')
-
-        elements1.forEach((element) => {
-          // 获取并打印当前颜色
-          // console.log(element, '11111111111111111111111')
+        console.log(elements, 'elements')
+        elements.forEach((element) => {
           const currentFill = ColorUtils.rgbToHex(element.getAttribute('fill'))
-
           const currentStroke = ColorUtils.rgbToHex(element.getAttribute('stroke'))
-          // const currentStyle = element.getAttribute('style')
-          const styleCurrent = styleStringToObject(element.getAttribute('style'))
-          console.log(currentFill, currentStroke, styleCurrent, '11111111111111111111111')
+          console.log(currentFill, currentStroke, '11111111111111111111111')
           if (currentFill) {
             if (currentFill === 'none') return
-            if (currentFill.startsWith('url')) {
-              return
-            }
             if (!currentColorsMap.has(currentFill)) {
               currentColorsMap.set(currentFill, colors[Math.floor(Math.random() * colors.length)])
             }
@@ -484,54 +450,115 @@ export const useCanvas = () => {
           }
           if (currentStroke) {
             if (currentStroke === 'none') return
-            if (currentStroke.startsWith('url')) {
-              return
-            }
             if (!currentColorsMap.has(currentStroke)) {
               currentColorsMap.set(currentStroke, colors[Math.floor(Math.random() * colors.length)])
             }
             element.setAttribute('stroke', currentColorsMap.get(currentStroke) ?? 'none')
           }
-          if (styleCurrent) {
-            const { fill, stroke, ...rest } = styleCurrent
-            const newStyle = { ...styleCurrent }
-            if (fill) {
-              if (fill.startsWith('url') || fill === 'none') {
-                return
-              }
-              const mapValue = currentColorsMap.has(fill)
-              if (!mapValue) {
-                currentColorsMap.set(fill, colors[Math.floor(Math.random() * colors.length)])
-              }
-              newStyle.fill = currentColorsMap.get(fill) ?? 'none'
-            }
-            if (stroke) {
-              if (stroke.startsWith('url') || stroke === 'none') {
-                return
-              }
-              const mapValue = currentColorsMap.has(stroke)
-              if (!mapValue) {
-                newStyle.stroke = currentColorsMap.get(stroke) ?? 'none'
-                currentColorsMap.set(stroke, colors[Math.floor(Math.random() * colors.length)])
-              }
-              newStyle.stroke = currentColorsMap.get(stroke) ?? 'none'
-            }
-            element.setAttribute(
-              'style',
-              Object.entries(newStyle)
-                .map(([key, value]) => `${key}: ${value}`)
-                .join(';')
-            )
-          }
         })
-        console.log(svgElement)
 
-        const serializer = new XMLSerializer()
-        const modifiedSvgText = serializer.serializeToString(svgElement)
-        const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(modifiedSvgText)}`
-        ele.destroy()
-        transformer?.nodes([])
-        handleSvg(svgDataUrl, restAttrs)
+        // const elements1 = svgElement.querySelectorAll('[fill], [stroke], [style]')
+        // console.log(svgElement)
+        // // const gradientElements = svgElement.querySelectorAll('linearGradient[id^="未命名的渐变_"]');
+        // const gradients = svgElement.querySelectorAll(
+        //   'radialGradient[id^="未命名的渐变_"], linearGradient[id^="未命名的渐变_"]'
+        // )
+        // console.log(gradients, 'gradientElements')
+        // console.log('gradientElements')
+
+        // gradients.forEach((gradient) => {
+        //   // 你可以在这里修改每个渐变的颜色
+        //   const stops = gradient.querySelectorAll('stop')
+
+        //   stops.forEach((stop) => {
+        //     // 示例：统一修改每个 stop 的颜色
+        //     const getStopsColor = ColorUtils.rgbToHex(stop.getAttribute('stop-color') ?? 'none')
+        //     console.log(getStopsColor, 'getStopsColor')
+        //     if (getStopsColor === 'none') return
+        //     if (getStopsColor) {
+        //       const mapValue = currentColorsMap.has(getStopsColor)
+        //       if (!mapValue) {
+        //         currentColorsMap.set(
+        //           getStopsColor,
+        //           colors[Math.floor(Math.random() * colors.length)]
+        //         )
+        //       }
+        //       const newStopsColor = currentColorsMap.get(getStopsColor) ?? `none`
+        //       stop.setAttribute('stop-color', newStopsColor)
+        //     }
+        //   })
+        // })
+        // console.log(gradients, 'gradients')
+
+        // elements1.forEach((element) => {
+        //   // 获取并打印当前颜色
+        //   // console.log(element, '11111111111111111111111')
+        //   const currentFill = ColorUtils.rgbToHex(element.getAttribute('fill'))
+
+        //   const currentStroke = ColorUtils.rgbToHex(element.getAttribute('stroke'))
+        //   // const currentStyle = element.getAttribute('style')
+        //   const styleCurrent = styleStringToObject(element.getAttribute('style'))
+        //   console.log(currentFill, currentStroke, styleCurrent, '11111111111111111111111')
+        //   if (currentFill) {
+        //     if (currentFill === 'none') return
+        //     if (currentFill.startsWith('url')) {
+        //       return
+        //     }
+        //     if (!currentColorsMap.has(currentFill)) {
+        //       currentColorsMap.set(currentFill, colors[Math.floor(Math.random() * colors.length)])
+        //     }
+        //     element.setAttribute('fill', currentColorsMap.get(currentFill) ?? 'none')
+        //   }
+        //   if (currentStroke) {
+        //     if (currentStroke === 'none') return
+        //     if (currentStroke.startsWith('url')) {
+        //       return
+        //     }
+        //     if (!currentColorsMap.has(currentStroke)) {
+        //       currentColorsMap.set(currentStroke, colors[Math.floor(Math.random() * colors.length)])
+        //     }
+        //     element.setAttribute('stroke', currentColorsMap.get(currentStroke) ?? 'none')
+        //   }
+        //   if (styleCurrent) {
+        //     const { fill, stroke, ...rest } = styleCurrent
+        //     const newStyle = { ...styleCurrent }
+        //     if (fill) {
+        //       if (fill.startsWith('url') || fill === 'none') {
+        //         return
+        //       }
+        //       const mapValue = currentColorsMap.has(fill)
+        //       if (!mapValue) {
+        //         currentColorsMap.set(fill, colors[Math.floor(Math.random() * colors.length)])
+        //       }
+        //       newStyle.fill = currentColorsMap.get(fill) ?? 'none'
+        //     }
+        //     if (stroke) {
+        //       if (stroke.startsWith('url') || stroke === 'none') {
+        //         return
+        //       }
+        //       const mapValue = currentColorsMap.has(stroke)
+        //       if (!mapValue) {
+        //         newStyle.stroke = currentColorsMap.get(stroke) ?? 'none'
+        //         currentColorsMap.set(stroke, colors[Math.floor(Math.random() * colors.length)])
+        //       }
+        //       newStyle.stroke = currentColorsMap.get(stroke) ?? 'none'
+        //     }
+        //     element.setAttribute(
+        //       'style',
+        //       Object.entries(newStyle)
+        //         .map(([key, value]) => `${key}: ${value}`)
+        //         .join(';')
+        //     )
+        //   }
+        // })
+        // console.log(svgElement)
+
+        // const serializer = new XMLSerializer()
+        // const modifiedSvgText = serializer.serializeToString(svgElement)
+        // const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(modifiedSvgText)}`
+        // ele.destroy()
+        // transformer?.nodes([])
+        // handleSvg(svgDataUrl, restAttrs)
       }
     })
   }
