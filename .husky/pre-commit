@@ -1,1 +1,2 @@
+pnpm cspell "**"
 npx lint-staged

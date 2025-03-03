@@ -132,7 +132,7 @@ export const useCanvas = () => {
       selectionRectangle.visible(false)
       // const shapes = stage.find('.rect').concat(stage.find('.path'))
       const shapes = layer.find('.transformerShape')
-      console.log(shapes, 'shapesshapes')
+      console.log(shapes, '')
       const box = selectionRectangle.getClientRect()
       const selected = shapes.filter((shape) =>
         Konva.Util.haveIntersection(box, shape.getClientRect())
@@ -200,11 +200,6 @@ export const useCanvas = () => {
         layer.batchDraw()
       }
     })
-
-    // stage.on('contentMouseup', () => {
-    //   console.log('contentMouseupcontentMouseup')
-    //   stage.container().focus()
-    // })
 
     return { stage, layer, x1, y1, x2, y2 }
   }
@@ -561,7 +556,7 @@ export const useCanvas = () => {
         //   // if (eleStroke) {
         //   //   element.setAttribute('stroke', newColor[colorIndex]) // Update fill color
         //   // }
-        //   // console.log(element, 'elementelementelementelement')
+        //   // console.log(element, '')
         // }
         // // 更改 fill 和 stroke 属性
         // let colorIndex = 0
@@ -570,7 +565,7 @@ export const useCanvas = () => {
         // for (const element of elements) {
         //   const eleStroke = element.getAttribute('stroke')
         //   const eleFill = element.getAttribute('fill')
-        //   console.log(element, 'elementelementelementelement')
+        //   console.log(element, '')
         //   const newColor = colors[colorIndex]
         //   colorIndex = (colorIndex + 1) % colors.length
         //   if (eleFill) {
@@ -582,9 +577,9 @@ export const useCanvas = () => {
         //   if (eleStroke) {
         //     element.setAttribute('stroke', newColor[colorIndex]) // Update fill color
         //   }
-        //   console.log(element, 'elementelementelementelement')
+        //   console.log(element, '')
         // }
-        // console.log(svgElement, 'elementelementelementelement')
+        // console.log(svgElement, '')
 
         // const serializer = new XMLSerializer()
         // const modifiedSvgText = serializer.serializeToString(svgElement)
