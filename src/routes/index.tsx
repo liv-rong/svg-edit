@@ -27,7 +27,8 @@ function Index() {
     handleImg,
     handleSvgParser,
     handleStyleCSS,
-    handleAIChangeColor
+    handleAIChangeColor,
+    currentColorsMap
   } = useCanvas()
 
   useEffect(() => {
@@ -46,6 +47,7 @@ function Index() {
           handleSvgParser={handleSvgParser}
           handleStyleCSS={handleStyleCSS}
           handleAIChangeColor={handleAIChangeColor}
+          currentColorsMap={currentColorsMap}
         />
         <Content className="overflow-y-auto flex justify-center items-center">
           <Canvas />

@@ -1,11 +1,12 @@
 import { Divider, Slider } from 'antd'
 import { useState } from 'react'
 import tinycolor from 'tinycolor2'
-import { HSVType } from '@/types/color'
+import { AllColorsEnum, allColorsMap, HSVType } from '@/types/color'
 
 interface Props {
   handleStyleCSS: (value: any) => void
-  handleAIChangeColor: (value: HSVType) => void
+  handleAIChangeColor: (value: AllColorsEnum) => void
+  currentColorsMap: Map<string, string>
 }
 
 interface HSVCompProps {
@@ -48,7 +49,7 @@ const HSVComp = (props: HSVCompProps) => {
 }
 
 const Color = (props: Props) => {
-  const { handleStyleCSS, handleAIChangeColor } = props
+  const { handleStyleCSS, handleAIChangeColor, currentColorsMap } = props
   const [hue, setHue] = useState(0)
   const [saturation, setSaturation] = useState(0)
   const [value, setValue] = useState(0)
@@ -73,7 +74,7 @@ const Color = (props: Props) => {
     {
       value: saturation,
       label: '饱和度',
-      key: 'hue',
+      key: 'saturation',
       max: 100,
       min: -100,
       handleValue: (value: number) => {
@@ -112,36 +113,32 @@ const Color = (props: Props) => {
 
       <div className="flex justify-center items-center w-full ">
         <div className="w-full grid grid-cols-3 gap-x-2 gap-y-2 mb-2 ">
-          {Array.from({ length: 12 }, (_, index) => (
+          {Object.values(AllColorsEnum).map((item) => (
             <div
-              key={index}
+              key={item}
               className="w-8 h-8 grid grid-cols-2 grid-rows-2 gap-y-0.5 cursor-pointer"
-              onClick={() =>
-                handleAIChangeColor({
-                  h: hue,
-                  s: saturation,
-                  v: value
-                })
-              }
+              onClick={() => {
+                handleAIChangeColor(item)
+              }}
             >
               <div
                 style={{
-                  background: getColor({ h: index * 30 + 15, s: 100, v: 100 })
+                  background: allColorsMap.get(item)?.colors[5]
                 }}
               />
               <div
                 style={{
-                  background: getColor({ h: index * 30, s: 50, v: 100 })
+                  background: allColorsMap.get(item)?.colors[4]
                 }}
               />
               <div
                 style={{
-                  background: getColor({ h: index * 30 - 15, s: 100, v: 100 })
+                  background: allColorsMap.get(item)?.colors[2]
                 }}
               />
               <div
                 style={{
-                  background: getColor({ h: index * 30, s: 50, v: 100 })
+                  background: allColorsMap.get(item)?.colors[3]
                 }}
               />
             </div>
@@ -156,11 +153,21 @@ const Color = (props: Props) => {
       </div>
 
       <div>
-        <p className="mb-2">配色自定义精修</p>
-        <ColorPicker
-          defaultValue={`oklch(0.971 0.013 17.38)`}
-          size="small"
-        />
+        <p className="mb-2 ">配色自定义精修</p>
+        <div className="flex justify-start items-center gap-2 w-full flex-wrap">
+          {Array.from(currentColorsMap.entries()).map(([key, value]) => (
+            <div key={key}>
+              <ColorPicker
+                size="small"
+                defaultValue={value}
+                // onChange={(color) => {
+                //   handleStyleCSS({ [key]: color.toHexString() })
+                // }}
+              />
+            </div>
+          ))}
+          {JSON.stringify(currentColorsMap.entries())}
+        </div>
       </div>
       <Divider />
       <div>

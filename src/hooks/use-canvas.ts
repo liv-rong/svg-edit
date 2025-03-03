@@ -6,8 +6,8 @@ import { Layer } from 'konva/lib/Layer'
 import { ElementDataType } from '@/types/operate'
 import { CanvasUtils } from '@/utils/Canvas'
 import type { ShapeEnum } from '@/types/shape'
-import tinycolor from 'tinycolor2'
-import { HSVType } from '@/types/color'
+import { AllColorsEnum, allColorsMap } from '@/types/color'
+import { ColorUtils } from '@/utils/color'
 
 export const useCanvas = () => {
   const { canvasData } = useCanvasStore(
@@ -21,6 +21,8 @@ export const useCanvas = () => {
   const [layer, setLayer] = useState<Layer>()
 
   const [transformer, setTransformer] = useState<Konva.Transformer>()
+
+  const [currentColorsMap, setCurrentColorsMap] = useState<Map<string, string>>(new Map([]))
 
   const initCanvas = () => {
     const stage = new Konva.Stage({
@@ -280,25 +282,6 @@ export const useCanvas = () => {
     // transformer?.setZIndex(999)
   }
 
-  // const handleSvg2Shape = (data: string, config?: Record<string, any>) => {
-  //   const triangle = new Konva.Shape({
-  //     width: 260,
-  //     height: 170,
-  //     draggable: true,
-  //     data: data,
-  //     name: 'transformerShape',
-  //     sceneFunc: function (context, shape) {
-  //       const width = shape.width()
-  //       const height = shape.height()
-  //       context.drawImage(img, 0, 0, width, height)
-  //     },
-  //     fill: '#00D2FF',
-  //     stroke: 'black',
-  //     strokeWidth: 4
-  //   })
-  //   layer?.add(triangle)
-  // }
-
   const handleImg = (url: string, config?: Record<string, any>) => {
     if (!layer) return
     Konva.Image.fromURL(url, (image) => {
@@ -420,23 +403,18 @@ export const useCanvas = () => {
     for (const style of styles) {
       const [key, value] = style.split(':').map((part) => part.trim())
       if (key && value) {
-        styleObject[key] = rgbToHex(value)
+        styleObject[key] = ColorUtils.rgbToHex(value) ?? 'none'
       }
     }
     return styleObject
   }
   //把rgb rgb(180, 189, 225) 字符串转为 hex 格式的 用tinycolor 库来写
-  const rgbToHex = (rgb: string): string => {
-    //判断是不是rgb 字符串 如果不是直接返回
-    if (!rgb.startsWith('rgb')) {
-      return rgb
-    }
-    const color = tinycolor(rgb)
-    return color.toHexString()
-  }
 
-  const handleAIChangeColor = ({ s, h, v }: HSVType) => {
-    // console.log(value, 'handleAIChangeColor')
+  const handleAIChangeColor = (color: AllColorsEnum) => {
+    const colors = allColorsMap.get(color)?.colors ?? []
+    console.log(colors, 'colors')
+    currentColorsMap.clear()
+
     const currentShape = transformer?.getNodes()
     currentShape?.forEach(async (ele) => {
       const currentAttrs = await ele.getAttrs()
@@ -453,9 +431,6 @@ export const useCanvas = () => {
         const svgElement = svgDoc.documentElement
 
         const elements1 = svgElement.querySelectorAll('[fill], [stroke], [style]')
-        const colors = ['#fef2f2', '#ffe2e2', '#ffc9c9', '#ffa2a2', '#ff6467', '#fb2c36']
-        const colorMap: Map<string, string> = new Map()
-
         console.log(svgElement)
         // const gradientElements = svgElement.querySelectorAll('linearGradient[id^="未命名的渐变_"]');
         const gradients = svgElement.querySelectorAll(
@@ -470,14 +445,18 @@ export const useCanvas = () => {
 
           stops.forEach((stop) => {
             // 示例：统一修改每个 stop 的颜色
-            const getStopsColor = stop.getAttribute('stop-color')
+            const getStopsColor = ColorUtils.rgbToHex(stop.getAttribute('stop-color') ?? 'none')
             console.log(getStopsColor, 'getStopsColor')
+            if (getStopsColor === 'none') return
             if (getStopsColor) {
-              const mapValue = colorMap.has(getStopsColor)
+              const mapValue = currentColorsMap.has(getStopsColor)
               if (!mapValue) {
-                colorMap.set(getStopsColor, colors[Math.floor(Math.random() * colors.length)])
+                currentColorsMap.set(
+                  getStopsColor,
+                  colors[Math.floor(Math.random() * colors.length)]
+                )
               }
-              const newStopsColor = colorMap.get(getStopsColor) ?? `none`
+              const newStopsColor = currentColorsMap.get(getStopsColor) ?? `none`
               stop.setAttribute('stop-color', newStopsColor)
             }
           })
@@ -487,50 +466,55 @@ export const useCanvas = () => {
         elements1.forEach((element) => {
           // 获取并打印当前颜色
           // console.log(element, '11111111111111111111111')
-          const currentFill = element.getAttribute('fill')
-          const currentStroke = element.getAttribute('stroke')
+          const currentFill = ColorUtils.rgbToHex(element.getAttribute('fill'))
+
+          const currentStroke = ColorUtils.rgbToHex(element.getAttribute('stroke'))
           // const currentStyle = element.getAttribute('style')
           const styleCurrent = styleStringToObject(element.getAttribute('style'))
-          // console.log(
-          //   currentFill,
-          //   currentStroke,
-          //   styleCurrent,
-          //   currentStyle,
-          //   '11111111111111111111111'
-          // )
+          console.log(currentFill, currentStroke, styleCurrent, '11111111111111111111111')
           if (currentFill) {
-            const mapValue = colorMap.has(currentFill)
-            if (mapValue) {
-              element.setAttribute('fill', colorMap.get(currentFill) ?? 'none')
-            } else {
-              colorMap.set(currentFill, colors[Math.floor(Math.random() * colors.length)])
+            if (currentFill === 'none') return
+            if (currentFill.startsWith('url')) {
+              return
             }
+            if (!currentColorsMap.has(currentFill)) {
+              currentColorsMap.set(currentFill, colors[Math.floor(Math.random() * colors.length)])
+            }
+            element.setAttribute('fill', currentColorsMap.get(currentFill) ?? 'none')
           }
           if (currentStroke) {
-            const mapValue = colorMap.has(currentStroke)
-            if (mapValue) {
-              element.setAttribute('fill', colorMap.get(currentStroke) ?? 'none')
-            } else {
-              colorMap.set(currentStroke, colors[Math.floor(Math.random() * colors.length)])
+            if (currentStroke === 'none') return
+            if (currentStroke.startsWith('url')) {
+              return
             }
+            if (!currentColorsMap.has(currentStroke)) {
+              currentColorsMap.set(currentStroke, colors[Math.floor(Math.random() * colors.length)])
+            }
+            element.setAttribute('stroke', currentColorsMap.get(currentStroke) ?? 'none')
           }
           if (styleCurrent) {
             const { fill, stroke, ...rest } = styleCurrent
             const newStyle = { ...styleCurrent }
             if (fill) {
-              const mapValue = colorMap.has(fill)
-              if (!mapValue) {
-                colorMap.set(fill, colors[Math.floor(Math.random() * colors.length)])
+              if (fill.startsWith('url') || fill === 'none') {
+                return
               }
-              newStyle.fill = colorMap.get(fill) ?? 'none'
+              const mapValue = currentColorsMap.has(fill)
+              if (!mapValue) {
+                currentColorsMap.set(fill, colors[Math.floor(Math.random() * colors.length)])
+              }
+              newStyle.fill = currentColorsMap.get(fill) ?? 'none'
             }
             if (stroke) {
-              const mapValue = colorMap.has(stroke)
-              if (!mapValue) {
-                newStyle.stroke = colorMap.get(stroke) ?? 'none'
-                colorMap.set(stroke, colors[Math.floor(Math.random() * colors.length)])
+              if (stroke.startsWith('url') || stroke === 'none') {
+                return
               }
-              newStyle.stroke = colorMap.get(stroke) ?? 'none'
+              const mapValue = currentColorsMap.has(stroke)
+              if (!mapValue) {
+                newStyle.stroke = currentColorsMap.get(stroke) ?? 'none'
+                currentColorsMap.set(stroke, colors[Math.floor(Math.random() * colors.length)])
+              }
+              newStyle.stroke = currentColorsMap.get(stroke) ?? 'none'
             }
             element.setAttribute(
               'style',
@@ -548,86 +532,7 @@ export const useCanvas = () => {
         ele.destroy()
         transformer?.nodes([])
         handleSvg(svgDataUrl, restAttrs)
-        // const newSvgString = new XMLSerializer().serializeToString(svgElement)
-        // console.log(newSvgString) // 输出新的 SVG 字符串
-
-        // elements.forEach((element) => {
-        //   // const elements1 = svgElement.attributes.fill
-        //   const eleStroke = element.getAttribute('stroke')
-        //   const eleFill = element.getAttribute('fill')
-        //   const eleStyle = element.getAttribute('style.fill')
-        //   // if(eleStroke || eleStyle?.fill) {
-
-        //   // }
-
-        //   if (eleFill) {
-        //     // 修改填充颜色（例如，将其改为红色）
-        //     element.setAttribute('fill', '#ff0000') // 修改为红色
-        //   }
-
-        //   // 检查并修改描边属性
-        //   if (eleStroke) {
-        //     // 修改描边颜色（例如，将其改为蓝色）
-        //     element.setAttribute('stroke', '#0000ff') // 修改为蓝色
-        //   }
-
-        //   console.log(eleStyle, `Element: ${eleFill}, Fill: ${eleStroke}`, 'svgElement')
-        // // })
-        // for (const element of elements) {
-        //   // const eleStroke = element.getAttribute('stroke')
-        //   // const eleFill = element.getAttribute('fill')
-        //   // const eleStyle = element.getAttribute('style')
-        //   // console.log(eleStroke, eleFill, eleStyle, 'svgElement')
-        //   // const newColor = colors[colorIndex]
-        //   // colorIndex = (colorIndex + 1) % colors.length
-        //   // if (eleFill) {
-        //   //   // Update index correctly
-        //   //   element.setAttribute('fill', `${newColor}`) // Update fill color
-        //   //   colorIndex = (colorIndex + 1) % colors.length
-        //   // }
-        //   // if (eleStroke) {
-        //   //   element.setAttribute('stroke', newColor[colorIndex]) // Update fill color
-        //   // }
-        //   // console.log(element, '')
-        // }
-        // // 更改 fill 和 stroke 属性
-        // let colorIndex = 0
-        // const colors = ['#fef2f2', '#ffe2e2', '#ffc9c9', '#ffa2a2', '#ff6467', '#fb2c36']
-        // const rec = colors[0]
-        // for (const element of elements) {
-        //   const eleStroke = element.getAttribute('stroke')
-        //   const eleFill = element.getAttribute('fill')
-        //   console.log(element, '')
-        //   const newColor = colors[colorIndex]
-        //   colorIndex = (colorIndex + 1) % colors.length
-        //   if (eleFill) {
-        //     // Update index correctly
-
-        //     element.setAttribute('fill', `${newColor}`) // Update fill color
-        //     colorIndex = (colorIndex + 1) % colors.length
-        //   }
-        //   if (eleStroke) {
-        //     element.setAttribute('stroke', newColor[colorIndex]) // Update fill color
-        //   }
-        //   console.log(element, '')
-        // }
-        // console.log(svgElement, '')
-
-        // const serializer = new XMLSerializer()
-        // const modifiedSvgText = serializer.serializeToString(svgElement)
-        // // const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(modifiedSvgText)}`
-        // //再变成svg 元素 生成图片
-
-        // const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(modifiedSvgText)}`
-        // console.log(currentAttrs, 'svgDataUrl')
-        // ele.destroy()
-        // transformer?.nodes([])
-        // handleSvg(svgDataUrl, restAttrs)
       }
-      // const currentAttrs3 = await ele.toSvg()
-      // console.log(currentAttrs4, 'handleAIChangeColor')
-
-      // console.log(currentAttrs3, 'handleAIChangeColor')
     })
   }
 
@@ -638,8 +543,9 @@ export const useCanvas = () => {
     handleSvgParser,
     addShape,
     handleAIChangeColor,
+    handleStyleCSS,
     stage,
     layer,
-    handleStyleCSS
+    currentColorsMap
   }
 }

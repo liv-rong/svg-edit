@@ -70,12 +70,12 @@ const svg2 = () => `
   <g id="图层_2" data-name="图层 2">
     <g id="图层_1-2" data-name="图层 1">
       <circle cx="55.31244" cy="55.31244" r="42.51969" style="fill:#bbd4ef"/>
-      <path d="M96.07986,60.57675A41.20421,41.20421,0,0,1,63.1851,95.65848c-2.54876.49636-2.9261-1.35427-.63231-2.506C78.84646,84.97136,89.163,73.58154,94.81491,59.68775,95.39749,58.25562,96.30124,58.85275,96.07986,60.57675Z" style="fill:#83a3cf;opacity:0.300000011920929;isolation:isolate"/>
-      <path d="M14.43275,49.72326A41.20423,41.20423,0,0,1,47.32749,14.64153c2.54877-.49635,2.92611,1.35428.63231,2.506C31.66613,25.32867,21.34964,36.71847,15.69768,50.6123,15.11511,52.0444,14.21136,51.44727,14.43275,49.72326Z" style="fill:#fff;opacity:0.300000011920929;isolation:isolate"/>
+      <path d="M96.07986,60.57675A41.20421,41.20421,0,0,1,63.1851,95.65848c-2.54876.75Z" style="fill:#83a3cf;opacity:0.300000011920929;isolation:isolate"/>
+      <path d="M14.43275,426Z" style="fill:#fff;opacity:0.300000011920929;isolation:isolate"/>
       <circle cx="54.43472" cy="58.89139" r="24.58407" style="fill:#6c8cc0"/>
       <circle cx="53.01179" cy="56.31248" r="24.61181" style="fill:#6c8cc0"/>
-      <path d="M75.78691,56.312A22.801,22.801,0,0,1,53.01168,79.08783c-3.84772,0-2.26738-2.41279-.37712-3.28739a44.48815,44.48815,0,0,0,19.881-17.206C73.64259,56.755,75.78691,53.51412,75.78691,56.312Z" style="fill:#5570ad;opacity:0.400000005960465;isolation:isolate"/>
-      <path d="M42.74784,38.4934c.37111.55835-.23811,1.2782-1.16871,1.89672s-1.83018.90148-2.20129.34312.08245-1.51241,1.013-2.13092S42.37675,37.935,42.74784,38.4934Z" style="fill:#fff;opacity:0.600000023841858;isolation:isolate"/>
+      <path d="M75.78691,,75.78691,56.312Z" style="fill:#5570ad;opacity:0.400000005960465;isolation:isolate"/>
+      <path d="M42.74784,3884,38.4934Z" style="fill:#fff;opacity:0.600000023841858;isolation:isolate"/>
       <circle cx="55.31244" cy="55.31244" r="55.31244" style="opacity:0.4;fill:url(#未命名的渐变_65)"/>
       <circle cx="55.3165" cy="55.31244" r="42.52375" style="fill:none;stroke:#043a7d;stroke-miterlimit:10;stroke-width:0.200000002980232px"/>
       <circle cx="53.10126" cy="56.16016" r="24.52234" style="fill:none;stroke:#043a7d;stroke-miterlimit:10;stroke-width:0.200000002980232px"/>
@@ -84,39 +84,117 @@ const svg2 = () => `
 </svg>`
 
 const svg3 = () => `
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 110.62488 110.62488">
+    <defs>
+        <radialGradient id="未命名的渐变_60" cx="55.31244" cy="55.31244" r="55.31244" gradientUnits="userSpaceOnUse">
+            <stop offset="0.00713" stop-color="#3bcbff"/>
+            <stop offset="0.37712" stop-color="#3bcbff" stop-opacity="0.99265"/>
+            <stop offset="0.51041" stop-color="#3bcbff" stop-opacity="0.96601"/>
+            <stop offset="0.60541" stop-color="#3bcbff" stop-opacity="0.91964"/>
+            <stop offset="0.68228" stop-color="#3bcbff" stop-opacity="0.85333"/>
+            <stop offset="0.74807" stop-color="#3bcbff" stop-opacity="0.76701"/>
+            <stop offset="0.80637" stop-color="#3bcbff" stop-opacity="0.66033"/>
+            <stop offset="0.85911" stop-color="#3bcbff" stop-opacity="0.53312"/>
+            <stop offset="0.90758" stop-color="#3bcbff" stop-opacity="0.38512"/>
+            <stop offset="0.95266" stop-color="#3bcbff" stop-opacity="0.21583"/>
+            <stop offset="0.99267" stop-color="#3bcbff" stop-opacity="0.03619"/>
+            <stop offset="1" stop-color="#3bcbff" stop-opacity="0"/>
+        </radialGradient>
+    </defs>
+    <title>资源 2</title>
+    <g id="图层_2" data-name="图层 2">
+        <g id="图层_1-2" data-name="图层 1">
+            <circle cx="55.31244" cy="55.31244" r="42.51969" style="fill:#bbd4ef"/>
+            <path d="M96.07986,60.57675A41.20421,41.20421,0,0,1,63.1851,95.65848c-2.54876.424,58.85275,96.07986,60.57675Z" style="fill:#83a3cf;opacity:0.300000011920929;isolation:isolate"/>
+            <path d="M14.123,15.11511,52.0444,14.21136,51.44727,14.43275,49.72326Z" style="fill:#fff;opacity:0.300000011920929;isolation:isolate"/>
+            <circle cx="54.43472" cy="58.89139" r="24.58407" style="fill:#6c8cc0"/>
+            <circle cx="53.01179" cy="56.31248" r="24.61181" style="fill:#6c8cc0"/>
+            <path d="M75.78691,56.312A22.801,22.801.78691,56.312Z" style="fill:#5570ad;opacity:0.400000005960465;isolation:isolate"/>
+            <path d="M42.74784,38.4934c.371,42.74784,38.4934Z" style="fill:#fff;opacity:0.600000023841858;isolation:isolate"/>
+            <circle cx="55.31244" cy="55.31244" r="55.31244" style="opacity:0.4;fill:url(#未命名的渐变_60)"/>
+            <circle cx="55.3165" cy="55.31244" r="42.52375" style="fill:none;stroke:#043a7d;stroke-miterlimit:10;stroke-width:0.200000002980232px"/>
+            <circle cx="53.10126" cy="56.16016" r="24.52234" style="fill:none;stroke:#043a7d;stroke-miterlimit:10;stroke-width:0.200000002980232px"/>
+        </g>
+    </g>
+</svg>`
+
+const svg33 = () => `
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 110.62488 110.62488">
+    <defs>
+        <radialGradient id="未命名的渐变_60" cx="55.31244" cy="55.31244" r="55.31244" gradientUnits="userSpaceOnUse">
+            <stop offset="0.00713" stop-color="#ff3b3b"></stop>
+            <stop offset="0.37712" stop-color="#ff3b3b" stop-opacity="0.99265"></stop>
+            <stop offset="0.51041" stop-color="#ff3b3b" stop-opacity="0.96601"></stop>
+            <stop offset="0.60541" stop-color="#ff3b3b" stop-opacity="0.91964"></stop>
+            <stop offset="0.68228" stop-color="#ff3b3b" stop-opacity="0.85333"></stop>
+            <stop offset="0.74807" stop-color="#ff3b3b" stop-opacity="0.76701"></stop>
+            <stop offset="0.80637" stop-color="#ff3b3b" stop-opacity="0.66033"></stop>
+            <stop offset="0.85911" stop-color="#ff3b3b" stop-opacity="0.53312"></stop>
+            <stop offset="0.90758" stop-color="#ff3b3b" stop-opacity="0.38512"></stop>
+            <stop offset="0.95266" stop-color="#ff3b3b" stop-opacity="0.21583"></stop>
+            <stop offset="0.99267" stop-color="#ff3b3b" stop-opacity="0.03619"></stop>
+            <stop offset="1" stop-color="#ff3b3b" stop-opacity="0"></stop>
+        </radialGradient>
+    </defs>
+    <title>资源 2</title>
+    <g id="图层_2" data-name="图层 2">
+        <g id="图层_1-2" data-name="图层 1">
+            <circle cx="55.31244" cy="55.31244" r="42.51969" style="fill: rgb(246, 218, 219);" fill="#f6dadb"></circle>
+            <path d="M96.07986,60.57675A41.24,58.85275,96.07986,60.57675Z" style="fill: rgb(224, 169, 169); opacity: 0.3; isolation: isolate;" fill="#e0a9a9"></path>
+            <path d="M14.432752326Z" style="fill: rgb(248, 227, 228); opacity: 0.3; isolation: isolate;" fill="#f8e3e4"></path>
+            <circle cx="54.43472" cy="58.89139" r="24.58407" style="fill: rgb(192, 108, 108);" fill="#c06c6c"></circle>
+            <circle cx="53.01179" cy="56.31248" r="24.61181" style="fill: rgb(192, 108, 108);" fill="#c06c6c"></circle>
+            <path d="M75.78691,56.356.312Z" style="fill: rgb(236, 187, 188); opacity: 0.4; isolation: isolate;" fill="#ecbbbc"></path>
+            <path d="M42.74784Z" style="fill: rgb(248, 227, 228); opacity: 0.6; isolation: isolate;" fill="#f8e3e4"></path>
+            <circle cx="55.31244" cy="55.31244" r="55.31244" style="opacity:0.4;fill:url(#未命名的渐变_60)" fill="url(&quot;#未命名的渐变_60&quot;)"></circle>
+            <circle cx="55.3165" cy="55.31244" r="42.52375" style="fill: none; stroke: rgb(125, 4, 4); stroke-miterlimit: 10; stroke-width: 0.2px;" stroke="#7d0404"></circle>
+            <circle cx="53.10126" cy="56.16016" r="24.52234" style="fill: none; stroke: rgb(125, 4, 4); stroke-miterlimit: 10; stroke-width: 0.2px;" stroke="#7d0404"></circle>
+        </g>
+    </g>
+</svg>
+
+
+`
+
+const test1 = () => `
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 110.62488 110.62488">
   <defs>
     <radialGradient id="未命名的渐变_65" cx="55.31244" cy="55.31244" r="55.31244" gradientUnits="userSpaceOnUse">
-      <stop offset="0.00713" stop-color="#3b55ff"/>
-      <stop offset="0.37712" stop-color="#3b55ff" stop-opacity="0.99265"/>
-      <stop offset="0.51041" stop-color="#3b55ff" stop-opacity="0.96601"/>
-      <stop offset="0.60541" stop-color="#3b55ff" stop-opacity="0.91964"/>
-      <stop offset="0.68228" stop-color="#3b55ff" stop-opacity="0.85333"/>
-      <stop offset="0.74807" stop-color="#3b55ff" stop-opacity="0.76701"/>
-      <stop offset="0.80637" stop-color="#3b55ff" stop-opacity="0.66033"/>
-      <stop offset="0.85911" stop-color="#3b55ff" stop-opacity="0.53312"/>
-      <stop offset="0.90758" stop-color="#3b55ff" stop-opacity="0.38512"/>
-      <stop offset="0.95266" stop-color="#3b55ff" stop-opacity="0.21583"/>
-      <stop offset="0.99267" stop-color="#3b55ff" stop-opacity="0.03619"/>
-      <stop offset="1" stop-color="#3b55ff" stop-opacity="0"/>
+      <stop offset="0.00713" stop-color="#ffe2e2"/>
+      <stop offset="0.37712" stop-color="#ffe2e2" stop-opacity="0.99265"/>
+      <stop offset="0.51041" stop-color="#ffe2e2" stop-opacity="0.96601"/>
+      <stop offset="0.60541" stop-color="#ffe2e2" stop-opacity="0.91964"/>
+      <stop offset="0.68228" stop-color="#ffe2e2" stop-opacity="0.85333"/>
+      <stop offset="0.74807" stop-color="#ffe2e2" stop-opacity="0.76701"/>
+      <stop offset="0.80637" stop-color="#ffe2e2" stop-opacity="0.66033"/>
+      <stop offset="0.85911" stop-color="#ffe2e2" stop-opacity="0.53312"/>
+      <stop offset="0.90758" stop-color="#ffe2e2" stop-opacity="0.38512"/>
+      <stop offset="0.95266" stop-color="#ffe2e2" stop-opacity="0.21583"/>
+      <stop offset="0.99267" stop-color="#ffe2e2" stop-opacity="0.03619"/>
+      <stop offset="1" stop-color="#ffe2e2" stop-opacity="0"/>
     </radialGradient>
   </defs>
   <title>资源 3</title>
   <g id="图层_2" data-name="图层 2">
     <g id="图层_1-2" data-name="图层 1">
-      <circle cx="55.31244" cy="55.31244" r="42.51969" style="fill: rgb(180, 189, 225);" fill="#b4bde1"/>
-      <path d="M96.07986,60.57675A41.20421,41.20421,0,0,1,63.1851,95.65848c-2.54876.49636-2.9261-1.35427-.63231-2.506C78.84646,84.97136,89.163,73.58154,94.81491,59.68775,95.39749,58.25562,96.30124,58.85275,96.07986,60.57675Z" style="fill: rgb(156, 168, 216); opacity: 0.3; isolation: isolate;" fill="#9ca8d8"/>
-      <path d="M14.43275,49.72326A41.20423,41.20423,0,0,1,47.32749,14.64153c2.54877-.49635,2.92611,1.35428.63231,2.506C31.66613,25.32867,21.34964,36.71847,15.69768,50.6123,15.11511,52.0444,14.21136,51.44727,14.43275,49.72326Z" style="fill:#fff;opacity:0.300000011920929;isolation:isolate" fill="#ffffff"/>
-      <circle cx="54.43472" cy="58.89139" r="24.58407" style="fill: rgb(112, 120, 172);" fill="#7078ac"/>
-      <circle cx="53.01179" cy="56.31248" r="24.61181" style="fill: rgb(112, 120, 172);" fill="#7078ac"/>
-      <path d="M75.78691,56.312A22.801,22.801,0,0,1,53.01168,79.08783c-3.84772,0-2.26738-2.41279-.37712-3.28739a44.48815,44.48815,0,0,0,19.881-17.206C73.64259,56.755,75.78691,53.51412,75.78691,56.312Z" style="fill: rgb(104, 109, 166); opacity: 0.4; isolation: isolate;" fill="#686da6"/>
-      <path d="M42.74784,38.4934c.37111.55835-.23811,1.2782-1.16871,1.89672s-1.83018.90148-2.20129.34312.08245-1.51241,1.013-2.13092S42.37675,37.935,42.74784,38.4934Z" style="fill:#fff;opacity:0.600000023841858;isolation:isolate" fill="#ffffff"/>
-      <circle cx="55.31244" cy="55.31244" r="55.31244" style="opacity:0.4;fill:url(#未命名的渐变_65)" fill="url(&quot;#未命名的渐变_65&quot;)"/>
-      <circle cx="55.3165" cy="55.31244" r="42.52375" style="fill: none; stroke: rgb(4, 14, 125); stroke-miterlimit: 10; stroke-width: 0.2px;" stroke="#040e7d"/>
-      <circle cx="53.10126" cy="56.16016" r="24.52234" style="fill: none; stroke: rgb(4, 14, 125); stroke-miterlimit: 10; stroke-width: 0.2px;" stroke="#040e7d"/>
+      <circle cx="55.31244" cy="55.31244" r="42.51969" style="fill: #ffa2a2"/>
+      <path d="M96.07986,60.57675A41.20421,41.20421,0,0,1,63.1851,95.65848c-2.54876.75Z" style="fill: #ff6467;opacity: 0.300000011920929;isolation: isolate"/>
+      <path d="M14.43275,426Z" style="fill: #ffffff;opacity: 0.300000011920929;isolation: isolate"/>
+      <circle cx="54.43472" cy="58.89139" r="24.58407" style="fill: #ffa2a2"/>
+      <circle cx="53.01179" cy="56.31248" r="24.61181" style="fill: #ffa2a2"/>
+      <path d="M75.78691,,75.78691,56.312Z" style="fill: #fb2c36;opacity: 0.400000005960465;isolation: isolate"/>
+      <path d="M42.74784,3884,38.4934Z" style="fill: #ffffff;opacity: 0.600000023841858;isolation: isolate"/>
+      <circle cx="55.31244" cy="55.31244" r="55.31244" style="opacity:0.4;fill:url(#未命名的渐变_65)"/>
+      <circle cx="55.3165" cy="55.31244" r="42.52375" style="fill: none;stroke: #fb2c36;stroke-miterlimit: 10;stroke-width: 0.200000002980232px"/>
+      <circle cx="53.10126" cy="56.16016" r="24.52234" style="fill: none;stroke: #fb2c36;stroke-miterlimit: 10;stroke-width: 0.200000002980232px"/>
     </g>
   </g>
-</svg>`
+</svg>
+`
 
 const svg4 = () => `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23937 85.10959">

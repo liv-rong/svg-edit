@@ -19,6 +19,21 @@ import {
   svg11,
   svg0
 } from '@/assets/svg/svg8'
+import {
+  immune1,
+  immune2,
+  immune3,
+  immune4,
+  immune5,
+  immune6,
+  immune7,
+  immune8,
+  immune9,
+  immune10,
+  immune11,
+  immune12,
+  immune13
+} from '@/assets/svg/svg9'
 import type { ShapeEnum } from '@/types/shape'
 import Konva from 'konva'
 
@@ -38,7 +53,23 @@ const Material = (props: Props) => {
     handleSvgParser(svgText)
   }
 
-  const svgElement = [svg0, svg1, svg2, svg3, svg4, svg5, svg6, svg7, svg8, svg9, svg10, svg11]
+  const svgElement = [svg1, svg2, svg3, svg4, svg5, svg6, svg7, svg8, svg9, svg10, svg11]
+
+  const svgImmune = [
+    immune1,
+    immune2,
+    immune3,
+    immune4,
+    immune5,
+    immune6,
+    immune7,
+    immune8,
+    immune9,
+    immune10,
+    immune11,
+    immune12,
+    immune13
+  ]
 
   const svgElement2 = [text1, text2, text3, text4]
 
@@ -66,7 +97,19 @@ const Material = (props: Props) => {
               onClick={() => handleSvg(svgDataUri(item()))}
               className="flex items-center justify-center h-16 w-16 border border- overflow-hidden cursor-pointer"
             >
-              {index}
+              <img
+                src={svgDataUri(item())}
+                alt="SVG Image"
+                className="svg-image"
+              />
+            </div>
+          ))}
+          {svgImmune.map((item, index) => (
+            <div
+              key={index}
+              onClick={() => handleSvg(svgDataUri(item()))}
+              className="flex items-center justify-center h-16 w-16 border border- overflow-hidden cursor-pointer"
+            >
               <img
                 src={svgDataUri(item())}
                 alt="SVG Image"

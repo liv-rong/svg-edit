@@ -11,7 +11,7 @@ import Color from './components/Color'
 import { ShapeIcon, ColorIcon, TextIcon } from '@/assets/svg'
 import Konva from 'konva'
 import type { ShapeEnum } from '@/types/shape'
-import type { HSVType } from '@/types/color'
+import type { AllColorsEnum } from '@/types/color'
 
 interface OperateMapType {
   icon: ReactNode
@@ -25,12 +25,20 @@ interface Props {
   handleSvgParser: (svgString: string) => void
   addShape: (type: ShapeEnum, customConfig?: Partial<Konva.ShapeConfig>) => void
   handleStyleCSS: (value: any) => void
-  handleAIChangeColor: (value: HSVType) => void
+  handleAIChangeColor: (value: AllColorsEnum) => void
+  currentColorsMap: Map<string, string>
 }
 
 const Option = (props: Props) => {
-  const { handleSvg, handleImg, handleSvgParser, addShape, handleStyleCSS, handleAIChangeColor } =
-    props
+  const {
+    handleSvg,
+    handleImg,
+    handleSvgParser,
+    addShape,
+    handleStyleCSS,
+    handleAIChangeColor,
+    currentColorsMap
+  } = props
 
   const { OperateType } = useCanvasStore(
     useShallow((state) => ({
@@ -62,6 +70,7 @@ const Option = (props: Props) => {
           <Color
             handleStyleCSS={handleStyleCSS}
             handleAIChangeColor={handleAIChangeColor}
+            currentColorsMap={currentColorsMap}
           />
         ),
         name: '颜色'
@@ -87,8 +96,9 @@ const Option = (props: Props) => {
 
   return (
     <Layout.Sider
-      className="!bg-white relative"
+      className="!bg-white relative "
       width={'64px'}
+      theme="light"
     >
       {Array.from(OperateMap.entries()).map(([key, value]) => (
         <div
@@ -104,10 +114,11 @@ const Option = (props: Props) => {
           <span>{value.icon}</span>
         </div>
       ))}
+      {JSON.stringify(currentColorsMap.entries())}
 
       {OperateType && (
-        <div className="absolute w-[240px] h-full bg-white shadow left-16 top-0  p-1">
-          <div className="text-lg px-1 font-bold"> {OperateMap.get(OperateType)?.name}</div>
+        <div className="absolute w-[240px] h-full bg-white shadow left-16 top-0 p-1 overflow-auto scrollbar-hidden">
+          <div className="text-lg px-1 font-bold">{OperateMap.get(OperateType)?.name}</div>
           {OperateMap.get(OperateType)?.component}
         </div>
       )}
