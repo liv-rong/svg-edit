@@ -6,7 +6,8 @@ import { AllColorsEnum, allColorsMap, HSVType } from '@/types/color'
 interface Props {
   handleStyleCSS: (value: any) => void
   handleAIChangeColor: (value: AllColorsEnum) => void
-  currentColorsMap: Map<string, string>
+  setCurrentColors: (value: string[]) => void
+  currentColors: string[]
 }
 
 interface HSVCompProps {
@@ -49,7 +50,7 @@ const HSVComp = (props: HSVCompProps) => {
 }
 
 const Color = (props: Props) => {
-  const { handleStyleCSS, handleAIChangeColor, currentColorsMap } = props
+  const { handleStyleCSS, handleAIChangeColor, setCurrentColors, currentColors } = props
   const [hue, setHue] = useState(0)
   const [saturation, setSaturation] = useState(0)
   const [value, setValue] = useState(0)
@@ -155,18 +156,19 @@ const Color = (props: Props) => {
       <div>
         <p className="mb-2 ">配色自定义精修</p>
         <div className="flex justify-start items-center gap-2 w-full flex-wrap">
-          {Array.from(currentColorsMap.entries()).map(([key, value]) => (
-            <div key={key}>
+          {currentColors.map((item, index) => (
+            <div key={index}>
               <ColorPicker
                 size="small"
-                defaultValue={value}
-                // onChange={(color) => {
-                //   handleStyleCSS({ [key]: color.toHexString() })
-                // }}
+                value={item}
+                onChange={(color) => {
+                  const newColors = [...currentColors]
+                  newColors[index] = color.toHexString()
+                  setCurrentColors(newColors)
+                }}
               />
             </div>
           ))}
-          {JSON.stringify(currentColorsMap.entries())}
         </div>
       </div>
       <Divider />

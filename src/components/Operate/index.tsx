@@ -26,7 +26,8 @@ interface Props {
   addShape: (type: ShapeEnum, customConfig?: Partial<Konva.ShapeConfig>) => void
   handleStyleCSS: (value: any) => void
   handleAIChangeColor: (value: AllColorsEnum) => void
-  currentColorsMap: Map<string, string>
+  setCurrentColors: (value: string[]) => void
+  currentColors: string[]
 }
 
 const Option = (props: Props) => {
@@ -37,7 +38,8 @@ const Option = (props: Props) => {
     addShape,
     handleStyleCSS,
     handleAIChangeColor,
-    currentColorsMap
+    setCurrentColors,
+    currentColors
   } = props
 
   const { OperateType } = useCanvasStore(
@@ -70,7 +72,8 @@ const Option = (props: Props) => {
           <Color
             handleStyleCSS={handleStyleCSS}
             handleAIChangeColor={handleAIChangeColor}
-            currentColorsMap={currentColorsMap}
+            setCurrentColors={setCurrentColors}
+            currentColors={currentColors}
           />
         ),
         name: '颜色'
@@ -114,8 +117,6 @@ const Option = (props: Props) => {
           <span>{value.icon}</span>
         </div>
       ))}
-      {JSON.stringify(currentColorsMap.entries())}
-
       {OperateType && (
         <div className="absolute w-[240px] h-full bg-white shadow left-16 top-0 p-1 overflow-auto scrollbar-hidden">
           <div className="text-lg px-1 font-bold">{OperateMap.get(OperateType)?.name}</div>

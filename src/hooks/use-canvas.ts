@@ -8,7 +8,6 @@ import { CanvasUtils } from '@/utils/Canvas'
 import type { ShapeEnum } from '@/types/shape'
 import { AllColorsEnum, allColorsMap } from '@/types/color'
 import { ColorUtils } from '@/utils/color'
-import tinycolor from 'tinycolor2'
 
 export const useCanvas = () => {
   const { canvasData } = useCanvasStore(
@@ -23,7 +22,7 @@ export const useCanvas = () => {
 
   const [transformer, setTransformer] = useState<Konva.Transformer>()
 
-  const [currentColorsMap, setCurrentColorsMap] = useState<Map<string, string>>(new Map([]))
+  const [currentColors, setCurrentColors] = useState<string[]>([])
 
   const initCanvas = () => {
     const stage = new Konva.Stage({
@@ -144,6 +143,7 @@ export const useCanvas = () => {
     })
 
     stage.on('click tap', function (e) {
+      console.log('e.target 11111111111111111111111')
       // if we are selecting with rect, do nothing
       if (selectionRectangle.visible()) {
         return
@@ -163,10 +163,26 @@ export const useCanvas = () => {
       // do we pressed shift or ctrl?
       const metaPressed = e.evt.shiftKey || e.evt.ctrlKey || e.evt.metaKey
       const isSelected = tr.nodes().indexOf(e.target) >= 0
-
+      // debugger
       if (!metaPressed && !isSelected) {
         // if no key pressed and the node is not selected
         // select just one
+        console.log('e.target 11111111111111111111111', e.target)
+
+        // 判断目标值是不是img  如果是img 就计算出他的色系
+        if (e.target instanceof Konva.Image) {
+          const imageNode = e.target as Konva.Image
+          const imageUrl = imageNode.getAttr('data')
+          if (imageUrl) {
+            fetch(imageUrl)
+              .then((response) => response.text())
+              .then((svgText) => {
+                const colors = ColorUtils.getColorsFromSvg(svgText)
+                setCurrentColors(colors)
+              })
+          }
+        }
+
         tr.nodes([e.target])
       } else if (metaPressed && isSelected) {
         // if we pressed keys and node was selected
@@ -235,52 +251,10 @@ export const useCanvas = () => {
         name: 'transformerShape',
         ...config
       })
-      // imageNode.cache()
-      // imageNode.filters([Konva.Filters.HSV])
-      // imageNode.setAttrs({
-      //   hue: 0,
-      //   saturation: 0,
-      //   value: 0
-      // })
-      // imageNode.on('click', function (e) {
-      //   console.log(e.target, 'click tap')
-      // })
-      // imageNode.on('dblclick', function (e) {
-      //   console.log(e.target, 'dblclick')
-      // })
-      // imageNode.on('auxclick', function (e) {
-      //   console.log(e.target, 'auxclick')
-      // })
       transformer?.nodes([imageNode])
 
       transformer?.setZIndex(999)
     })
-
-    // const img = new Image()
-    // img.src = data
-
-    // const newShape = new Konva.Shape({
-    //   width: img.width ?? 100,
-    //   height: img.height ?? 100,
-    //   draggable: true,
-    //   data: data,
-    //   name: 'transformerShape',
-    //   sceneFunc: function (context, shape) {
-    //     const width = shape.width()
-    //     const height = shape.height()
-    //     context.drawImage(img, 0, 0, width, height)
-    //   }
-    // })
-    // // newShape.cache()
-    // // newShape.filters([Konva.Filters.HSV])
-    // newShape.setAttrs({
-    //   draggable: true,
-    //   data: data,
-    //   name: 'transformerShape'
-    // })
-    // layer?.add(newShape)
-    // // transformer?.nodes([triangle])
-    // transformer?.setZIndex(999)
   }
 
   const handleImg = (url: string, config?: Record<string, any>) => {
@@ -356,8 +330,6 @@ export const useCanvas = () => {
         layer?.add(shape)
       }
     })
-
-    // console.log(allEle, 'allEle')
   }
 
   const addShape = (type: ShapeEnum, customConfig?: Partial<Konva.ShapeConfig>) => {
@@ -390,238 +362,27 @@ export const useCanvas = () => {
     layer?.batchDraw()
   }
 
-  const styleStringToObject = (styleString: string | null): Record<string, string> => {
-    const styleObject: Record<string, string> = {}
-
-    if (!styleString) return styleObject
-
-    // Remove any extra spaces and split by semicolon
-    const styles = styleString
-      .split(';')
-      .map((style) => style.trim())
-      .filter(Boolean)
-
-    for (const style of styles) {
-      const [key, value] = style.split(':').map((part) => part.trim())
-      if (key && value) {
-        styleObject[key] = ColorUtils.rgbToHex(value) ?? 'none'
-      }
-    }
-    return styleObject
-  }
-  //把rgb rgb(180, 189, 225) 字符串转为 hex 格式的 用tinycolor 库来写
-
-  //获取当前svg的所有颜色
-
-  const originalColors = [
-    '#bbd4ef',
-    '#83a3cf',
-    '#ffffff',
-    '#6c8cc0',
-    '#6c8cc0',
-    '#285192',
-    '#5570ad',
-    '#ffffff'
-  ]
-
-  // const newColors =[
-  //   "#e7bbef",
-  //   "#c483cf",
-  //   "#ffffff",
-  //   "#b46cc0",
-  //   "#b46cc0",
-  //   "#832892",
-  //   "#a055ad",
-  //   "#ffffff"
-  // ]
-
-  // const new = [
-  //   "#bbefbd",
-  //   "#83cf86",
-  //   "#ffffff",
-  //   "#6cc06f",
-  //   "#6cc06f",
-  //   "#28922c",
-  //   "#55ad59",
-  //   "#ffffff"
-  // ]
-
-  // [
-  //   "#3bcbff",
-  //   "#bbd4ef",
-  //   "#83a3cf",
-  //   "#fff",
-  //   "#6c8cc0",
-  //   "#5570ad",
-  //   "#043a7d"
-  // ]
-
-  // [
-  //   "#ff3b3b",
-  //   "#efbbbb",
-  //   "#cf8383",
-  //   "#ffffff",
-  //   "#c06c6c",
-  //   "#ad5555",
-  //   "#7d0404"
-  // ]
-
-  // const themeColorPurple = '#9c27b0'; // 紫色主题
-
-  // const newColorsGreen = generateThemeColors(originalColors, '#4caf50');
-
   const handleAIChangeColor = (color: AllColorsEnum) => {
     const colors = allColorsMap.get(color)?.colors ?? []
     console.log(colors, 'colors')
-    currentColorsMap.clear()
 
     const currentShape = transformer?.getNodes()
     currentShape?.forEach(async (ele) => {
       const currentAttrs = await ele.getAttrs()
+      console.log(currentAttrs, 'currentAttrs')
       const svgData = await ele.getAttrs()?.data
-      const { image, ...restAttrs } = currentAttrs
+      const { image, data, ...restAttrs } = currentAttrs
 
       if (svgData) {
-        // console.log(currentAttrs?.data)
-
         const response = await fetch(svgData)
         const svgText = await response.text()
-
+        setCurrentColors(ColorUtils.getColorsFromSvg(svgText))
         const newSvg = ColorUtils.applyThemeToSvg(svgText, colors[4])
-
-        //将替换好的svg 转为base64
+        setCurrentColors(ColorUtils.getColorsFromSvg(newSvg))
         const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(newSvg)}`
         ele.destroy()
         transformer?.nodes([])
-        handleSvg(svgDataUrl, restAttrs)
-
-        // // 获取类的class="cls-*" 的元素
-        // console.log(svgElement, 'elements')
-        // const elements = svgElement.querySelectorAll('[class^="cls-"]') // 修改选择器
-
-        // console.log(elements, 'elements')
-        // elements.forEach((element) => {
-        //   const currentFill = ColorUtils.rgbToHex(element.getAttribute('fill'))
-        //   const currentStroke = ColorUtils.rgbToHex(element.getAttribute('stroke'))
-        //   console.log(currentFill, currentStroke, '11111111111111111111111')
-        //   if (currentFill) {
-        //     if (currentFill === 'none') return
-        //     if (!currentColorsMap.has(currentFill)) {
-        //       currentColorsMap.set(currentFill, colors[Math.floor(Math.random() * colors.length)])
-        //     }
-        //     element.setAttribute('fill', currentColorsMap.get(currentFill) ?? 'none')
-        //   }
-        //   if (currentStroke) {
-        //     if (currentStroke === 'none') return
-        //     if (!currentColorsMap.has(currentStroke)) {
-        //       currentColorsMap.set(currentStroke, colors[Math.floor(Math.random() * colors.length)])
-        //     }
-        //     element.setAttribute('stroke', currentColorsMap.get(currentStroke) ?? 'none')
-        //   }
-        // })
-
-        // const elements1 = svgElement.querySelectorAll('[fill], [stroke], [style]')
-        // console.log(svgElement)
-        // // const gradientElements = svgElement.querySelectorAll('linearGradient[id^="未命名的渐变_"]');
-        // const gradients = svgElement.querySelectorAll(
-        //   'radialGradient[id^="未命名的渐变_"], linearGradient[id^="未命名的渐变_"]'
-        // )
-        // console.log(gradients, 'gradientElements')
-        // console.log('gradientElements')
-
-        // gradients.forEach((gradient) => {
-        //   // 你可以在这里修改每个渐变的颜色
-        //   const stops = gradient.querySelectorAll('stop')
-
-        //   stops.forEach((stop) => {
-        //     // 示例：统一修改每个 stop 的颜色
-        //     const getStopsColor = ColorUtils.rgbToHex(stop.getAttribute('stop-color') ?? 'none')
-        //     console.log(getStopsColor, 'getStopsColor')
-        //     if (getStopsColor === 'none') return
-        //     if (getStopsColor) {
-        //       const mapValue = currentColorsMap.has(getStopsColor)
-        //       if (!mapValue) {
-        //         currentColorsMap.set(
-        //           getStopsColor,
-        //           colors[Math.floor(Math.random() * colors.length)]
-        //         )
-        //       }
-        //       const newStopsColor = currentColorsMap.get(getStopsColor) ?? `none`
-        //       stop.setAttribute('stop-color', newStopsColor)
-        //     }
-        //   })
-        // })
-        // console.log(gradients, 'gradients')
-
-        // elements1.forEach((element) => {
-        //   // 获取并打印当前颜色
-        //   // console.log(element, '11111111111111111111111')
-        //   const currentFill = ColorUtils.rgbToHex(element.getAttribute('fill'))
-
-        //   const currentStroke = ColorUtils.rgbToHex(element.getAttribute('stroke'))
-        //   // const currentStyle = element.getAttribute('style')
-        //   const styleCurrent = styleStringToObject(element.getAttribute('style'))
-        //   console.log(currentFill, currentStroke, styleCurrent, '11111111111111111111111')
-        //   if (currentFill) {
-        //     if (currentFill === 'none') return
-        //     if (currentFill.startsWith('url')) {
-        //       return
-        //     }
-        //     if (!currentColorsMap.has(currentFill)) {
-        //       currentColorsMap.set(currentFill, colors[Math.floor(Math.random() * colors.length)])
-        //     }
-        //     element.setAttribute('fill', currentColorsMap.get(currentFill) ?? 'none')
-        //   }
-        //   if (currentStroke) {
-        //     if (currentStroke === 'none') return
-        //     if (currentStroke.startsWith('url')) {
-        //       return
-        //     }
-        //     if (!currentColorsMap.has(currentStroke)) {
-        //       currentColorsMap.set(currentStroke, colors[Math.floor(Math.random() * colors.length)])
-        //     }
-        //     element.setAttribute('stroke', currentColorsMap.get(currentStroke) ?? 'none')
-        //   }
-        //   if (styleCurrent) {
-        //     const { fill, stroke, ...rest } = styleCurrent
-        //     const newStyle = { ...styleCurrent }
-        //     if (fill) {
-        //       if (fill.startsWith('url') || fill === 'none') {
-        //         return
-        //       }
-        //       const mapValue = currentColorsMap.has(fill)
-        //       if (!mapValue) {
-        //         currentColorsMap.set(fill, colors[Math.floor(Math.random() * colors.length)])
-        //       }
-        //       newStyle.fill = currentColorsMap.get(fill) ?? 'none'
-        //     }
-        //     if (stroke) {
-        //       if (stroke.startsWith('url') || stroke === 'none') {
-        //         return
-        //       }
-        //       const mapValue = currentColorsMap.has(stroke)
-        //       if (!mapValue) {
-        //         newStyle.stroke = currentColorsMap.get(stroke) ?? 'none'
-        //         currentColorsMap.set(stroke, colors[Math.floor(Math.random() * colors.length)])
-        //       }
-        //       newStyle.stroke = currentColorsMap.get(stroke) ?? 'none'
-        //     }
-        //     element.setAttribute(
-        //       'style',
-        //       Object.entries(newStyle)
-        //         .map(([key, value]) => `${key}: ${value}`)
-        //         .join(';')
-        //     )
-        //   }
-        // })
-        // console.log(svgElement)
-
-        // const serializer = new XMLSerializer()
-        // const modifiedSvgText = serializer.serializeToString(svgElement)
-        // const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(modifiedSvgText)}`
-        // ele.destroy()
-        // transformer?.nodes([])
-        // handleSvg(svgDataUrl, restAttrs)
+        handleSvg(svgDataUrl, { ...restAttrs, data: svgDataUrl })
       }
     })
   }
@@ -636,6 +397,7 @@ export const useCanvas = () => {
     handleStyleCSS,
     stage,
     layer,
-    currentColorsMap
+    currentColors,
+    setCurrentColors
   }
 }
