@@ -8,6 +8,7 @@ import { CanvasUtils } from '@/utils/Canvas'
 import type { ShapeEnum } from '@/types/shape'
 import { AllColorsEnum, allColorsMap } from '@/types/color'
 import { ColorUtils } from '@/utils/color'
+import tinycolor from 'tinycolor2'
 
 export const useCanvas = () => {
   const { canvasData } = useCanvasStore(
@@ -412,6 +413,63 @@ export const useCanvas = () => {
 
   //获取当前svg的所有颜色
 
+  const originalColors = [
+    '#bbd4ef',
+    '#83a3cf',
+    '#ffffff',
+    '#6c8cc0',
+    '#6c8cc0',
+    '#285192',
+    '#5570ad',
+    '#ffffff'
+  ]
+
+  // const newColors =[
+  //   "#e7bbef",
+  //   "#c483cf",
+  //   "#ffffff",
+  //   "#b46cc0",
+  //   "#b46cc0",
+  //   "#832892",
+  //   "#a055ad",
+  //   "#ffffff"
+  // ]
+
+  // const new = [
+  //   "#bbefbd",
+  //   "#83cf86",
+  //   "#ffffff",
+  //   "#6cc06f",
+  //   "#6cc06f",
+  //   "#28922c",
+  //   "#55ad59",
+  //   "#ffffff"
+  // ]
+
+  // [
+  //   "#3bcbff",
+  //   "#bbd4ef",
+  //   "#83a3cf",
+  //   "#fff",
+  //   "#6c8cc0",
+  //   "#5570ad",
+  //   "#043a7d"
+  // ]
+
+  // [
+  //   "#ff3b3b",
+  //   "#efbbbb",
+  //   "#cf8383",
+  //   "#ffffff",
+  //   "#c06c6c",
+  //   "#ad5555",
+  //   "#7d0404"
+  // ]
+
+  // const themeColorPurple = '#9c27b0'; // 紫色主题
+
+  // const newColorsGreen = generateThemeColors(originalColors, '#4caf50');
+
   const handleAIChangeColor = (color: AllColorsEnum) => {
     const colors = allColorsMap.get(color)?.colors ?? []
     console.log(colors, 'colors')
@@ -428,34 +486,39 @@ export const useCanvas = () => {
 
         const response = await fetch(svgData)
         const svgText = await response.text()
-        const parser = new DOMParser()
-        const svgDoc = parser.parseFromString(svgText, 'image/svg+xml')
-        const svgElement = svgDoc.documentElement
 
-        // 获取类的class="cls-*" 的元素
-        console.log(svgElement, 'elements')
-        const elements = svgElement.querySelectorAll('[class^="cls-"]') // 修改选择器
+        const newSvg = ColorUtils.applyThemeToSvg(svgText, colors[4])
 
-        console.log(elements, 'elements')
-        elements.forEach((element) => {
-          const currentFill = ColorUtils.rgbToHex(element.getAttribute('fill'))
-          const currentStroke = ColorUtils.rgbToHex(element.getAttribute('stroke'))
-          console.log(currentFill, currentStroke, '11111111111111111111111')
-          if (currentFill) {
-            if (currentFill === 'none') return
-            if (!currentColorsMap.has(currentFill)) {
-              currentColorsMap.set(currentFill, colors[Math.floor(Math.random() * colors.length)])
-            }
-            element.setAttribute('fill', currentColorsMap.get(currentFill) ?? 'none')
-          }
-          if (currentStroke) {
-            if (currentStroke === 'none') return
-            if (!currentColorsMap.has(currentStroke)) {
-              currentColorsMap.set(currentStroke, colors[Math.floor(Math.random() * colors.length)])
-            }
-            element.setAttribute('stroke', currentColorsMap.get(currentStroke) ?? 'none')
-          }
-        })
+        //将替换好的svg 转为base64
+        const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(newSvg)}`
+        ele.destroy()
+        transformer?.nodes([])
+        handleSvg(svgDataUrl, restAttrs)
+
+        // // 获取类的class="cls-*" 的元素
+        // console.log(svgElement, 'elements')
+        // const elements = svgElement.querySelectorAll('[class^="cls-"]') // 修改选择器
+
+        // console.log(elements, 'elements')
+        // elements.forEach((element) => {
+        //   const currentFill = ColorUtils.rgbToHex(element.getAttribute('fill'))
+        //   const currentStroke = ColorUtils.rgbToHex(element.getAttribute('stroke'))
+        //   console.log(currentFill, currentStroke, '11111111111111111111111')
+        //   if (currentFill) {
+        //     if (currentFill === 'none') return
+        //     if (!currentColorsMap.has(currentFill)) {
+        //       currentColorsMap.set(currentFill, colors[Math.floor(Math.random() * colors.length)])
+        //     }
+        //     element.setAttribute('fill', currentColorsMap.get(currentFill) ?? 'none')
+        //   }
+        //   if (currentStroke) {
+        //     if (currentStroke === 'none') return
+        //     if (!currentColorsMap.has(currentStroke)) {
+        //       currentColorsMap.set(currentStroke, colors[Math.floor(Math.random() * colors.length)])
+        //     }
+        //     element.setAttribute('stroke', currentColorsMap.get(currentStroke) ?? 'none')
+        //   }
+        // })
 
         // const elements1 = svgElement.querySelectorAll('[fill], [stroke], [style]')
         // console.log(svgElement)

@@ -62,6 +62,598 @@ const immune1111 = () => `
 
 `
 
+const test1 = () => `
+
+<svg
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23938 85.23938">
+    <defs>
+        <style>.cls-1{fill:#bbd4ef;stroke:#2b72ad;}.cls-1,.cls-5{stroke-miterlimit:10;stroke-width:0.2px;}
+        .cls-2{fill:#83a3cf;}.cls-2,.cls-3{opacity:0.3;}.cls-3,.cls-7{fill:#fff;}
+        .cls-4,.cls-5{fill:#6c8cc0;}.cls-5{stroke:#285192;}.cls-6{fill:#5570ad;opacity:0.4;}
+        .cls-7{opacity:0.6;}</style>
+    </defs>
+    <title>资源 45</title>
+    <g id="图层_2" data-name="图层 2">
+        <g id="图层_1-2" data-name="图层 1">
+            <circle class="cls-1" cx="42.61969" cy="42.61969" r="42.51969"/>
+            <path class="cls-2" d="M83.47.884Z"/>
+            <path class="cls-3" d="M1.74,37.03051A41.20422,41.20422,0,0,1,34.68.75452,1.74,37.03051Z"/>
+            <circle class="cls-4" cx="41.74197" cy="46.19864" r="24.58407"/>
+            <circle class="cls-5" cx="40.31904" cy="43.61973" r="24.61181"/>
+            <path class="cls-6" d="M63.09416,43.61922A22.80106,22.80106,0,0,13.09416,43.61922Z"/>
+            <path class="cls-7" d="M30.05509,2565Z"/>
+        </g>
+    </g>
+</svg>
+
+`
+
+const test222222222 = `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23938 85.23938">
+  <defs>
+    <style>
+      .cls-1{fill:#bbd4ef;stroke:#2b72ad;}.cls-1,.cls-5{stroke-miterlimit:10;stroke-width:0.2px;}
+      .cls-2{fill:#83a3cf;}.cls-2,.cls-3{opacity:0.3;}.cls-3,.cls-7{fill:#fff;}.cls-4,.cls-5{fill:#6c8cc0;}.cls-5{stroke:#285192;}
+      .cls-6{fill:#5570ad;opacity:0.4;}.cls-7{opacity:0.6;}
+    </style>
+  </defs>
+  <title>资源 45</title>
+  <g id="图层_2" data-name="图层 2">
+    <g id="图层_1-2" data-name="图层 1">
+      <circle class="cls-1" cx="42.61969" cy="42.61969" r="42.51969" fill="#bbd4ef" stroke="#2b72ad"/>
+      <path class="cls-2" d="M83.3871786,76.47021,60.88879,82.12216,46.995,82.70474,45.56287,83.60849,46.16,83.38711,47.884Z" fill="#83a3cf"/>
+      <path class="cls-3" d="M1.74,37.03051A44.02572,3.00493,37.91955,2.42236,39.35165,1.51861,38.75452,1.74,37.03051Z" fill="#ffffff"/>
+      <circle class="cls-4" cx="41.74197" cy="46.19864" r="24.58407" fill="#6c8cc0"/>
+      <circle class="cls-5" cx="40.31904" cy="43.61973" r="24.61181" fill="#6c8cc0" stroke="#285192"/>
+      <path class="cls-6" d="M63.0941,19.881-17.206C60.94984,44.06223,63.09416,40.82137,63.09416,43.61922Z" fill="#5570ad"/>
+      <path class="cls-7" d="M30.05509,25.8024229,30.05509,25.80065Z" fill="#ffffff"/>
+    </g>
+  </g>
+</svg>
+
+`
+
+// [
+//     '#bbd4ef','#83a3cf','#ffffff','#6c8cc0','#6c8cc0','#285192','#5570ad','#ffffff'
+// ]
+
+const test2 = () => `
+<svg
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23938 85.23938">
+    <defs>
+        <style>.cls-1{fill:#bbd4ef;stroke:#2b72ad;}.cls-1,.cls-5{stroke-miterlimit:10;stroke-width:0.2px;}.cls-2{fill:#83a3cf;}.cls-2,.cls-3{opacity:0.3;}.cls-3,.cls-7{fill:#fff;}.cls-4,.cls-5{fill:#6c8cc0;}.cls-5{stroke:#285192;}.cls-6{fill:#5570ad;opacity:0.4;}.cls-7{opacity:0.6;}</style>
+    </defs>
+    <title>资源 45</title>
+    <g id="图层_2" data-name="图层 2">
+        <g id="图层_1-2" data-name="图层 1">
+            <circle class="cls-1" cx="42.61969" cy="42.61969" r="42.51969" fill="#e5cee0"  stroke="#a62bad" style="fill: rgb(229, 206, 224); stroke: rgb(166, 43, 173);"></circle>
+            <path class="cls-2" d="M83.38711,4849,46.16,83.38711,47.884Z" fill="#b08cb2" style="fill: rgb(176, 140, 178);"></path>
+            <path class="cls-3" d="M1.74,37.03051A41.1.74,37.03051Z" fill="#ebdae7" style="fill: rgb(235, 218, 231);"></path>
+            <circle class="cls-4" cx="41.74197" cy="46.19864" r="24.58407" fill="#bc6cc0" style="fill: rgb(188, 108, 192);"></circle>
+            <circle class="cls-5" cx="40.31904" cy="43.61973" r="24.61181" fill="#bc6cc0" stroke="#8c2892" style="fill: rgb(188, 108, 192); stroke: rgb(140, 40, 146);"></circle>
+            <path class="cls-6" d="M63.09416,43.416,43.61922Z" fill="#be9db7" style="fill: rgb(190, 157, 183);"></path>
+            <path class="cls-7" d="M30.05509,2065Z" fill="#ebdae7" style="fill: rgb(235, 218, 231);"></path>
+        </g>
+    </g>
+</svg>
+`
+// [
+//     '#e5cee0','#b08cb2','#ebdae7','#bc6cc0','#bc6cc0','#8c2892','#be9db7','#ebdae7'
+// ]
+
+// [
+//     '#bbd4ef','#83a3cf','#ffffff','#6c8cc0','#6c8cc0','#285192','#5570ad','#ffffff'
+// ]
+
+// [
+//     '#7faecd','#c7dcea','#c7dcea','#6da1c7','#6da1c7','#286592','#5588ad','#c7dcea'
+// ]
+
+const tetsts1 = `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.03937 39.08235">
+  <defs>
+    <style>
+      .cls-1{fill:#bbd4ef;}.cls-1,.cls-5{stroke:#285192;stroke-miterlimit:10;stroke-width:0.2px;}.cls-2{fill:#83a3cf;opacity:0.3;}.cls-3,.cls-7{fill:#fff;isolation:isolate;}.cls-3{opacity:0.3;}.cls-4,.cls-5{fill:#6c8cc0;}.cls-6{fill:#5570ad;opacity:0.4;}.cls-7{opacity:0.6;}
+    </style>
+  </defs>
+  <g id="图层_2" data-name="图层 2">
+    <g id="图层_1-2" data-name="图层 1">
+      <path class="cls-1" d="M67.4566..087-.00261-.17408-.00664a4.70093,4.70093,0,0,1-4.23151-3.28153,19.44079,19.44079,0,1,0-.23781,12.453,4.60529,4.60529,0,0,1,3.79592-3.01946q.42374-.04585.84748-.05823.176-.00434.352-.00265A4.74024,4.74024,0,0,1,47.224,26.14671,19.43871,19.43871,0,1,0,67.4566.196Z" fill="#b5d1e3" stroke="#286592" style="fill: rgb(181, 209, 227); stroke: rgb(40, 101, 146);"/>
+      <path class="cls-2" d="M35.71083,27.45194a18.08061,18.080,0,12.5507-9.33129C35.63155,26.60024,35.99758,26.86593,35.71083,27.45194Z" fill="#7faecd" style="fill: rgb(127, 174, 205);"/>
+      <path class="cls-3" d="M49.71335,10.88011A17.92091,17.92091,0,0,1,65.09752,1.53035q.20035-.00438.40161-.00439c.60134,0,.3239.49908-.40166.73148A34.67317,34.67317,0,0,0,50.331,11.39707C49.73389,12.02226,49.28571,11.665,49.71335,10.88011Z" fill="#c7dcea" style="fill: rgb(199, 220, 234);"/>
+      <path class="cls-3" d="M1.73686,16.94949A17.68385,17978,4.70537,11.36807,2.27973,17.33105,2.02971,17.94568,1.64184,17.6894,1.73686,16.94949Z" fill="#c7dcea" style="fill: rgb(199, 220, 234);"/>
+      <circle class="cls-4" cx="19.13923" cy="21.17758" r="11.24032" fill="#6da1c7" style="fill: rgb(109, 161, 199);"/>
+      <circle class="cls-5" cx="18.48864" cy="19.99843" r="11.25301" fill="#6da1c7" stroke="#286592" style="fill: rgb(109, 161, 199); stroke: rgb(40, 101, 146);"/>
+      <path class="cls-6" d="M28.90171,19.9982A10.42509,10.42509,0,0,1,18.48859,30.41194c-1.75923,0-1.03667-1.10319-.17242-1.50308a20.34079,20.34079,0,0,0,9.08984-7.867C27.9213,20.20076,28.90171,18.719,28.90171,19.9982Z" fill="#5588ad" style="fill: rgb(85, 136, 173);"/>
+      <path class="cls-7" d="M13.79584,11.85107c.16967.25529-.10887.58443-.53435.86723s-.83678.41218-1.00646.15688.0377-.69151.46316-.97431S13.62617,11.59577,13.79584,11.85107Z" fill="#c7dcea" style="fill: rgb(199, 220, 234);"/>
+      <path class="cls-2" d="M83.46823,21.72462A18.28493,18.28493,0,0,1,68.871,37.29283c-1.131.22027-1.29847-.601-.28059-1.11209,7.23041-3.63053,11.80841-8.685,14.3165-14.85063C83.16543,20.69458,83.56647,20.95956,83.46823,21.72462Z" fill="#7faecd" style="fill: rgb(127, 174, 205);"/>
+      <circle class="cls-4" cx="65.09753" cy="21.17758" r="11.24032" fill="#6da1c7" style="fill: rgb(109, 161, 199);"/>
+      <circle class="cls-5" cx="64.44695" cy="19.99843" r="11.25301" fill="#6da1c7" stroke="#286592" style="fill: rgb(109, 161, 199); stroke: rgb(40, 101, 146);"/>
+      <path class="cls-6" d="M74.86,19.9982A10.4251,10.4251,0,0,1,64.4469,30.41194c-1.75923,0-1.03668-1.10319-.17243-1.50308a20.34068,20.34068,0,0,0,9.08984-7.867C73.87961,20.20076,74.86,18.719,74.86,19.9982Z" fill="#5588ad" style="fill: rgb(85, 136, 173);"/>
+      <path class="cls-7" d="M59.75414,11.85107c.16968.25529-.10886.58443-.53435.86723s-.83678.41218-1.00645.15688.03769-.69151.46315-.97431S59.58448,11.59577,59.75414,11.85107Z" fill="#c7dcea" style="fill: rgb(199, 220, 234);"/>
+    </g>
+  </g>
+</svg>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23937 84.04144">
+  <title>资源 4</title>
+  <g id="图层_2" data-name="图层 2">
+    <g id="图层_1-2" data-name="图层 1">
+      <path d="M8541.07906,41.07906,0,0,1,85.12294,42.52053Z" style="fill: rgb(181, 209, 227); stroke: rgb(43, 118, 173); stroke-miterlimit: 10; stroke-width: 0.2px;" fill="#b5d1e3" stroke="#2b76ad"/>
+      <path d="M3.10.29982,18.87686,3.76007,33.918Z" style="fill: rgb(199, 220, 234); opacity: 0.2; isolation: isolate;" fill="#c7dcea"/>
+      <path d="M83,0,0,1,.42509-1.76194c25.09276,3.84492,50.14988-12.79654,55.395-34.0649C83.2069,42.47953,83.7391,41.30287,83.70658,42.48139Z" style="fill: rgb(127, 174, 205); opacity: 0.3; isolation: isolate;" fill="#7faecd"/>
+      <path d=".4128,15.4324-4.13852C74.011,58.46406,75.66415,48.928,70.71522,43.14907Z" style="fill: rgb(109, 161, 199);" fill="#6da1c7"/>
+      <path d="508,15.4324-4.13852C73.37132,57.067,75.02449,47.531,70.07556,41.752Z" style="fill: rgb(109, 161, 199); stroke: rgb(40, 101, 146); stroke-miterlimit: 10; stroke-width: 0.2px;" fill="#6da1c7" stroke="#286592"/>
+      <path d="1.41922145,52.59591,20.63217,53.2454,22.08934,53.81281Z" style="fill: rgb(85, 136, 173); opacity: 0.4; isolation: isolate;" fill="#5588ad"/>
+      <path d="4988,46late;" fill="#5588ad"/>
+      <path d="M540.96593Z" style="fill: rgb(199, 220, 234); opacity: 0.6; isolation: isolate;" fill="#c7dcea"/>
+      <path d="M20Z" style="fill: rgb(199, 220, 234); opacity: 0.6; isolation: isolate;" fill="#c7dcea"/>
+    </g>
+  </g>
+</svg>
+
+
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.03937 39.08235">
+  <defs>
+    <style>
+      .cls-1{fill:#bbd4ef;}.cls-1,.cls-5{stroke:#285192;stroke-miterlimit:10;stroke-width:0.2px;}.cls-2{fill:#83a3cf;opacity:0.3;}.cls-3,.cls-7{fill:#fff;isolation:isolate;}.cls-3{opacity:0.3;}.cls-4,.cls-5{fill:#6c8cc0;}.cls-6{fill:#5570ad;opacity:0.4;}.cls-7{opacity:0.6;}
+    </style>
+  </defs>
+  <g id="图层_2" data-name="图层 2">
+    <g id="图层_1-2" data-name="图层 1">
+      <path class="cls-1" d="093,4.70093,0,0,1-4.23151-3.28153,19.44079,19.44079,0,1,0-.23781,12.453,4.60529,4.60529,0,0,1,3.79592-3.01946q.42374-.04585.84748-.05823.176-.00434.352-.00265A4.74024,4.74024,0,0,1,47.224,26.14671,19.43871,19.43871,0,1,0,67.4566.196Z" fill="#bbd4ef" stroke="#285192"/>
+      <path class="cls-2" d="129C37.45194Z" fill="#83a3cf"/>
+      <path class="cls-3" d="17,0,1,11.665,49.71335,10.88011Z" fill="#ffffff"/>
+      <path class="cls-3" d="M1.73,1.893064568,1.64184,17.6894,1.73686,16.94949Z" fill="#ffffff"/>
+      <circle class="cls-4" cx="19.13923" cy="21.17758" r="11.24032" fill="#6c8cc0"/>
+      <circle class="cls-5" cx="18.48864" cy="19.99843" r="11.25301" fill="#6c8cc0" stroke="#285192"/>
+      <path class="cls-6" d="9.08984-7.867C27.9213,20.20076,28.90171,18.719,28.90171,19.9982Z" fill="#5570ad"/>
+      <path class="cls-7" d="77,13.79584,11.85107Z" fill="#ffffff"/>
+      <path class="cls-2" d=".685,14.3165-14.85063C83.16543,20.69458,83.56647,20.95956,83.46823,21.72462Z" fill="#83a3cf"/>
+      <circle class="cls-4" cx="65.09753" cy="21.17758" r="11.24032" fill="#6c8cc0"/>
+      <circle class="cls-5" cx="64.44695" cy="19.99843" r="11.25301" fill="#6c8cc0" stroke="#285192"/>
+      <path class="cls-6" d="M74.86,19.9982A10.4251,10.4251,0,0,1,64.4469,30.41194c-1.75923,0-1.03668-1.10319-.17243-1.50308a20.34068,20.34068,0,0,0,9.08984-7.867C73.87961,20.20076,74.86,18.719,74.86,19.9982Z" fill="#5570ad"/>
+      <path class="cls-7" d="M59.75414,11.85107c.16968.25529-.10886.58443-.53435.86723s-.83678.41218-1.00645.15688.03769-.69151.46315-.97431S59.58448,11.59577,59.75414,11.85107Z" fill="#ffffff"/>
+    </g>
+  </g>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23938 85.23938">
+  <defs>
+    <style>
+      .cls-1{fill:#bbd4ef;stroke:#2b72ad;}.cls-1,.cls-5{stroke-miterlimit:10;stroke-width:0.2px;}.cls-2{fill:#83a3cf;}.cls-2,.cls-3{opacity:0.3;}.cls-3,.cls-7{fill:#fff;}.cls-4,.cls-5{fill:#6c8cc0;}.cls-5{stroke:#285192;}.cls-6{fill:#5570ad;opacity:0.4;}.cls-7{opacity:0.6;}
+    </style>
+  </defs>
+  <title>资源 45</title>
+  <g id="图层_2" data-name="图层 2">
+    <g id="图层_1-2" data-name="图层 1">
+      <circle class="cls-1" cx="42.61969" cy="42.61969" r="42.51969" fill="#bbd4ef" stroke="#2b72ad"/>
+      <path class="cls-2" d="M83.38711,47.884A41.20422,41.20422,0,0,1,50.49235,82.96573c-2.54876.49636-2.9261-1.35427-.63231-2.506C66.15371,72.2786,76.47021,60.88879,82.12216,46.995,82.70474,45.56287,83.60849,46.16,83.38711,47.884Z" fill="#83a3cf"/>
+      <path class="cls-3" d="M1.74,37.03051A41.20422,41.20422,0,0,1,34.63474,1.94878c2.54877-.49635,2.92611,1.35428.63231,2.506C18.97338,12.63592,8.65689,24.02572,3.00493,37.91955,2.42236,39.35165,1.51861,38.75452,1.74,37.03051Z" fill="#ffffff"/>
+      <circle class="cls-4" cx="41.74197" cy="46.19864" r="24.58407" fill="#6c8cc0"/>
+      <circle class="cls-5" cx="40.31904" cy="43.61973" r="24.61181" fill="#6c8cc0" stroke="#285192"/>
+      <path class="cls-6" d="M63.09416,43.61922A22.80106,22.80106,0,0,1,40.31893,66.39508c-3.84773,0-2.26738-2.41279-.37713-3.28739a44.48815,44.48815,0,0,0,19.881-17.206C60.94984,44.06223,63.09416,40.82137,63.09416,43.61922Z" fill="#5570ad"/>
+      <path class="cls-7" d="M30.05509,25.80065c.37111.55835-.23811,1.2782-1.16871,1.89672s-1.83018.90148-2.20129.34312.08245-1.51241,1.013-2.13092S29.684,25.24229,30.05509,25.80065Z" fill="#ffffff"/>
+    </g>
+  </g>
+</svg>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102.6726 88.30708">
+  <title>资源 16</title>
+  <g id="图层_2" data-name="图层 2">
+    <g id="图层_1-2" data-name="图层 1">
+      <path d="06951,43.06951,0,1,1-58.0048,63.68182Z" style="fill: rgb(199, 220, 234); stroke: rgb(55, 113, 156); stroke-miterlimit: 10; stroke-width: 0.2px;" fill="#c7dcea" stroke="#37719c"/>
+      <path d="2272,4.33166A30.95512,30.95512,0,0,1,57.66134,6.80288a1.12356,1.12356,0,0,1-.51555,2.14963C35.84153,7.5445,12.58473,21.40048,4.03228,42.2111Z" style="fill:#fff;opacity:0.200000002980232;isolation:isolate" fill="#ffffff"/>
+      <path d="2.89895C55.75383,84.51743,77.79177,62.26518,79.3874,37.9584Z" style="fill: rgb(181, 209, 227); opacity: 0.4;" fill="#b5d1e3"/>
+      <path d="35.20673,34.4387,29.12091,56.81488,25.25167,62.204,33.96373Z" style="fill: rgb(91, 151, 194); opacity: 0.8;" fill="#5b97c2"/>
+      <path d="8,33.023,27.13219,55.3992,23.26294,60.78829,31.975Z" style="fill: rgb(127, 174, 205); stroke: rgb(27, 77, 114); stroke-miterlimit: 10; stroke-width: 0.2px;" fill="#7faecd" stroke="#1b4d72"/>
+      <path d="23.82061,23.82061,0,0,1,40.48516,60.598a19.53438,19.53438,0,0,1-7.52143-1.42024.6869.6869,0,0,1,.33289-1.31541C44.74948,58.6779,57.29424,50.9006,60.59667,38.612Z" style="fill: rgb(91, 151, 194); opacity: 0.4;" fill="#5b97c2"/>
+      <path d=".8513,34.2489,30.25472Z" style="fill:#fff;opacity:0.600000023841858;isolation:isolate" fill="#ffffff"/>
+      <path d="6.92706,0,0,0-1.2173.48692q-.01036.02421-.01936.049L89.79986,9.64241a3.1759,3.1759,0,0,1-1.38658,1.6608l-13.68184,7.9721a.932.932,0,0,0-.33608,1.27443l.01156.0193h0A.932.932,0,0,0,75.6683,20.88666Z" style="fill: rgb(109, 161, 199); stroke: rgb(40, 101, 146); stroke-miterlimit: 10; stroke-width: 0.2px;" fill="#6da1c7" stroke="#286592"/>
+      <path d="8981a.92292.92292,0,0,1,.75108,1.03026h0a.92292.92292,0,0,1-1.0368.79284l-.04073-.00635-8.13565-1.4571a3.17931,3.17931,0,0,0-2.14488.37311L77.4968,23.94286a.93119.93119,0,0,1-1.25711-.31929Z" style="fill: rgb(109, 161, 199); stroke: rgb(40, 101, 146); stroke-miterlimit: 10; stroke-width: 0.2px;" fill="#6da1c7" stroke="#286592"/>
+      <rect x="4733)" style="fill: rgb(109, 161, 199); stroke: rgb(40, 101, 146); stroke-miterlimit: 10; stroke-width: 0.2px;" fill="#6da1c7" stroke="#286592"/>
+      <rect x="64)" style="fill: rgb(109, 161, 199); stroke: rgb(40, 101, 146); stroke-miterlimit: 10; stroke-width: 0.2px;" fill="#6da1c7" stroke="#286592"/>
+    </g>
+  </g>
+</svg>
+
+
+`
+
+// [
+//     '#bbd4ef','#83a3cf','#ffffff','#6c8cc0','#6c8cc0','#285192','#5570ad','#ffffff'
+// ]
+// [
+//     '#bbd4ef','#83a3cf','#ffffff','#6c8cc0','#6c8cc0','#285192','#5570ad','#ffffff'
+// ]
+
+// [
+//     '#bbd4ef','#83a3cf','#ffffff','#6c8cc0','#6c8cc0','#285192','#5570ad'
+// ]
+
+// [
+//     '#b5d1e3','#7faecd','#c7dcea','#c7dcea','#6da1c7','#6da1c7','#286592','#5588ad','#c7dcea'
+// ]
+
+// [
+//     '#7faecd','#c7dcea','#c7dcea','#6da1c7','#6da1c7','#286592','#5588ad','#c7dcea'
+// ]
+
+const test4 = () => `
+
+<svg
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23938 85.23938">
+    <defs>
+        <style>.cls-1{fill:#bbd4ef;stroke:#2b72ad;}.cls-1,.cls-5{stroke-miterlimit:10;stroke-width:0.2px;}.cls-2{fill:#83a3cf;}.cls-2,.cls-3{opacity:0.3;}.cls-3,.cls-7{fill:#fff;}.cls-4,.cls-5{fill:#6c8cc0;}.cls-5{stroke:#285192;}.cls-6{fill:#5570ad;opacity:0.4;}.cls-7{opacity:0.6;}</style>
+    </defs>
+    <title>资源 45</title>
+    <g id="图层_2" data-name="图层 2">
+        <g id="图层_1-2" data-name="图层 1">
+            <circle class="cls-1" cx="42.61969" cy="42.61969" r="42.51969" fill="#e0e5c5" stroke="#7aad2b" style="fill: rgb(224, 229, 197); stroke: rgb(122, 173, 43);"></circle>
+            <path class="cls-2" d="M83.884Z" fill="#a3aa8a" style="fill: rgb(163, 170, 138);"></path>
+            <path class="cls-3" d="M1.51Z" fill="#d6ddb4" style="fill: rgb(214, 221, 180);"></path>
+            <circle class="cls-4" cx="41.74197" cy="46.19864" r="24.58407" fill="#8f9d79" style="fill: rgb(143, 157, 121);"></circle>
+            <circle class="cls-5" cx="40.31904" cy="43.61973" r="24.61181" fill="#8f9d79" stroke="#699228" style="fill: rgb(143, 157, 121); stroke: rgb(105, 146, 40);"></circle>
+            <path class="cls-6" d="M63.206C60.94984,44.06223,63.09416,40.82137,63.09416,43.61922Z" fill="#8bad55" style="fill: rgb(139, 173, 85);"></path>
+            <path class="cls-7" d="M30.05.24229,30.05509,25.80065Z" fill="#d6ddb4" style="fill: rgb(214, 221, 180);"></path>
+        </g>
+    </g>
+</svg>
+`
+
+// [
+//     '#e0e5c5','#a3aa8a','#d6ddb4','#8f9d79','#8f9d79','#699228','#8bad55','#d6ddb4'
+// ]
+const test5 = () => `
+<svg
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23938 85.23938">
+    <defs>
+        <style>.cls-1{fill:#bbd4ef;stroke:#2b72ad;}.cls-1,.cls-5{stroke-miterlimit:10;stroke-width:0.2px;}.cls-2{fill:#83a3cf;}.cls-2,.cls-3{opacity:0.3;}.cls-3,.cls-7{fill:#fff;}.cls-4,.cls-5{fill:#6c8cc0;}.cls-5{stroke:#285192;}.cls-6{fill:#5570ad;opacity:0.4;}.cls-7{opacity:0.6;}</style>
+    </defs>
+    <title>资源 45</title>
+    <g id="图层_2" data-name="图层 2">
+        <g id="图层_1-2" data-name="图层 1">
+            <circle class="cls-1" cx="42.61969" cy="42.61969" r="42.51969" fill="#b5d1e3" stroke="#2b76ad" style="fill: rgb(181, 209, 227); stroke: rgb(43, 118, 173);"></circle>
+            <path class="cls-2" d="M83.38711,47.83.38711,47.884Z" fill="#7faecd" style="fill: rgb(127, 174, 205);"></path>
+            <path class="cls-3" d="M1.74,3737.03051Z" fill="#c7dcea" style="fill: rgb(199, 220, 234);"></path>
+            <circle class="cls-4" cx="41.74197" cy="46.19864" r="24.58407" fill="#6da1c7" style="fill: rgb(109, 161, 199);"></circle>
+            <circle class="cls-5" cx="40.31904" cy="43.61973" r="24.61181" fill="#6da1c7" stroke="#286592" style="fill: rgb(109, 161, 199); stroke: rgb(40, 101, 146);"></circle>
+            <path class="cls-6" d="M63.09416,43.6.206C60.94984,44.06223,63.09416,40.82137,63.09416,43.61922Z" fill="#5588ad" style="fill: rgb(85, 136, 173);"></path>
+            <path class="cls-7" d="M30.05509,25.800092S29.684,25.24229,30.05509,25.80065Z" fill="#c7dcea" style="fill: rgb(199, 220, 234);"></path>
+        </g>
+    </g>
+</svg>
+
+`
+
+// [
+//     '#e0e5c5','#a3aa8a','#d6ddb4','#8f9d79','#8f9d79','#699228','#8bad55','#d6ddb4'
+// ]
+
+// [
+//     '#b5d1e3','#7faecd','#c7dcea','#6da1c7','#6da1c7','#286592','#5588ad','#c7dcea'
+// ]
+
+// [
+//     '#bdd2c5','#adc7b7','#ffffff','#89a494','#89a494','#28924f','#7c9786','#ffffff'
+// ]
+
+const test6 = () => `
+<svg
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23938 85.23938">
+    <defs>
+        <style>.cls-1{fill:#bbd4ef;stroke:#2b72ad;}.cls-1,.cls-5{stroke-miterlimit:10;stroke-width:0.2px;}.cls-2{fill:#83a3cf;}.cls-2,.cls-3{opacity:0.3;}.cls-3,.cls-7{fill:#fff;}.cls-4,.cls-5{fill:#6c8cc0;}.cls-5{stroke:#285192;}.cls-6{fill:#5570ad;opacity:0.4;}.cls-7{opacity:0.6;}</style>
+    </defs>
+    <title>资源 45</title>
+    <g id="图层_2" data-name="图层 2">
+        <g id="图层_1-2" data-name="图层 1">
+            <circle class="cls-1" cx="42.61969" cy="42.61969" r="42.51969" fill="#bdd2c5" stroke="#2bad5b" style="fill: rgb(189, 210, 197); stroke: rgb(43, 173, 91);"></circle>
+            <path class="cls-2" d="M83.38711,47.884A41.20422,41.20422,0,0,1,50.49235,82.96573c-2.54876.49636-2.9261-1.35427-.63231-2.506C66.15371,72.2786,76.47021,60.88879,82.12216,46.995,82.70474,45.56287,83.60849,46.16,83.38711,47.884Z" fill="#adc7b7" style="fill: rgb(173, 199, 183);"></path>
+            <path class="cls-3" d="M1.74,37.03051A41.20422,41.20422,0,0,1,34.63474,1.94878c2.54877-.49635,2.92611,1.35428.63231,2.506C18.97338,12.63592,8.65689,24.02572,3.00493,37.91955,2.42236,39.35165,1.51861,38.75452,1.74,37.03051Z" fill="#ffffff" style="fill: rgb(255, 255, 255);"></path>
+            <circle class="cls-4" cx="41.74197" cy="46.19864" r="24.58407" fill="#89a494" style="fill: rgb(137, 164, 148);"></circle>
+            <circle class="cls-5" cx="40.31904" cy="43.61973" r="24.61181" fill="#89a494" stroke="#28924f" style="fill: rgb(137, 164, 148); stroke: rgb(40, 146, 79);"></circle>
+            <path class="cls-6" d="M63.09416,43.61922A22.80106,22.80106,0,0,1,40.31893,66.39508c-3.84773,0-2.26738-2.41279-.37713-3.28739a44.48815,44.48815,0,0,0,19.881-17.206C60.94984,44.06223,63.09416,40.82137,63.09416,43.61922Z" fill="#7c9786" style="fill: rgb(124, 151, 134);"></path>
+            <path class="cls-7" d="M30.05509,25.80065c.37111.55835-.23811,1.2782-1.16871,1.89672s-1.83018.90148-2.20129.34312.08245-1.51241,1.013-2.13092S29.684,25.24229,30.05509,25.80065Z" fill="#ffffff" style="fill: rgb(255, 255, 255);"></path>
+        </g>
+    </g>
+</svg>
+
+`
+
+const test3 = () => `
+<svg
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23938 85.23938">
+    <defs>
+        <style>.cls-1{fill:#bbd4ef;stroke:#2b72ad;}.cls-1,.cls-5{stroke-miterlimit:10;stroke-width:0.2px;}.cls-2{fill:#83a3cf;}.cls-2,.cls-3{opacity:0.3;}.cls-3,.cls-7{fill:#fff;}.cls-4,.cls-5{fill:#6c8cc0;}.cls-5{stroke:#285192;}.cls-6{fill:#5570ad;opacity:0.4;}.cls-7{opacity:0.6;}</style>
+    </defs>
+    <title>资源 45</title>
+    <g id="图层_2" data-name="图层 2">
+        <g id="图层_1-2" data-name="图层 1">
+            <circle class="cls-1" cx="42.61969" cy="42.61969" r="42.51969" fill="#b6ffab" stroke="#1dd800" style="fill: rgb(182, 255, 171); stroke: rgb(29, 216, 0);"></circle>
+            <path class="cls-2" d="M83.38711,47.880849,46.16,83.38711,47.884Z" fill="#6aff53" style="fill: rgb(106, 255, 83);"></path>
+            <path class="cls-3" d="M1.74,37.03051A45452,1.74,37.03051Z" fill="#ffffff" style="fill: rgb(255, 255, 255);"></path>
+            <circle class="cls-4" cx="41.74197" cy="46.19864" r="24.58407" fill="#49ff2d" style="fill: rgb(73, 255, 45);"></circle>
+            <circle class="cls-5" cx="40.31904" cy="43.61973" r="24.61181" fill="#49ff2d" stroke="#19ba00" style="fill: rgb(73, 255, 45); stroke: rgb(25, 186, 0);"></circle>
+            <path class="cls-6" d="M63.09416,43.61922A22.84.06223,63.09416,40.82137,63.09416,43.61922Z" fill="#25ff03" style="fill: rgb(37, 255, 3);"></path>
+            <path class="cls-7" d="M30.05509,0065Z" fill="#ffffff" style="fill: rgb(255, 255, 255);"></path>
+        </g>
+    </g>
+</svg>
+`
+
+const test111 = () => ` 
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 85.44214 82.97778">
+    <defs>
+        <radialGradient id="未命名的渐变_381" cx="42.7204" cy="41.48901" r="42.00915" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#eaf2f3"/>
+            <stop offset="0.32465" stop-color="#e7f0f2"/>
+            <stop offset="0.58533" stop-color="#ddeaf1"/>
+            <stop offset="0.82299" stop-color="#ccdfed"/>
+            <stop offset="1" stop-color="#bad4ea"/>
+        </radialGradient>
+        <radialGradient id="未命名的渐变_326" cx="44.86958" cy="49.04745" r="22.30511" gradientTransform="matrix(0.99274, 0.12029, -0.11642, 0.96084, 4.55423, -10.74448)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#6c8cc0"/>
+            <stop offset="0.85333" stop-color="#7598ca"/>
+            <stop offset="1" stop-color="#779bcc"/>
+        </radialGradient>
+        <linearGradient id="未命名的渐变_378" x1="51.03267" y1="60.34664" x2="44.3564" y2="43.89873" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#5570ad"/>
+            <stop offset="0.77185" stop-color="#5679b9"/>
+            <stop offset="1" stop-color="#567dbe"/>
+        </linearGradient>
+        <linearGradient id="未命名的渐变_214" x1="76.31875" y1="25.96995" x2="76.25973" y2="25.85639" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#4292cf"/>
+            <stop offset="1" stop-color="#91c2e9"/>
+        </linearGradient>
+        <linearGradient id="未命名的渐变_216" x1="7.14864" y1="33.04988" x2="7.22456" y2="33.04988" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#418ac5"/>
+            <stop offset="1" stop-color="#8dbee2"/>
+        </linearGradient>
+        <linearGradient id="未命名的渐变_23" x1="58.72597" y1="79.50124" x2="24.79665" y2="4.35407" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#418ac5"/>
+            <stop offset="1" stop-color="#89b8e3"/>
+        </linearGradient>
+        <linearGradient id="未命名的渐变_23-2" x1="34.38789" y1="6.68413" x2="34.37251" y2="6.65008" xlink:href="#未命名的渐变_23"/>
+    </defs>
+    <title>资源 676</title>
+    <g id="图层_2" data-name="图层 2">
+        <g id="图层_1-2" data-name="图层 1">
+            <ellipse cx="43.96708" cy="43.16486" rx="21.4899" ry="22.20338" transform="translate(-4.17313 81.62041) rotate(-83.09118)" style="fill:#6c8cc0"/>
+            <path d="M43.58789,63.38208a23.37922,23.37922,0,0,1-2.79736-.169C28.582,61.73267,19.81445,50.91431,21.24658,39.09692A21.865,21.865,0,0,1,43.1875,20.177a23.37934,23.37934,0,0,1,2.79736.16895,22.533,22.533,0,0,1,14.89453,8.17383,21.10457,21.10457,0,0,1,4.64942,15.94238A21.86467,21.86467,0,0,1,43.58789,63.38208Z" style="fill:url(#未命名的渐变_326)"/>
+            <path d="M43.18658,20.27686a23.10123,23.10123,0,0,1,2.78614.1687C58.14627,21.92065,66.85754,32.668,65.42987,44.4502,64.11209,55.32593,54.61619,63.282,43.58883,63.282a23.15232,23.15232,0,0,1-2.78613-.1687c-12.17355-1.4751-20.88479-12.22241-19.45712-24.00464,1.31778-10.87573,10.81366-18.83178,21.841-18.83178m.00049-.2002h0C31.93515,20.0769,22.46,28.24854,21.147,39.08447c-1.43866,11.873,7.368,22.74146,19.63162,24.2273a23.43966,23.43966,0,0,0,2.81018.17041A21.96511,21.96511,0,0,0,65.62842,44.47437a21.2062,21.2062,0,0,0-4.6713-16.01758,22.63363,22.63363,0,0,0-14.96036-8.20972,23.43311,23.43311,0,0,0-2.80969-.17041Z" style="fill:#316da3"/>
+            <path d="M60.031,29.20747a20.0245,20.0245,0,0,1,4.41407,15.124,20.77322,20.77322,0,0,1-20.85693,17.959,22.206,22.206,0,0,1-2.6665-.16211A21.43291,21.43291,0,0,1,24.8652,51.5959C35.78619,61.88423,66.60438,52.52147,60.031,29.20747Z" style="opacity:0.65;fill:url(#未命名的渐变_378)"/>
+            <path d="M13.25563,15.09077c-.2-.08984-.32-.11987-.25-.1499A.90826.90826,0,0,0,13.25563,15.09077Z" style="fill:#83a3cf;opacity:0.4"/>
+            <path d="M13.01564,14.93086a.6773.6773,0,0,1,.21-.06006Q13.10565,14.90083,13.01564,14.93086Z" style="fill:#83a3cf;opacity:0.4"/>
+            <path d="M13.37563,19.18086l.18-.21c-.39.46-.75995.92993-1.12,1.40991C12.75563,19.94087,13.06563,19.541,13.37563,19.18086Z" style="fill:#83a3cf;opacity:0.4"/>
+            <path d="M14.55562,14.61079c.94-.18994,2.13-.41992,2.58-.51-.04.01-.07.02-.11.03-.8.19995-1.59.34009-2.28.44995C14.68562,14.59077,14.62563,14.60078,14.55562,14.61079Z" style="fill:#83a3cf;opacity:0.4"/>
+            <path d="M17.83565,13.58076a.88768.88768,0,0,0-.28-1.15991A.81576.81576,0,0,1,17.83565,13.58076Z" style="fill:#83a3cf;opacity:0.4"/>
+            <path d="M29.23168,11.92449c.232.56243-.44612,1.19887-1.78987,1.75323s-2.30713.45289-2.53916-.10954.63675-1.51952,1.9805-2.07388S28.99966,11.36207,29.23168,11.92449Z" style="fill:#fff;opacity:0.6000000000000001"/>
+            <circle cx="29.83897" cy="11.54969" r="0.43405" style="fill:#fff;opacity:0.6000000000000001"/>
+            <path d="M40.73566,6.55836c.08528.32783-.49128.58707-1.53227.72342s-1.71571-.03224-1.801-.36007.67368-.73561,1.71468-.872S40.65038,6.23053,40.73566,6.55836Z" style="fill:#fff;opacity:0.6000000000000001"/>
+            <ellipse cx="41.22395" cy="6.43039" rx="0.23728" ry="0.31683" transform="translate(33.32542 47.3984) rotate(-87.95334)" style="fill:#fff;opacity:0.6000000000000001"/>
+            <path d="M16.22688,22.16358c.25567.22744-.083.76884-.8807,1.46778s-1.459.93614-1.71466.7087.1528-.996.9505-1.69494S15.97122,21.93615,16.22688,22.16358Z" style="fill:#fff;opacity:0.6000000000000001"/>
+            <path d="M29.70343,26.93049a1.16508,1.16508,0,0,0-1.26039.06757,1.79508,1.79508,0,0,0-.61562-1.93,2.07735,2.07735,0,0,0-2.75266.89327,2.077,2.077,0,0,0,.20976,2.88634,1.88932,1.88932,0,0,0,2.28773-.36951,1.10369,1.10369,0,0,0,.43584.97217,1.5638,1.5638,0,0,0,1.69534-2.51981Z" style="fill:#fff;opacity:0.6000000000000001"/>
+            <ellipse cx="31.65105" cy="28.88727" rx="0.78323" ry="0.49842" transform="translate(1.77713 59.60879) rotate(-88.18746)" style="fill:#fff;opacity:0.6000000000000001"/>
+            <path d="M76.348,25.96064c-.0683-.05591-.1175-.095-.1175-.095S76.27907,25.90571,76.348,25.96064Z" style="fill:url(#未命名的渐变_214)"/>
+            <path d="M7.14864,33.10542c.04663-.06787.07592-.11109.07592-.11109S7.19685,33.03315,7.14864,33.10542Z" style="fill:url(#未命名的渐变_216)"/>
+            <path d="M90,0,0a3.28572,3.28572,0,0,1,.43-.0821021-.25-.61011.09-.61011a2.64853,2.64853,0,0,1,.78.12988,14.09919,14.09919,0,0,0,3.87.63013c.17,0,.33-.01.48-.02l.01-.01a7.48849,7.48849,0,0,0,2.99-.69995l.82-.48c.36-.21.71-.40991,1.07-.6001l-.03.03c.27-.1499.56-.31006.86-.47.14-.07984.3-.15991.46-.24.15-.08008.32-.15991.48-.25a.536.536,0,0,1,.11005-.05005c-.19.17993-1.26,1.22.00995,1.08008,1.21-.13013,3.12-1.63989,3.6-.82007C30.44563,10.17085,25.03566,10.82075,22.02565,13.58076Z" style="fill:#83a3cf;opacity:0.4"/>
+            <path d="M5.06563,39.53071l.01-.02978c-.03.34985-.06.7-.08,1.0498A10.10258,10.10258,0,0,1,5.06563,39.53071Z" style="fill:#83a3cf;opacity:0.4"/>
+            <path d="M6.98567,33.33076c.03-.0398.06-.07983.08-.10986-.03.05-.06.09985-.1.16992Z" style="fill:#83a3cf;opacity:0.4"/>
+            <path d="M34.34749,6.66108c.039.00781.06549.01221.06549.01221S34.38667,6.66792,34.34749,6.66108Z" style="fill:url(#未命名的渐变_23-2)"/>
+        </g>
+    </g>
+</svg>
+
+
+`
+
+const ts1 = () => `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23937 84.91076">
+  <title>资源 1</title>
+  <g id="图层_2" data-name="图层 2">
+    <g id="图层_1-2" data-name="图层 1">
+      <path d="M47.62226.42284a42.34585,42.34585,0,0,0-10.3422,84.05785,40.67132,40.67132,0,0,0,10.34219,0Z" style="fill:#bbd4ef;stroke:#2b72ad;stroke-miterlimit:10;stroke-width:0.200000002980232px"/>
+      <path d="M1.85254,36.84057a41.14692,41.14692,0,0,1,32.787-34.8774c2.53054-.55012,2.86061,1.32028.55012,2.42051C19.01618,12.52541,8.784,23.96784,3.0628,37.72076,2.51268,39.15106,1.63249,38.601,1.85254,36.84057Z" style="fill:#fff;opacity:0.300000011920929;isolation:isolate"/>
+      <path d="M49.64711,20.912A24.47486,24.47486,0,1,0,49.757,68.4V20.912Z" style="fill:#6c8cc0"/>
+      <path d="M49.64711,18.82337a24.50945,24.50945,0,0,0-14.84,46.71858,24.07448,24.07448,0,0,0,14.73009,0Z" style="fill:#6c8cc0;stroke:#285192;stroke-miterlimit:10;stroke-width:0.200000002980232px"/>
+      <path d="M32.05894,24.4296c.32978.54963-.21985,1.31911-1.20919,1.86874s-1.86874.87941-2.19852.32978.10993-1.539.98933-2.0886S31.72916,23.88,32.05894,24.4296Z" style="fill:#fff;opacity:0.600000023841858;isolation:isolate"/>
+      <path d="M42.784.1a42.35538,42.35538,0,1,1,0,84.71076" style="fill:#99a6b0;stroke:#2b2f3b;stroke-miterlimit:10;stroke-width:0.200000002980232px"/>
+      <path d="M83.39423,47.69525A41.04471,41.04471,0,0,1,50.62682,82.64117c-2.53889.49444-2.91477-1.349-.62986-2.4963C66.22755,71.99542,76.50411,60.6497,82.13418,46.80969,82.71451,45.38311,83.61476,45.97793,83.39423,47.69525Z" style="fill:#6b798d;opacity:0.30000000000000004"/>
+      <path d="M67.996,44.65717A24.48506,24.48506,0,0,1,43.51111,69.142c-.23906,0-.48809,0-.72715-.01988V20.19225c.23906-.01988.48809-.01988.72715-.01988A24.485,24.485,0,0,1,67.996,44.65717Z" style="fill:#45465e;opacity:0.4"/>
+      <path d="M42.784,17.68164a24.50443,24.50443,0,0,1,0,48.9896" style="fill:#6b798d;stroke:#2b2f3b;stroke-miterlimit:10;stroke-width:0.2px"/>
+      <path d="M64.7785,42.17647A22.71347,22.71347,0,0,1,42.784,64.84837V61.10291a44.29856,44.29856,0,0,0,18.73718-16.6553C62.6368,42.61477,64.7785,39.38732,64.7785,42.17647Z" style="fill:#45465e;opacity:0.4"/>
+      <path d="M42.784,61.10291c-2.18276.9099-5.65586.92335-5.89509,1.6942s3.29324,2.05126,5.89509,2.05126" style="fill:#5570ad;opacity:0.4"/>
+    </g>
+  </g>
+</svg>
+
+
+`
+
+const aa = () => `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23937 84.91076">
+  <title>资源 1</title>
+  <g id="图层_2" data-name="图层 2">
+    <g id="图层_1-2" data-name="图层 1">
+      <path d="M9,0Z" style="fill: rgb(240, 216, 208); stroke: rgb(173, 51, 43); stroke-miterlimit: 10; stroke-width: 0.2px;" fill="#f0d8d0" stroke="#ad332b"/>
+      <path d="M17Z" style="fill: rgb(235, 204, 193); opacity: 0.3; isolation: isolate;" fill="#ebccc1"/>
+      <path d="M49.64711,20.912A24.47486,24.47486,0,1,0,49.757,68.4V20.912Z" style="fill: rgb(192, 113, 108);" fill="#c0716c"/>
+      <path d="M49.6,0Z" style="fill: rgb(192, 113, 108); stroke: rgb(146, 46, 40); stroke-miterlimit: 10; stroke-width: 0.2px;" fill="#c0716c" stroke="#922e28"/>
+      <path d="M32.6Z" style="fill: rgb(235, 204, 193); opacity: 0.6; isolation: isolate;" fill="#ebccc1"/>
+      <path d="M42.784.1a42.35538,42.35538,0,1,1,0,84.71076" style="fill: rgb(194, 148, 143); stroke: rgb(59, 44, 43); stroke-miterlimit: 10; stroke-width: 0.2px;" fill="#c2948f" stroke="#3b2c2b"/>
+      <path d="M83.39423,477.69525Z" style="fill: rgb(186, 139, 136); opacity: 0.3;" fill="#ba8b88"/>
+      <path d="M67.996.65717Z" style="fill: rgb(94, 71, 69); opacity: 0.4;" fill="#5e4745"/>
+      <path d="M42.784,1,0,48.9896" style="fill: rgb(186, 139, 136); stroke: rgb(59, 44, 43); stroke-miterlimit: 10; stroke-width: 0.2px;" fill="#ba8b88" stroke="#3b2c2b"/>
+      <path d="M64.7785,42.17785,39.38732,64.7785,42.17647Z" style="fill: rgb(94, 71, 69); opacity: 0.4;" fill="#5e4745"/>
+      <path d="M42.784,624,2.05126,5.89509,2.05126" style="fill: rgb(173, 90, 85); opacity: 0.4;" fill="#ad5a55"/>
+    </g>
+  </g>
+</svg>
+
+
+
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 110.62488 110.62488">
+    <defs>
+        <radialGradient id="未命名的渐变_65" cx="55.31244" cy="55.31244" r="55.31244" gradientUnits="userSpaceOnUse">
+            <stop offset="0.00713" stop-color="#ff513b"></stop>
+            <stop offset="0.37712" stop-color="#ff513b" stop-opacity="0.99265"></stop>
+            <stop offset="0.51041" stop-color="#ff513b" stop-opacity="0.96601"></stop>
+            <stop offset="0.60541" stop-color="#ff513b" stop-opacity="0.91964"></stop>
+            <stop offset="0.68228" stop-color="#ff513b" stop-opacity="0.85333"></stop>
+            <stop offset="0.74807" stop-color="#ff513b" stop-opacity="0.76701"></stop>
+            <stop offset="0.80637" stop-color="#ff513b" stop-opacity="0.66033"></stop>
+            <stop offset="0.85911" stop-color="#ff513b" stop-opacity="0.53312"></stop>
+            <stop offset="0.90758" stop-color="#ff513b" stop-opacity="0.38512"></stop>
+            <stop offset="0.95266" stop-color="#ff513b" stop-opacity="0.21583"></stop>
+            <stop offset="0.99267" stop-color="#ff513b" stop-opacity="0.03619"></stop>
+            <stop offset="1" stop-color="#ff513b" stop-opacity="0"></stop>
+        </radialGradient>
+    </defs>
+    <title>资源 3</title>
+    <g id="图层_2" data-name="图层 2">
+        <g id="图层_1-2" data-name="图层 1">
+            <circle cx="55.31244" cy="55.31244" r="42.51969" style="fill: rgb(224, 181, 174);" fill="#e0b5ae"></circle>
+            <path d="M96.07986,60.57675A41.20421,41.20421,0,0,1,63.1851,95.65848c-2.54876.49636-2.9261-1.35427-.63231-2.506C78.84646,84.97136,89.163,73.58154,94.81491,59.68775,95.39749,58.25562,96.30124,58.85275,96.07986,60.57675Z" style="fill: rgb(207, 142, 131); opacity: 0.3; isolation: isolate;" fill="#cf8e83"></path>
+            <path d="M14.43275,49.72326A41.20423,41.20423,0,0,1,47.32749,14.64153c2.54877-.49635,2.92611,1.35428.63231,2.506C31.66613,25.32867,21.34964,36.71847,15.69768,50.6123,15.11511,52.0444,14.21136,51.44727,14.43275,49.72326Z" style="fill:#fff;opacity:0.300000011920929;isolation:isolate" fill="#ffffff"></path>
+            <circle cx="54.43472" cy="58.89139" r="24.58407" style="fill: rgb(214, 158, 148);" fill="#d69e94"></circle>
+            <circle cx="53.01179" cy="56.31248" r="24.61181" style="fill: rgb(214, 158, 148);" fill="#d69e94"></circle>
+            <path d="M75.78691,56.312A22.801,22.801,0,0,1,53.01168,79.08783c-3.84772,0-2.26738-2.41279-.37712-3.28739a44.48815,44.48815,0,0,0,19.881-17.206C73.64259,56.755,75.78691,53.51412,75.78691,56.312Z" style="fill: rgb(170, 100, 91); opacity: 0.4; isolation: isolate;" fill="#aa645b"></path>
+            <path d="M42.74784,38.4934c.37111.55835-.23811,1.2782-1.16871,1.89672s-1.83018.90148-2.20129.34312.08245-1.51241,1.013-2.13092S42.37675,37.935,42.74784,38.4934Z" style="fill:#fff;opacity:0.600000023841858;isolation:isolate" fill="#ffffff"></path>
+            <circle cx="55.31244" cy="55.31244" r="55.31244" style="opacity:0.4;fill:url(#未命名的渐变_65)" fill="url(&quot;#未命名的渐变_65&quot;)"></circle>
+            <circle cx="55.3165" cy="55.31244" r="42.52375" style="fill: none; stroke: rgb(159, 91, 82); stroke-miterlimit: 10; stroke-width: 0.2px;" stroke="#9f5b52"></circle>
+            <circle cx="53.10126" cy="56.16016" r="24.52234" style="fill: none; stroke: rgb(159, 91, 82); stroke-miterlimit: 10; stroke-width: 0.2px;" stroke="#9f5b52"></circle>
+        </g>
+    </g>
+</svg>
+
+`
+
+const test1111111111 = () => `
+
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23938 85.23938">
+  <defs>
+    <style>
+      .cls-1{fill:#bbd4ef;stroke:#2b72ad;}.cls-1,.cls-5{stroke-miterlimit:10;stroke-width:0.2px;}.cls-2{fill:#83a3cf;}.cls-2,.cls-3{opacity:0.3;}.cls-3,.cls-7{fill:#fff;}.cls-4,.cls-5{fill:#6c8cc0;}.cls-5{stroke:#285192;}.cls-6{fill:#5570ad;opacity:0.4;}.cls-7{opacity:0.6;}
+    </style>
+  </defs>
+  <title>资源 45</title>
+  <g id="图层_2" data-name="图层 2">
+    <g id="图层_1-2" data-name="图层 1">
+      <circle class="cls-1" cx="42.61969" cy="42.61969" r="42.51969" fill="#f0d8d0" stroke="#ad332b" style="fill: rgb(240, 216, 208); stroke: rgb(173, 51, 43);"/>
+      <path class="cls-2" d="M83.38717-.,47.884Z" fill="#c2948f" style="fill: rgb(194, 148, 143);"/>
+      <path class="cls-3" d="M1.74,37.36,39.35165,1.51861,38.75452,1.74,37.03051Z" fill="#ebccc1" style="fill: rgb(235, 204, 193);"/>
+      <circle class="cls-4" cx="41.74197" cy="46.19864" r="24.58407" fill="#ba8b88" style="fill: rgb(186, 139, 136);"/>
+      <circle class="cls-5" cx="40.31904" cy="43.61973" r="24.61181" fill="#ba8b88" stroke="#922e28" style="fill: rgb(186, 139, 136); stroke: rgb(146, 46, 40);"/>
+      <path class="cls-6" d="M63.09416,423,63.09416,40.82137,63.09416,43.61922Z" fill="#ad5a55" style="fill: rgb(173, 90, 85);"/>
+      <path class="cls-7" d="M30.05509,255509,25.80065Z" fill="#ebccc1" style="fill: rgb(235, 204, 193);"/>
+    </g>
+  </g>
+</svg>
+
+`
+
+const test2222 = () => `
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23937 84.91076">
+  <title>资源 1</title>
+  <g id="图层_2" data-name="图层 2">
+    <g id="图层_1-2" data-name="图层 1">
+      <path d="M47.62226.42284a42.34585,42.34585,0,0,0-10.3422,84.05785,40.67132,40.67132,0,0,0,10.34219,0Z" style="fill: rgb(189, 210, 197); stroke: rgb(43, 173, 91); stroke-miterlimit: 10; stroke-width: 0.2px;" fill="#bdd2c5" stroke="#2bad5b"/>
+      <path d="M1.85254,36.84057a41.14692,41.14692,0,0,1,32.787-34.8774c2.53054-.55012,2.86061,1.32028.55012,2.42051C19.01618,12.52541,8.784,23.96784,3.0628,37.72076,2.51268,39.15106,1.63249,38.601,1.85254,36.84057Z" style="fill: rgb(173, 199, 183); opacity: 0.3; isolation: isolate;" fill="#adc7b7"/>
+      <path d="M49.64711,20.912A24.47486,24.47486,0,1,0,49.757,68.4V20.912Z" style="fill: rgb(108, 192, 142);" fill="#6cc08e"/>
+      <path d="M49.64711,18.82337a24.50945,24.50945,0,0,0-14.84,46.71858,24.07448,24.07448,0,0,0,14.73009,0Z" style="fill: rgb(108, 192, 142); stroke: rgb(40, 146, 79); stroke-miterlimit: 10; stroke-width: 0.2px;" fill="#6cc08e" stroke="#28924f"/>
+      <path d="M32.05894,24.4296c.32978.54963-.21985,1.31911-1.20919,1.86874s-1.86874.87941-2.19852.32978.10993-1.539.98933-2.0886S31.72916,23.88,32.05894,24.4296Z" style="fill: rgb(173, 199, 183); opacity: 0.6; isolation: isolate;" fill="#adc7b7"/>
+      <path d="M42.784.1a42.35538,42.35538,0,1,1,0,84.71076" style="fill: rgb(137, 164, 148); stroke: rgb(43, 59, 49); stroke-miterlimit: 10; stroke-width: 0.2px;" fill="#89a494" stroke="#2b3b31"/>
+      <path d="M83.39423,47.69525A41.04471,41.04471,0,0,1,50.62682,82.64117c-2.53889.49444-2.91477-1.349-.62986-2.4963C66.22755,71.99542,76.50411,60.6497,82.13418,46.80969,82.71451,45.38311,83.61476,45.97793,83.39423,47.69525Z" style="fill: rgb(124, 151, 134); opacity: 0.3;" fill="#7c9786"/>
+      <path d="M67.996,44.65717A24.48506,24.48506,0,0,1,43.51111,69.142c-.23906,0-.48809,0-.72715-.01988V20.19225c.23906-.01988.48809-.01988.72715-.01988A24.485,24.485,0,0,1,67.996,44.65717Z" style="fill: rgb(69, 94, 78); opacity: 0.4;" fill="#455e4e"/>
+      <path d="M42.784,17.68164a24.50443,24.50443,0,0,1,0,48.9896" style="fill: rgb(124, 151, 134); stroke: rgb(43, 59, 49); stroke-miterlimit: 10; stroke-width: 0.2px;" fill="#7c9786" stroke="#2b3b31"/>
+      <path d="M64.7785,42.17647A22.71347,22.71347,0,0,1,42.784,64.84837V61.10291a44.29856,44.29856,0,0,0,18.73718-16.6553C62.6368,42.61477,64.7785,39.38732,64.7785,42.17647Z" style="fill: rgb(69, 94, 78); opacity: 0.4;" fill="#455e4e"/>
+      <path d="M42.784,61.10291c-2.18276.9099-5.65586.92335-5.89509,1.6942s3.29324,2.05126,5.89509,2.05126" style="fill: rgb(85, 173, 118); opacity: 0.4;" fill="#55ad76"/>
+    </g>
+  </g>
+</svg>
+
+
+`
+
+const test1111111 = () => `
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 85.44214 82.97778">
+    <defs>
+        <radialGradient id="未命名的渐变_381" cx="42.7204" cy="41.48901" r="42.00915" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#eaf3ed"></stop>
+            <stop offset="0.32465" stop-color="#e7f2eb"></stop>
+            <stop offset="0.58533" stop-color="#ddf1e5"></stop>
+            <stop offset="0.82299" stop-color="#ccedd9"></stop>
+            <stop offset="1" stop-color="#bdd2c5"></stop>
+        </radialGradient>
+        <radialGradient id="未命名的渐变_326" cx="44.86958" cy="49.04745" r="22.30511" gradientTransform="matrix(0.99274, 0.12029, -0.11642, 0.96084, 4.55423, -10.74448)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#89a494"></stop>
+            <stop offset="0.85333" stop-color="#75ca98"></stop>
+            <stop offset="1" stop-color="#77cc9a"></stop>
+        </radialGradient>
+        <linearGradient id="未命名的渐变_378" x1="51.03267" y1="60.34664" x2="44.3564" y2="43.89873" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#7c9786"></stop>
+            <stop offset="0.77185" stop-color="#56b97b"></stop>
+            <stop offset="1" stop-color="#56be7c"></stop>
+        </linearGradient>
+        <linearGradient id="未命名的渐变_214" x1="76.31875" y1="25.96995" x2="76.25973" y2="25.85639" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#42cf76"></stop>
+            <stop offset="1" stop-color="#91e9b3"></stop>
+        </linearGradient>
+        <linearGradient id="未命名的渐变_216" x1="7.14864" y1="33.04988" x2="7.22456" y2="33.04988" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#41c572"></stop>
+            <stop offset="1" stop-color="#adc7b7"></stop>
+        </linearGradient>
+        <linearGradient id="未命名的渐变_23" x1="58.72597" y1="79.50124" x2="24.79665" y2="4.35407" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#41c572"></stop>
+            <stop offset="1" stop-color="#89e3ac"></stop>
+        </linearGradient>
+        <linearGradient id="未命名的渐变_23-2" x1="34.38789" y1="6.68413" x2="34.37251" y2="6.65008" xlink:href="#未命名的渐变_23"></linearGradient>
+    </defs>
+    <title>资源 676</title>
+    <g id="图层_2" data-name="图层 2">
+        <g id="图层_1-2" data-name="图层 1">
+            <path d="M49.79248,82.87817a1.064,1.064,00,0-1.126-2.15332,2.85224,2.85224,0,0,1-.26855,1.87305.94043.94043,0,0,1-.80811.52148,1.12345,1.12345,0,0,1-.49609-.1289c-.63477-.31739-.89991-1.19532-1.20752-2.21192a6.29109,6.29109,0,0,0-2.00733-3.53808.09406.09406,0,0,1-.03076-.03711A38.88189,38.88189,0,0,1,7.76172,59.29614l-.00586-.00976a5.3986,5.3986,0,0,0-4.57129-2.66016c-.8667-.11035-1.55078-.19726-1.84668-.72949-.67139-1.208.6582-2.01367,2.06592-2.86719.22656-.13769.45752-.27734.68554-.42187.54541-.34571.72608-1.41993.46045-2.73633a.1.1,0,0,1,0-.03809,37.54885,37.54885,0,0,1-.43652-11.8164,3.67106,3.67106,0,0,1-2.64941,1.39648,1.25545,1.25545,0,0,1-1.32959-.9375c-.22461-.81641.69043-1.82422,1.95654-3.21875a34.479,34.479,0,0,0,2.29785-2.72656c1.06982-1.49024,1.11475-3.61133,1.1543-5.4834.03662-1.74316.06836-3.249,1.0205-3.59082a1.72026,1.72026,0,0,1,.582-.11133c.59179,0,1.03662.38281,1.32519,1.13965a38.31368,38.31368,0,0,1,4.21387-6.17871c.00439-.00977.60742-.69824.60742-.69824.34815-.46289.4917-.78711.43457-.98731-.05517-.19336-.31934-.29492-.625-.41308a1.75274,1.75274,0,0,1-1.31006-1.2334.7106.7106,0,0,1,.09131-.57422c.33545-.5,1.36719-.67285,2.67334-.8916.47363-.0791.99121-.166,1.51758-.27637-2.23389-.21094-3.25-1.166-3.24024-2.03809.00782-.69043.67334-1.17285,1.61866-1.17285a3.88629,3.88629,0,0,1,1.08252.16992,12.93492,12.93492,0,0,0,3.603.60157,6.67841,6.67841,0,0,0,3.68848-1.05957.09945.09945,0,0,1,.03809-.02344A39.48859,39.48859,0,0,1,29.519,6.56177c.61914-.24707,1.72559-.60938,2.103-.73145a4.36415,4.36415,0,0,1-.79981-4.24316A2.44159,2.44159,0,0,1,32.76416.10864c.06152-.00586.1206-.00879.17871-.00879,1.18945,0,1.625,1.21582,2.04687,2.39063.40625,1.13281.79,2.20312,1.78516,2.20312a1.42408,1.42408,0,0,0,.18945-.01269.26708.26708,0,0,1,.02735.001,40.43485,40.43485,0,0,1,6.085-.47363c1.06787,0,2.16846.04785,3.35986.14844a.09765.09765,0,0,1,.03223-.00684q.47094.02929.91357.0293a13.17686,13.17686,0,0,0,7.35547-2.32129,5.26326,5.26326,0,0,1,2.398-1.02734,1.49948,1.49948,0,0,1,.72363.18359,1.5619,1.5619,0,0,1,.77539,1.85352A4.69071,4.69071,0,0,1,55.707,6.18091a3.61306,3.61306,0,0,0,.45752.02734,10.11666,10.11666,0,0,0,2.79-.57031,7.70854,7.70854,0,0,1,1.99219-.43945,1.2194,1.2194,0,0,1,.76074.21582A1.35747,1.35747,0,0,1,62.17969,6.971a1.82949,1.82949,0,0,1-1.67725,1.18554A36.31158,36.31158,0,0,1,66.80078,12.009a.09974.09974,0,0,1,.022.02344,39.21152,39.21152,0,0,1,5.35645,4.80469,1.91678,1.91678,0,0,0,1.17627.416,4.85692,4.85692,0,0,0,1.20752-.22363c.311-.082.65234-.17285,1.04248-.24609a3.04542,3.04542,0,0,1,.54492-.05371,1.29009,1.29009,0,0,1,1.271.67968,1.83533,1.83533,0,0,1-.45069,1.88379l-.24951.28614c-.7373.83593-1.10693,1.25488-.35254,2.68945.311.48535.61475.98437.90723,1.49121a.10459.10459,0,0,1,.02832.0332A5.053,5.053,0,0,0,79.72754,26.01a4.70312,4.70312,0,0,1,1.19873.7959,1.01385,1.01385,0,0,1,.26074,1.11914.98372.98372,0,0,1-.917.58984,1.38914,1.38914,0,0,1-.78076-.26269,37.53964,37.53964,0,0,1,2.62451,18.18164,2.60266,2.60266,0,0,1,1.67969-.7793,1.57461,1.57461,0,0,1,1.43164,1.03125c.41894.90527-.36426,1.78906-1.35547,2.9082-1.24561,1.40528-2.7959,3.15528-2.876,5.80079a29.61468,29.61468,0,0,0,.24707,3.73144c.18408,1.59473.29492,2.55664-.477,3.16211a1.60281,1.60281,0,0,1-.97168.39453H79.7915a1.1241,1.1241,0,0,1-.87353-.44531,4.054,4.054,0,0,1-.55616-2.89844,38.6711,38.6711,0,0,1-13.91064,15.374,1.91534,1.91534,0,0,1,1.73828,1.0879,1.3921,1.3921,0,0,1-1.43213,1.94238,11.09476,11.09476,0,0,1-1.15088-.09082,17.78019,17.78019,0,0,0-2.05908-.1416,11.78584,11.78584,0,0,0-4.43945.87793,13.92827,13.92827,0,0,0-5.06885,3.23437,4.73481,4.73481,0,0,1-1.271,1.00879A2.20478,2.20478,0,0,1,49.79248,82.87817Z" style="fill:url(#未命名的渐变_381)" fill="url(&quot;#未命名的渐变_381&quot;)"></path>
+            <path d="M32.943.2c2.21982.00025,1.68284-.0166c.31621.02.62169.0293.919.0293,5.58546,0,7.91-3.34863,9.75474-3.34839a1.41046,1.41046,0,0,1,.67664.17114c2.08414,1.11328-.45171,4.73194-2.63118,4.87134l-.06917-.01367c.1303.041.2554.093.385.1355l-.31586-.12183a3.38471,3.38471,0,0,0,.98285.13477c1.70413,0,3.607-1.00977,4.78278-1.00952a1.12978,1.12978,0,0,1,.7.196c1.05751.80054.4011,2.56812-1.30869,2.56812A2.63,2.63,0,0,1,60.028,8.0437l-.00555-.00195a36.0807,36.0807,0,0,1,6.718,4.04761l-.03315-.01783a39.04839,39.04839,0,0,1,5.39855,4.83423,2.02522,2.02522,0,0,0,1.2494.44727,16.13733,16.13733,0,0,0,2.26845-.47046,2.891,2.891,0,0,1,.52731-.05225c1.45586.00025,1.62032,1.375.74408,2.39746-.89436,1.0437-1.4855,1.43238-.61485,3.08741q.51778.80969.99538,1.645l-.05977-.12012c1.10162,2.05884,2.74124,2.11889,3.639,3.03637A.872.872,0,0,1,80.27,28.415a1.48887,1.48887,0,0,1-1.02121-.4895l-.0336-.06763A37.43892,37.43892,0,0,1,81.98465,46.697a2.68354,2.68354,0,0,1,1.80836-.94238,1.46468,1.46468,0,0,1,1.3411.97339c.88638,1.9126-4.09513,3.85669-4.24053,8.66357-.01522,4.06738.98375,5.89673-.19163,6.81787a1.50548,1.50548,0,0,1-.91022.37354c-1.04613,0-1.65069-1.68115-1.23965-3.84326l.02264-.06592A38.68629,38.68629,0,0,1,64.045,74.85059l.05314-.02637q.12991-.01282.254-.01294c1.57.00024,2.41055,1.50586,1.42914,2.50708a1.349,1.349,0,0,1-1.02425.32544c-.7619,0-1.82568-.23291-3.209-.23291a11.82657,11.82657,0,0,0-4.47844.88623l.1114-.05518c-.06466.02466-.12741.053-.19224.07691l.08084-.02173c-4.89987,2.10718-4.85578,3.5-6.34657,4.24536a2.10615,2.10615,0,0,1-.93038.23535c-1.051,0-1.64262-1.00268-.00972-2.5227l.11421-.03076a40.22164,40.22164,0,0,1-6.82028.59082,39.75211,39.75211,0,0,1-15.36523-3.07007l.06946.03442s.57159,3.012-.94764,3.012c-.03918,0-.08-.00195-.122-.0061-1.67083-.16382-2.12945-3.53833-3.69369-5.36987l.1459.07251c-.06439-.03711-.13226-.06909-.19641-.10694l.05051.03443c.50217.93969.19607,2.84009-.78827,2.84009a1.01156,1.01156,0,0,1-.451-.11866c-1.33432-.66723-.97674-4.11767-3.201-5.74145l.12213.08276A38.558,38.558,0,0,1,7.83743,59.22241l.00433.01294c-2.17053-3.66064-5.692-2.08374-6.41668-3.38769-.72473-1.3042,1.07089-2.11231,2.71783-3.156.62293-.39477.76087-1.572.50488-2.84033l.01844.0542a37.44741,37.44741,0,0,1-.40137-12.28736l-.00568.02247a3.57477,3.57477,0,0,1-2.7951,1.6726,1.16221,1.16221,0,0,1-1.2337-.864c-.33182-1.20776,2.14987-3.02588,4.239-5.85864,2.11325-2.9441.29761-8.38184,2.128-9.04078a1.619,1.619,0,0,1,.54816-.10546c.67517,0,1.07415.5542,1.305,1.28735a38.15364,38.15364,0,0,1,4.3389-6.396l-.016.0149c.01593-.01563.02506-.02979.04062-.04566.17993-.21411.36853-.4209.5531-.63086,1.52124-2.02148-1.08972-1.01416-1.47793-2.72217-.27786-1.2229,2.31683-1.12744,4.88959-1.78-4.56769-.10206-4.69065-3.05127-2.32627-3.05127a3.77389,3.77389,0,0,1,1.05393.16528,13.03169,13.03169,0,0,0,3.632.60644,6.76033,6.76033,0,0,0,3.75833-1.08618l.00125.0022-.00122-.0022a39.36545,39.36545,0,0,1,6.656-3.15112c.75992-.30225,2.23017-.77222,2.23017-.77222C29.554,2.82275,31.02975.38013,32.7738.2085,32.832.20288,32.88824.2,32.943.2M22.89569,9.8042l.0011.002h0l-.00107-.002M32.943,0h0c-.06106,0-.12387.00317-.18878.00952A2.54161,2.54161,0,0,0,30.73114,1.5459a4.3963,4.3963,0,0,0,.73245,4.23c-.45773.14917-1.412.46558-1.98468.69336a39.684,39.684,0,0,0-6.65762,3.14917.20239.20239,0,0,0-.05612.03418,6.57612,6.57612,0,0,1-3.62671,1.03955,12.85119,12.85119,0,0,1-3.5759-.59815,3.97818,3.97818,0,0,0-1.11011-.17334c-1.17117,0-1.712.65943-1.71884,1.272-.00931.8313.84924,1.73437,2.7236,2.05786-.31692.05835-.62552.11011-.91726.15893-1.3302.2229-2.38089.39893-2.74006.93457a.807.807,0,0,0-.1058.6521,1.85772,1.85772,0,0,0,1.37128,1.304c.28082.1084.52337.20215.56509.34814.03244.11353-.01462.3628-.42322.90552l-.16259.18262c-.12931.14551-.25861.291-.38379.43994a.22.22,0,0,0-.02271.03271l-.00207-.0017a38.42207,38.42207,0,0,0-4.15335,6.04858,1.45672,1.45672,0,0,0-1.33722-1.01148,1.82807,1.82807,0,0,0-.616.11719c-1.01666.366-1.04907,1.90332-1.08658,3.68335-.03915,1.85742-.08353,3.96265-1.13608,5.429a34.29745,34.29745,0,0,1-2.29,2.71582C.72906,36.60791-.20142,37.63257.03753,38.5022a1.36432,1.36432,0,0,0,1.42655,1.01123A3.78727,3.78727,0,0,0,3.97482,38.344a37.61152,37.61152,0,0,0,.4736,11.491.1997.1997,0,0,0,.00333.05591c.25348,1.25586.08633,2.31348-.41589,2.63184-.22718.144-.45722.28344-.683.42041-1.45044.87939-2.82043,1.71-2.10263,3.0017.32047.57666,1.0625.67115,1.92172.78028a5.25013,5.25013,0,0,1,4.49778,2.6123l.00671.0105a38.96767,38.96767,0,0,0,10.73425,13.158.19974.19974,0,0,0,.04889.05127,6.21763,6.21763,0,0,1,1.97058,3.48633c.31412,1.03857.58536,1.93554,1.25888,2.27246a1.21368,1.21368,0,0,0,.54044.13965,1.03416,1.03416,0,0,0,.89371-.56983,2.81721,2.81721,0,0,0,.32919-1.508,18.30158,18.30158,0,0,1,.88873,1.77832c.6373,1.39843,1.23926,2.71948,2.35083,2.82837.04871.00488.096.00708.14148.00708a1.03238,1.03238,0,0,0,.83261-.3816,3.76608,3.76608,0,0,0,.36432-2.51709,39.836,39.836,0,0,0,15.04648,2.92237,40.41622,40.41622,0,0,0,6.1541-.4795c-.76431.87818-.711,1.47852-.593,1.77832a1.15964,1.15964,0,0,0,1.15474.66382,2.3075,2.3075,0,0,0,1.01985-.25634,4.87083,4.87083,0,0,0,1.29688-1.02686,13.82206,13.82206,0,0,1,5.03685-3.21265,11.68221,11.68221,0,0,1,4.40181-.87109,17.74557,17.74557,0,0,1,2.0475.14087,11.077,11.077,0,0,0,1.16154.092,1.5657,1.5657,0,0,0,1.16706-.38525,1.52468,1.52468,0,0,0,.35781-1.6958,1.95622,1.95622,0,0,0-1.53523-1.12012,38.78082,38.78082,0,0,0,13.48294-14.821,3.75931,3.75931,0,0,0,.61153,2.48,1.21934,1.21934,0,0,0,.95056.48145,1.69877,1.69877,0,0,0,1.03356-.416c.81605-.63965.7026-1.623.51466-3.25244a29.58083,29.58083,0,0,1-.24637-3.72217c.07886-2.60449,1.61583-4.33911,2.8508-5.73266,1.01572-1.14624,1.818-2.05152,1.37119-3.01563a1.669,1.669,0,0,0-1.52256-1.0896,2.55144,2.55144,0,0,0-1.555.64063c.118-1.21289.17769-2.43286.17769-3.6333a37.46774,37.46774,0,0,0-2.7256-14.08057A1.3844,1.3844,0,0,0,80.27,28.615a1.08388,1.08388,0,0,0,1.00932-.65161,1.10988,1.10988,0,0,0-.28151-1.22681,4.76279,4.76279,0,0,0-1.224-.81518,4.97269,4.97269,0,0,1-2.38154-2.17554.19926.19926,0,0,0-.03779-.05005c-.28621-.49536-.59035-.99536-.90566-1.48828-.71415-1.35913-.38144-1.73633.34754-2.5625.08-.09082.16394-.18579.25068-.28711a1.934,1.934,0,0,0,.46525-1.99048,1.38358,1.38358,0,0,0-1.3612-.73706,3.1331,3.1331,0,0,0-.56376.05542c-.39514.07349-.74339.166-1.05065.2478a4.809,4.809,0,0,1-1.18133.21949,1.83435,1.83435,0,0,1-1.13118-.4087A38.896,38.896,0,0,0,66.89244,11.96a.17108.17108,0,0,0-.03134-.03,36.441,36.441,0,0,0-6.01819-3.71948,1.8696,1.8696,0,0,0,1.43172-1.207,1.45568,1.45568,0,0,0-.50692-1.6687,1.313,1.313,0,0,0-.82066-.23658,7.77335,7.77335,0,0,0-2.02153.44361,10.17658,10.17658,0,0,1-2.72514.56567,4.81643,4.81643,0,0,0,2.5323-3.0188A1.65577,1.65577,0,0,0,57.90683,1.125,1.60156,1.60156,0,0,0,57.136.93042a5.32,5.32,0,0,0-2.45047,1.04126,13.09083,13.09083,0,0,1-7.30432,2.30713c-.29322,0-.59451-.00928-.90638-.029L46.462,4.24951a.20444.20444,0,0,0-.04428.00488c-1.1853-.09838-2.27969-.14624-3.34091-.14624A40.46743,40.46743,0,0,0,36.99,4.58081l-.01325-.00049-.02469.00147a1.45038,1.45038,0,0,1-.17755.01123c-.92489,0-1.29693-1.0376-1.69079-2.136C34.65054,1.249,34.20267,0,32.943,0Z" style="fill: rgb(40, 146, 79);" fill="#28924f"></path>
+            <ellipse cx="43.96708" cy="43.16486" rx="21.4899" ry="22.20338" transform="translate(-4.17313 81.62041) rotate(-83.09118)" style="fill: rgb(137, 164, 148);" fill="#89a494"></ellipse>
+            <path d="M43.58789,63.38265,21.865,0,0,1,43.1875,20.177a23.37934,23.37934,0,0,1,2.79736.16895,22.533,22.533,0,0,1,14.89453,8.17383,21.10457,21.10457,0,0,1,4.64942,15.94238A21.86467,21.86467,0,0,1,43.58789,63.38208Z" style="fill:url(#未命名的渐变_326)" fill="url(&quot;#未命名的渐变_326&quot;)"></path>
+            <path d="M43.18658,20.27693,54.61619,63.282,43.58883,63.282a23.15232,23.15232,0,0,1-2.78613-.1687c-12.17355-1.4751-20.88479-12.22241-19.45712-24.00464,1.31778-10.87573,10.81366-18.83178,21.841-18.83178m.00049-.2002h0C31.93515,20.0769,22.46,28.24854,21.147,39.08447c-1.43866,11.873,7.368,22.74146,19.63162,24.2273a23.43966,23.43966,0,0,0,2.81018.17041A21.96511,21.96511,0,0,0,65.62842,44.47437a21.2062,21.2062,0,0,0-4.6713-16.01758,22.63363,22.63363,0,0,0-14.96036-8.20972,23.43311,23.43311,0,0,0-2.80969-.17041Z" style="fill: rgb(49, 163, 91);" fill="#31a35b"></path>
+            <path d="M60.031,22.206,0,0,1-2.6665-.16211A21.43291,21.43291,0,0,1,24.8652,51.5959C35.78619,61.88423,66.60438,52.52147,60.031,29.20747Z" style="opacity:0.65;fill:url(#未命名的渐变_378)" fill="url(&quot;#未命名的渐变_378&quot;)"></path>
+            <path d="M13.25563,5.09077Z" style="fill: rgb(131, 207, 162); opacity: 0.4;" fill="#83cfa2"></path>
+            <path d="M13.01564,14.93086a.6773.6773,0,13.01564,14.93086Z" style="fill: rgb(131, 207, 162); opacity: 0.4;" fill="#83cfa2"></path>
+            <path d="M13.37563,19.18086l.18-.21c-.39.46-.759563,19.18086Z" style="fill: rgb(131, 207, 162); opacity: 0.4;" fill="#83cfa2"></path>
+            <path d="M14.55562,14.61079c.94-.18994,2.13-.62,14.59077,14.62563,14.60078,14.55562,14.61079Z" style="fill: rgb(131, 207, 162); opacity: 0.4;" fill="#83cfa2"></path>
+            <path d="M17.83576Z" style="fill: rgb(131, 207, 162); opacity: 0.4;" fill="#83cfa2"></path>
+            <path d="M29.23161.92449Z" style="fill:#fff;opacity:0.6000000000000001" fill="#ffffff"></path>
+            <circle cx="29.83897" cy="11.54969" r="0.43405" style="fill:#fff;opacity:0.6000000000000001" fill="#ffffff"></circle>
+            <path d="M40.73566,6.56Z" style="fill:#fff;opacity:0.6000000000000001" fill="#ffffff"></path>
+            <ellipse cx="41.22395" cy="6.43039" rx="0.23728" ry="0.31683" transform="translate(33.32542 47.3984) rotate(-87.95334)" style="fill:#fff;opacity:0.6000000000000001" fill="#ffffff"></ellipse>
+            <path d="M16.22688,22.16358c.25567.22744-.S15.97122,21.93615,16.22688,22.16358Z" style="fill:#fff;opacity:0.6000000000000001" fill="#ffffff"></path>
+            <path d="M29.70343,26.93049a1.165.077,2.077,0,0,0,.20976,2.88634,1.88932,1.88932,0,0,0,2.28773-.36951,1.10369,1.10369,0,0,0,.43584.97217,1.5638,1.5638,0,0,0,1.69534-2.51981Z" style="fill:#fff;opacity:0.6000000000000001" fill="#ffffff"></path>
+            <ellipse cx="31.65105" cy="28.88727" rx="0.78323" ry="0.49842" transform="translate(1.77713 59.60879) rotate(-88.18746)" style="fill:#fff;opacity:0.6000000000000001" fill="#ffffff"></ellipse>
+            <path d="M76.348,25.96064c-.0683-.05591-.1175-.095-.1175-.095S76.27907,25.90571,76.348,25.96064Z" style="fill:url(#未命名的渐变_214)" fill="url(&quot;#未命名的渐变_214&quot;)"></path>
+            <path d="M7.14864,33.10542c.04663-.06787.07592-.11109.07592-.11109S7.19685,33.03315,7.14864,33.10542Z" style="fill:url(#未命名的渐变_216)" fill="url(&quot;#未命名的渐变_216&quot;)"></path>
+            <path d="M22.02565,13.5807225,4.25774-1.83735,5.06341S8.38543,30.78326,6.6901,33.84661a16.57,16.57,0,0,0-1.69448,6.70412c.02-.34985.05005-.7.08-1.0498.04-.52.1-1.04.16-1.56006a12.19652,12.19652,0,0,1,1.73-4.55.90006.90006,0,0,0,.05-.09009l-.03.03a20.23292,20.23292,0,0,1-3.05,3.54,4.27611,4.27611,0,0,0-.38.29c-.02.01-.04.03-.06.04l.01.01c-.07.06006-.13.09985-.2.16992a3.79422,3.79422,0,0,1-1.84.93994c-.24,0-.25-.0498-.27-.13989a9.19443,9.19443,0,0,1,1.71-2.19019c.73-.80981,1.57-1.73,2.37-2.80981,1.27-1.78,1.32-4.17993,1.36-6.11011a6.86447,6.86447,0,0,1,.32-2.59985.7736.7736,0,0,1,.19-.04c.1,0,.26.25.36.59985l.71,2.24024.6-1.12012.01-.01a.07589.07589,0,0,1,.02-.04.48853.48853,0,0,1,.03-.07007.55416.55416,0,0,0,.05-.07983c.03-.06006.06-.11011.09-.15992l.31-.59008c.13-.23.26-.47.39-.7l.01-.02q.15-.25526.3-.51.225-.39.48-.78c.21-.3501.43-.68018.65-1.01.16-.24.32-.47.48-.69995,0,0,.11.94995.8.54a18.78481,18.78481,0,0,0,2.91-3.19019,22.53821,22.53821,0,0,1,1.80884-1.89844c.91347-.83212.52749-1.0166-.43046-1.05664a7.51242,7.51242,0,0,1-2.82839-.51489c-.14-.06983-.28-.12012-.4-.16992-.09-.04-.18-.07007-.24-.1001a.90826.90826,0,0,1-.25-.1499.0098.0098,0,0,1,.01-.01q.09-.03.21-.06006c.06-.01.12-.03.2-.04.04-.01.1-.02.16-.03a3.28572,3.28572,0,0,1,.43-.08984c.09-.02.18-.03.26-.05s.18-.03.28-.05005c.07-.01.13-.02.19-.03.69-.10986,1.48-.25,2.28-.44995a20.09256,20.09256,0,0,0,3.42-1.12988,26.96792,26.96792,0,0,0-3.06-.66016,5.0744,5.0744,0,0,0-.78-.06006,4.05409,4.05409,0,0,1-2.24-.55981c-.32-.21021-.25-.61011.09-.61011a2.64853,2.64853,0,0,1,.78.12988,14.09919,14.09919,0,0,0,3.87.63013c.17,0,.33-.01.48-.02l.01-.01a7.48849,7.48849,0,0,0,2.99-.69995l.82-.48c.36-.21.71-.40991,1.07-.6001l-.03.03c.27-.1499.56-.31006.86-.47.14-.07984.3-.15991.46-.24.15-.08008.32-.15991.48-.25a.536.536,0,0,1,.11005-.05005c-.19.17993-1.26,1.22.00995,1.08008,1.21-.13013,3.12-1.63989,3.6-.82007C30.44563,10.17085,25.03566,10.82075,22.02565,13.58076Z" style="fill: rgb(131, 207, 162); opacity: 0.4;" fill="#83cfa2"></path>
+            <path d="M5.06563,39.530763,39.53071Z" style="fill: rgb(131, 207, 162); opacity: 0.4;" fill="#83cfa2"></path>
+            <path d="M6.98567,33.33076c.03-.0398.06-.07983.08-.10986-.03.05-.06.09985-.1.16992Z" style="fill: rgb(131, 207, 162); opacity: 0.4;" fill="#83cfa2"></path>
+             <path d="M34.34749,6.66108c.039.00781.06549.01221.06549.01221S34.38667,6.66792,34.34749,6.66108Z" style="fill:url(#未命名的渐变_23-2)" fill="url(&quot;#未命名的渐变_23-2&quot;)"></path>
+        </g>
+    </g>
+</svg>
+
+
+`
+
 const immune11111 = () => `
 <svg
     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.23938 85.23938">
