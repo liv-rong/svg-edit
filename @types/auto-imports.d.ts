@@ -9,12 +9,13 @@ declare global {
   const Button: (typeof import('antd'))['Button']
   const CSSProperties: (typeof import('react'))['CSSProperties']
   const Canvas: (typeof import('../src/components/Canvas/index'))['default']
-  const CanvasUtils: (typeof import('../src/utils/Canvas'))['CanvasUtils']
+  const CanvasUtils: (typeof import('../src/utils/canvas'))['CanvasUtils']
   const Color: (typeof import('../src/components/Operate/components/Color'))['default']
   const ColorIcon: (typeof import('../src/assets/svg/index'))['ColorIcon']
   const ColorPicker: (typeof import('antd'))['ColorPicker']
   const ColorUtils: (typeof import('../src/utils/color'))['ColorUtils']
   const CommonIcon: (typeof import('../src/components/Common/CommonIcon'))['default']
+  const Drag: (typeof import('../src/components/Common/Drag'))['default']
   const Dropdown: (typeof import('antd'))['Dropdown']
   const Font: (typeof import('../src/components/Operate/components/Font'))['default']
   const Header: (typeof import('../src/components/Header/index'))['default']
@@ -92,8 +93,8 @@ declare global {
 // for type re-export
 declare global {
   // @ts-ignore
-  export type { CanvasUtils } from '../src/utils/Canvas'
-  import('../src/utils/Canvas')
+  export type { CanvasUtils } from '../src/utils/canvas'
+  import('../src/utils/canvas')
   // @ts-ignore
   export type { ColorUtils } from '../src/utils/color'
   import('../src/utils/color')

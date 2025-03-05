@@ -36,6 +36,7 @@ import {
 } from '@/assets/svg/svg9'
 import type { ShapeEnum } from '@/types/shape'
 import Konva from 'konva'
+import DraggableComponent from '@/components/Common/Drag'
 
 interface Props {
   handleSvg: (data: string) => void
@@ -92,30 +93,38 @@ const Material = (props: Props) => {
         <p>svg整体导入</p>
         <div className="grid grid-cols-3 gap-2">
           {svgElement.map((item, index) => (
-            <div
+            <DraggableComponent
+              id={item()}
               key={index}
-              onClick={() => handleSvg(svgDataUri(item()))}
-              className="flex items-center justify-center h-16 w-16 border border- overflow-hidden cursor-pointer"
             >
-              <img
-                src={svgDataUri(item())}
-                alt="SVG Image"
-                className="svg-image"
-              />
-            </div>
+              <div
+                onClick={() => handleSvg(svgDataUri(item()))}
+                className="flex items-center border border-gray-300  justify-center h-16 w-16 overflow-hidden cursor-pointer hover:border-blue-200"
+              >
+                <img
+                  src={svgDataUri(item())}
+                  alt="SVG Image"
+                  className="svg-image"
+                />
+              </div>
+            </DraggableComponent>
           ))}
           {svgImmune.map((item, index) => (
-            <div
+            <DraggableComponent
+              id={item()}
               key={index}
-              onClick={() => handleSvg(svgDataUri(item()))}
-              className="flex items-center justify-center h-16 w-16 border border- overflow-hidden cursor-pointer"
             >
-              <img
-                src={svgDataUri(item())}
-                alt="SVG Image"
-                className="svg-image"
-              />
-            </div>
+              <div
+                onClick={() => handleSvg(svgDataUri(item()))}
+                className="flex items-center  border border-gray-300  justify-center h-16 w-16 overflow-hidden cursor-pointer hover:border-blue-200"
+              >
+                <img
+                  src={svgDataUri(item())}
+                  alt="SVG Image"
+                  className="svg-image"
+                />
+              </div>
+            </DraggableComponent>
           ))}
         </div>
       </div>

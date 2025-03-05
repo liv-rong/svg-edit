@@ -4,10 +4,26 @@ import { useShallow } from 'zustand/shallow'
 import type { Stage } from 'konva/lib/Stage'
 import { Layer } from 'konva/lib/Layer'
 import { ElementDataType } from '@/types/operate'
-import { CanvasUtils } from '@/utils/Canvas'
-import type { ShapeEnum } from '@/types/shape'
+import { CanvasUtils } from '@/utils/canvas'
+import { ShapeEnum } from '@/types/shape'
 import { AllColorsEnum, allColorsMap } from '@/types/color'
 import { ColorUtils } from '@/utils/color'
+
+import {
+  immune1,
+  immune2,
+  immune3,
+  immune4,
+  immune5,
+  immune6,
+  immune7,
+  immune8,
+  immune9,
+  immune10,
+  immune11,
+  immune12,
+  immune13
+} from '@/assets/svg/svg9'
 
 export const useCanvas = () => {
   const { canvasData } = useCanvasStore(
@@ -143,7 +159,6 @@ export const useCanvas = () => {
     })
 
     stage.on('click tap', function (e) {
-      console.log('e.target 11111111111111111111111')
       // if we are selecting with rect, do nothing
       if (selectionRectangle.visible()) {
         return
@@ -167,7 +182,6 @@ export const useCanvas = () => {
       if (!metaPressed && !isSelected) {
         // if no key pressed and the node is not selected
         // select just one
-        console.log('e.target 11111111111111111111111', e.target)
 
         // 判断目标值是不是img  如果是img 就计算出他的色系
         if (e.target instanceof Konva.Image) {
@@ -181,6 +195,8 @@ export const useCanvas = () => {
                 setCurrentColors(colors)
               })
           }
+        } else {
+          setCurrentColors([])
         }
 
         tr.nodes([e.target])
@@ -231,30 +247,60 @@ export const useCanvas = () => {
       return false
     }
   }
-
   const handleSvg = (data: string, config?: Record<string, any>) => {
-    if (!layer) return
+    console.log(data, '11111111111111111')
+    // debugger
+    addShape(ShapeEnum.Circle)
+    return new Promise<Konva.Image | undefined>((resolve) => {
+      if (!layer) return resolve(undefined)
 
-    let url = data
+      let url = data
 
-    if (!isValidUrl(data)) {
-      const blob = new Blob([data], { type: 'image/svg+xml' })
-      url = URL.createObjectURL(blob)
-    }
+      if (!isValidUrl(data)) {
+        const blob = new Blob([data], { type: 'image/svg+xml' })
+        url = URL.createObjectURL(blob)
+      }
 
-    Konva.Image.fromURL(url, (imageNode) => {
-      console.log(imageNode, 'imageNode')
-      layer?.add(imageNode)
-      imageNode.setAttrs({
-        draggable: true,
-        data: url,
-        name: 'transformerShape',
-        ...config
+      Konva.Image.fromURL(url, (imageNode) => {
+        console.log(imageNode, 'imageNode')
+        layer?.add(imageNode)
+        imageNode.setAttrs({
+          draggable: true,
+          data: url,
+          name: 'transformerShape',
+          ...config
+        })
+        transformer?.nodes([imageNode])
+
+        if (layer?.children) {
+          transformer?.setZIndex(layer.children.length - 1)
+        }
+        resolve(imageNode)
       })
-      transformer?.nodes([imageNode])
-
-      transformer?.setZIndex(999)
     })
+
+    // if (!layer) return
+    // let url = data
+    // if (!isValidUrl(data)) {
+    //   const blob = new Blob([data], { type: 'image/svg+xml' })
+    //   url = URL.createObjectURL(blob)
+    // }
+
+    // Konva.Image.fromURL(url, (imageNode) => {
+    //   console.log(imageNode, 'imageNode')
+    //   layer?.add(imageNode)
+    //   imageNode.setAttrs({
+    //     draggable: true,
+    //     data: url,
+    //     name: 'transformerShape',
+    //     ...(config || {})
+    //   })
+    //   transformer?.nodes([imageNode])
+
+    //   if (layer?.children) {
+    //     transformer?.setZIndex(layer.children.length - 1)
+    //   }
+    // })
   }
 
   const handleImg = (url: string, config?: Record<string, any>) => {
@@ -284,15 +330,9 @@ export const useCanvas = () => {
     const parser = new DOMParser()
     const svgDoc = parser.parseFromString(svgString, 'image/svg+xml')
     const svgElement = svgDoc.documentElement
-
     const allEle: ElementDataType[] = []
-
-    // console.log(svgElement, '111111111')
-
     Array.from(svgElement.children).forEach((child) => {
-      // console.log(child, '111111')
       const elementData: ElementDataType = { tagName: child.tagName }
-
       const attributes = child.getAttributeNames()
       attributes.forEach((attr) => {
         child.getAttribute(attr)
@@ -333,17 +373,12 @@ export const useCanvas = () => {
   }
 
   const addShape = (type: ShapeEnum, customConfig?: Partial<Konva.ShapeConfig>) => {
+    if (!layer) return
     const resShape = CanvasUtils.createShape(type, customConfig)
     if (!resShape) return
     layer?.add(resShape)
-    transformer?.setZIndex(999)
+    transformer?.setZIndex(layer?.children ? layer.children.length - 1 : 0)
   }
-
-  useEffect(() => {
-    return () => {
-      stage?.destroy()
-    }
-  }, [])
 
   const handleStyleCSS = (value: any) => {
     const currentShape = transformer?.getNodes()
@@ -364,9 +399,8 @@ export const useCanvas = () => {
 
   const handleAIChangeColor = (color: AllColorsEnum) => {
     const colors = allColorsMap.get(color)?.colors ?? []
-    console.log(colors, 'colors')
-
     const currentShape = transformer?.getNodes()
+    const allSvgNodes: Konva.Image[] = []
     currentShape?.forEach(async (ele) => {
       const currentAttrs = await ele.getAttrs()
       console.log(currentAttrs, 'currentAttrs')
@@ -376,9 +410,34 @@ export const useCanvas = () => {
       if (svgData) {
         const response = await fetch(svgData)
         const svgText = await response.text()
-        setCurrentColors(ColorUtils.getColorsFromSvg(svgText))
         const newSvg = ColorUtils.applyThemeToSvg(svgText, colors[4])
         setCurrentColors(ColorUtils.getColorsFromSvg(newSvg))
+        const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(newSvg)}`
+        ele.destroy()
+        transformer?.nodes([])
+        handleSvg(svgDataUrl, { ...restAttrs, data: svgDataUrl }).then((resSvg) => {
+          if (resSvg) {
+            allSvgNodes.push(resSvg)
+            transformer?.nodes(allSvgNodes)
+            if (layer?.children) {
+              transformer?.setZIndex(layer.children.length - 1)
+            }
+          }
+        })
+      }
+    })
+  }
+
+  const handleReplaceColors = (value: string[]) => {
+    const currentShape = transformer?.getNodes()
+    currentShape?.forEach(async (ele) => {
+      const currentAttrs = await ele.getAttrs()
+      const svgData = await ele.getAttrs()?.data
+      const { image, data, ...restAttrs } = currentAttrs
+      if (svgData) {
+        const response = await fetch(svgData)
+        const svgText = await response.text()
+        const newSvg = ColorUtils.replaceColorsWithMap(svgText, value)
         const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(newSvg)}`
         ele.destroy()
         transformer?.nodes([])
@@ -387,6 +446,12 @@ export const useCanvas = () => {
     })
   }
 
+  useEffect(() => {
+    return () => {
+      stage?.destroy()
+    }
+  }, [])
+
   return {
     initCanvas,
     handleSvg,
@@ -394,10 +459,11 @@ export const useCanvas = () => {
     handleSvgParser,
     addShape,
     handleAIChangeColor,
+    handleReplaceColors,
     handleStyleCSS,
+    setCurrentColors,
     stage,
     layer,
-    currentColors,
-    setCurrentColors
+    currentColors
   }
 }

@@ -6,6 +6,7 @@ import { AllColorsEnum, allColorsMap, HSVType } from '@/types/color'
 interface Props {
   handleStyleCSS: (value: any) => void
   handleAIChangeColor: (value: AllColorsEnum) => void
+  handleReplaceColors: (value: string[]) => void
   setCurrentColors: (value: string[]) => void
   currentColors: string[]
 }
@@ -50,7 +51,13 @@ const HSVComp = (props: HSVCompProps) => {
 }
 
 const Color = (props: Props) => {
-  const { handleStyleCSS, handleAIChangeColor, setCurrentColors, currentColors } = props
+  const {
+    handleStyleCSS,
+    handleAIChangeColor,
+    handleReplaceColors,
+    setCurrentColors,
+    currentColors
+  } = props
   const [hue, setHue] = useState(0)
   const [saturation, setSaturation] = useState(0)
   const [value, setValue] = useState(0)
@@ -161,10 +168,11 @@ const Color = (props: Props) => {
               <ColorPicker
                 size="small"
                 value={item}
-                onChange={(color) => {
+                onChangeComplete={(color) => {
                   const newColors = [...currentColors]
                   newColors[index] = color.toHexString()
                   setCurrentColors(newColors)
+                  handleReplaceColors(newColors)
                 }}
               />
             </div>

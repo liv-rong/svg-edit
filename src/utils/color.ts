@@ -90,15 +90,32 @@ export class ColorUtils {
    * @returns {string} svg
    */
   static applyThemeToSvg = (svg: string, themeColor: string): string => {
-    const originalColors = ColorUtils.getColorsFromSvg(svg)
+    const svgColors = ColorUtils.replaceColorsInSvg(svg)
+    const originalColors = ColorUtils.getColorsFromSvg(svgColors)
     const themeColors = ColorUtils.generateThemeColors(originalColors, themeColor)
-
-    let themedSvg = svg
+    let themedSvg = svgColors
     originalColors.forEach((color, index) => {
       const regex = new RegExp(color, 'g')
       themedSvg = themedSvg.replace(regex, themeColors[index])
     })
+    return themedSvg
+  }
 
+  /**
+   * 传入要替换的一组颜色 然后对应替换
+   * @param {string} svg
+   * @param {string[]} originalColors
+   * @param {string[]} newColors
+   * @returns {string} svg
+   */
+  static replaceColorsWithMap = (svg: string, newColors: string[]): string => {
+    const svgColors = ColorUtils.replaceColorsInSvg(svg)
+    const originalColors = ColorUtils.getColorsFromSvg(svgColors)
+    let themedSvg = svgColors
+    originalColors.forEach((color, index) => {
+      const regex = new RegExp(color, 'g')
+      themedSvg = themedSvg.replace(regex, newColors[index])
+    })
     return themedSvg
   }
 }

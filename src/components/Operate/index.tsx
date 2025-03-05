@@ -28,6 +28,7 @@ interface Props {
   handleAIChangeColor: (value: AllColorsEnum) => void
   setCurrentColors: (value: string[]) => void
   currentColors: string[]
+  handleReplaceColors: (value: string[]) => void
 }
 
 const Option = (props: Props) => {
@@ -38,6 +39,7 @@ const Option = (props: Props) => {
     addShape,
     handleStyleCSS,
     handleAIChangeColor,
+    handleReplaceColors,
     setCurrentColors,
     currentColors
   } = props
@@ -72,6 +74,7 @@ const Option = (props: Props) => {
           <Color
             handleStyleCSS={handleStyleCSS}
             handleAIChangeColor={handleAIChangeColor}
+            handleReplaceColors={handleReplaceColors}
             setCurrentColors={setCurrentColors}
             currentColors={currentColors}
           />

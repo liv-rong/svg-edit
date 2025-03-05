@@ -28,6 +28,7 @@ function Index() {
     handleSvgParser,
     handleStyleCSS,
     handleAIChangeColor,
+    handleReplaceColors,
     setCurrentColors,
     currentColors
   } = useCanvas()
@@ -50,9 +51,10 @@ function Index() {
           handleAIChangeColor={handleAIChangeColor}
           setCurrentColors={setCurrentColors}
           currentColors={currentColors}
+          handleReplaceColors={handleReplaceColors}
         />
         <Content className="overflow-y-auto flex justify-center items-center">
-          <Canvas />
+          <Canvas handleSvg={handleSvg} />
         </Content>
       </Layout>
     </Layout>
