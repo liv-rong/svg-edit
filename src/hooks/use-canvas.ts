@@ -9,22 +9,6 @@ import { ShapeEnum } from '@/types/shape'
 import { AllColorsEnum, allColorsMap } from '@/types/color'
 import { ColorUtils } from '@/utils/color'
 
-import {
-  immune1,
-  immune2,
-  immune3,
-  immune4,
-  immune5,
-  immune6,
-  immune7,
-  immune8,
-  immune9,
-  immune10,
-  immune11,
-  immune12,
-  immune13
-} from '@/assets/svg/svg9'
-
 export const useCanvas = () => {
   const { canvasData } = useCanvasStore(
     useShallow((state) => ({
@@ -74,7 +58,7 @@ export const useCanvas = () => {
       draggable: true,
       stroke: 'black',
       strokeWidth: 2,
-      id: '222222222222222222222'
+      id: '222'
     })
     layer.add(rect2)
 
@@ -107,7 +91,6 @@ export const useCanvas = () => {
     let selecting = false
 
     stage.on('mousedown touchstart', (e) => {
-      console.log('mousedown touchstart')
       if (e.target !== stage) {
         return
       }
@@ -131,7 +114,6 @@ export const useCanvas = () => {
       e.evt.preventDefault()
       x2 = stage?.getPointerPosition()?.x ?? 0
       y2 = stage?.getPointerPosition()?.y ?? 0
-      console.log(x2, y2, 'mousemove touchmove')
       selectionRectangle.setAttrs({
         visible: true,
         x: Math.min(x1, x2),
@@ -214,6 +196,47 @@ export const useCanvas = () => {
       }
     })
 
+    // Unable to listen for changes correctly
+    stage.on('dragenter', function (e) {
+      console.log('dragenter')
+    })
+
+    stage.on('copy', function (e) {
+      console.log('copy')
+    })
+    stage.on('cut', function (e) {
+      console.log('cut')
+    })
+
+    stage.on('pointerup', function (e) {
+      console.log('pointerup')
+    })
+
+    stage.on('pointerdown', function (e) {
+      console.log('pointerdown')
+    })
+
+    //     'pointercancel": PointerEvent;
+    // "pointerdown": PointerEvent;
+    // 'pointerenter": PointerEvent;
+    // pointerleave": PointerEvent;
+    // pointermove": PointerEvent;
+    // pointerout": PointerEvent;
+    // "pointerover": PointerEvent;
+    // "pointerup": PointerEvent;
+
+    stage.on('dragleave', function (e) {
+      console.log('dragleave')
+    })
+
+    stage.on('dragover', function (e) {
+      console.log('dragover')
+    })
+
+    stage.on('drop', function (e) {
+      console.log('drop')
+    })
+
     const container = stage.container()
 
     container.tabIndex = 1
@@ -248,9 +271,6 @@ export const useCanvas = () => {
     }
   }
   const handleSvg = (data: string, config?: Record<string, any>) => {
-    console.log(data, '11111111111111111')
-    // debugger
-    addShape(ShapeEnum.Circle)
     return new Promise<Konva.Image | undefined>((resolve) => {
       if (!layer) return resolve(undefined)
 
@@ -262,7 +282,6 @@ export const useCanvas = () => {
       }
 
       Konva.Image.fromURL(url, (imageNode) => {
-        console.log(imageNode, 'imageNode')
         layer?.add(imageNode)
         imageNode.setAttrs({
           draggable: true,
@@ -447,10 +466,25 @@ export const useCanvas = () => {
   }
 
   useEffect(() => {
+    stage?.on('dragenter', function (e) {
+      console.log('dragenter')
+    })
+
+    stage?.on('dragleave', function (e) {
+      console.log('dragleave')
+    })
+
+    stage?.on('dragover', function (e) {
+      console.log('dragover')
+    })
+
+    stage?.on('drop', function (e) {
+      console.log('drop')
+    })
     return () => {
       stage?.destroy()
     }
-  }, [])
+  }, [stage])
 
   return {
     initCanvas,

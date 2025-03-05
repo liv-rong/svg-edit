@@ -94,7 +94,7 @@ const Material = (props: Props) => {
         <div className="grid grid-cols-3 gap-2">
           {svgElement.map((item, index) => (
             <DraggableComponent
-              id={item()}
+              svg={item()}
               key={index}
             >
               <div
@@ -111,7 +111,7 @@ const Material = (props: Props) => {
           ))}
           {svgImmune.map((item, index) => (
             <DraggableComponent
-              id={item()}
+              svg={item()}
               key={index}
             >
               <div

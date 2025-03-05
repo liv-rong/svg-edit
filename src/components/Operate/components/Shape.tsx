@@ -13,6 +13,7 @@ import RoundedRectangleIcon from '~icons/tabler/rectangle'
 import CurveIcon from '~icons/fad/softclipcurve'
 import { ShapeEnum } from '@/types/shape'
 import type Konva from 'konva'
+import DraggableComponent from '@/components/Common/Drag'
 
 const ShapeArr = [
   {
@@ -102,13 +103,16 @@ const Shape = (props: Props) => {
   return (
     <div className="grid  p-2 grid-cols-4  gap-4">
       {ShapeArr.map((item, index) => (
-        <>
+        <DraggableComponent
+          shape={item.type}
+          key={index}
+        >
           <CommonIcon
             {...item}
             key={index}
             onClick={() => addShape(item.type)}
           />
-        </>
+        </DraggableComponent>
       ))}
     </div>
   )
