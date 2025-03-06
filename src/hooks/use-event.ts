@@ -7,8 +7,12 @@ import { OperateEnum } from '@/types/operate'
 export const useListenEvent = (stage: Stage | null) => {
   const handleClick = (e: Konva.KonvaEventObject<MouseEvent>) => {
     if (!stage) return
-    if (e.target instanceof Konva.Shape) {
-      useCanvasStore.setState({ OperateType: OperateEnum.Color, currentShape: e.target })
+    const currentValue = e.target
+    if (currentValue instanceof Konva.Shape) {
+      useCanvasStore.setState({ currentShape: currentValue })
+      if (currentValue instanceof Konva.Image && currentValue?.attrs?.data) {
+        useCanvasStore.setState({ OperateType: OperateEnum.Color })
+      }
     }
   }
 

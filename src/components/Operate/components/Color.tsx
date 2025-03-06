@@ -7,7 +7,7 @@ import { useShallow } from 'zustand/shallow'
 
 interface Props {
   handleStyleCSS: (value: any) => void
-  handleAIChangeColor: (value: AllColorsEnum) => void
+  handleAIChangeColor: (value: AllColorsEnum | null) => void
   handleReplaceColors: (value: string[]) => void
   setCurrentColors: (value: string[]) => void
   currentColors: string[]
@@ -123,10 +123,19 @@ const Color = (props: Props) => {
       ((value - inputMin) * (outputMax - outputMin)) / (inputMax - inputMin) + outputMin
     return mappedValue
   }
+  // 首先判断currentShape 是否存在
+
+  const preview = () => {
+    if (!currentShape) return false
+    if (typeof currentShape.toDataURL === 'function' && currentShape.toDataURL()) {
+      return true
+    }
+    return false
+  }
 
   return (
     <div className="p-2">
-      {currentShape?.toDataURL() && (
+      {preview() && (
         <>
           <div className="w-full h-40 bg-white flex justify-center items-center overflow-hidden">
             <img
@@ -139,13 +148,13 @@ const Color = (props: Props) => {
         </>
       )}
       <div className="flex justify-between items-center mb-2">
-        <p className="text-base font-bold mb-2">AI 一键改色</p>
-        <p
-          className="cursor-pointer"
-          onClick={() => handleAIChangeColor()}
+        <p className="text-base font-bold ">AI 一键改色</p>
+        <Button
+          type="text"
+          onClick={() => handleAIChangeColor(null)}
         >
           重置
-        </p>
+        </Button>
       </div>
 
       <div className="flex justify-center items-center w-full ">

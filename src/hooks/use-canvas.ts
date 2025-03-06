@@ -386,20 +386,19 @@ export const useCanvas = () => {
     layer?.batchDraw()
   }
 
-  const handleAIChangeColor = (color: AllColorsEnum) => {
-    const colors = allColorsMap.get(color)?.colors ?? []
+  const handleAIChangeColor = (color: AllColorsEnum | null) => {
+    let colors = color ? (allColorsMap.get(color)?.colors ?? []) : []
     const currentShape = transformer?.getNodes()
     const allSvgNodes: Konva.Image[] = []
     currentShape?.forEach(async (ele) => {
       const currentAttrs = await ele.getAttrs()
-      console.log(currentAttrs, 'currentAttrs')
       const svgData = await ele.getAttrs()?.data
       const { image, ...restAttrs } = currentAttrs
-
       if (svgData) {
         const response = await fetch(svgData)
         const svgText = await response.text()
-        const newSvg = ColorUtils.applyThemeToSvg(svgText, colors[4])
+        const newSvg = color ? ColorUtils.applyThemeToSvg(svgText, colors[4]) : svgText
+        console.log(newSvg, 'newSvg')
         setCurrentColors(ColorUtils.getColorsFromSvg(newSvg))
         const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(newSvg)}`
         ele.destroy()

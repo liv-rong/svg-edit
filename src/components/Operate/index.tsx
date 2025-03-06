@@ -25,7 +25,7 @@ interface Props {
   handleSvgParser: (svgString: string) => void
   addShape: (type: ShapeEnum, customConfig?: Partial<Konva.ShapeConfig>) => void
   handleStyleCSS: (value: any) => void
-  handleAIChangeColor: (value: AllColorsEnum) => void
+  handleAIChangeColor: (value: AllColorsEnum | null) => void
   setCurrentColors: (value: string[]) => void
   currentColors: string[]
   handleReplaceColors: (value: string[]) => void
