@@ -16,7 +16,7 @@ interface HSVCompProps {
   max?: number
   min?: number
   value: number
-  key: string
+  name: string
   step?: number
   handleValue?: (value: number) => void
 }
@@ -71,7 +71,7 @@ const Color = (props: Props) => {
     {
       value: hue,
       label: '色相',
-      key: 'hue',
+      name: 'hue',
       max: 180,
       min: -180,
       handleValue: (value: number) => {
@@ -82,7 +82,7 @@ const Color = (props: Props) => {
     {
       value: saturation,
       label: '饱和度',
-      key: 'saturation',
+      name: 'saturation',
       max: 100,
       min: -100,
       handleValue: (value: number) => {
@@ -93,7 +93,7 @@ const Color = (props: Props) => {
     {
       value: value,
       label: '亮度',
-      key: 'value',
+      name: 'value',
       max: 100,
       min: -100,
       handleValue: (value: number) => {
@@ -155,8 +155,11 @@ const Color = (props: Props) => {
       </div>
 
       <div>
-        {sliders.map((item) => (
-          <HSVComp {...item} />
+        {sliders.map((item, index) => (
+          <HSVComp
+            {...item}
+            key={index}
+          />
         ))}
       </div>
 

@@ -141,6 +141,7 @@ export const useCanvas = () => {
     })
 
     stage.on('click tap', function (e) {
+      console.log('click tap')
       // if we are selecting with rect, do nothing
       if (selectionRectangle.visible()) {
         return
@@ -216,7 +217,7 @@ export const useCanvas = () => {
       console.log('pointerdown')
     })
 
-    //     'pointercancel": PointerEvent;
+    // 'pointercancel": PointerEvent;
     // "pointerdown": PointerEvent;
     // 'pointerenter": PointerEvent;
     // pointerleave": PointerEvent;
@@ -466,8 +467,8 @@ export const useCanvas = () => {
   }
 
   useEffect(() => {
-    stage?.on('dragenter', function (e) {
-      console.log('dragenter')
+    stage?.on('click', function (e) {
+      console.log('click')
     })
 
     stage?.on('dragleave', function (e) {

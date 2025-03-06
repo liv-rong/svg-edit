@@ -6,10 +6,9 @@ import { useCanvasStore } from '@/store/canvas'
 import { useShallow } from 'zustand/shallow'
 import { useCanvas } from '@/hooks/use-canvas'
 const { Content } = Layout
-import { useEffect, useState } from 'react'
-import { useDrop } from 'react-dnd'
-import { DragDropData, DragDropDataType, type AddItemDropType } from '@/types/dragDrop'
+import { useEffect } from 'react'
 import type { ShapeEnum } from '@/types/shape'
+import { useDropImg } from '@/hooks/use-drop-img'
 
 export const Route = createFileRoute('/')({
   component: Index
@@ -21,13 +20,6 @@ function Index() {
       canvasData: state.canvasData
     }))
   )
-
-  const [addItemDrop, setAddItemDrop] = useState<AddItemDropType>({
-    x: 0,
-    y: 0,
-    value: '',
-    type: 'svg'
-  })
 
   const {
     initCanvas,
@@ -42,33 +34,7 @@ function Index() {
     currentColors
   } = useCanvas()
 
-  const [collectedProps, drop] = useDrop({
-    accept: DragDropData.type,
-    drop: (item: DragDropDataType, monitor) => {
-      //这里应该拿的是 拖入画布中 画布上拖拽结束时候 的位置
-      const offset = monitor.getClientOffset()
-      const containerBounds = document.getElementById('container')?.getBoundingClientRect()
-      if (!containerBounds || !offset) return
-      const { svg, shape } = item
-      const commonDropData = {
-        x: offset.x - containerBounds.left,
-        y: offset.y - containerBounds.top
-      }
-      if (svg) {
-        setAddItemDrop({
-          ...commonDropData,
-          value: svg,
-          type: 'svg'
-        })
-      } else if (shape) {
-        setAddItemDrop({
-          ...commonDropData,
-          value: shape,
-          type: 'shape'
-        })
-      }
-    }
-  })
+  const { drop, addItemDrop } = useDropImg()
 
   useEffect(() => {
     initCanvas()

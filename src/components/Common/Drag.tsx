@@ -10,8 +10,7 @@ const DraggableComponent: React.FC<DraggableComponentProps> = ({ svg, children, 
     type: DragDropData.type,
     item: { svg, shape },
     collect: (monitor: DragSourceMonitor) => ({
-      isDragging: monitor.isDragging(),
-      handlerId: monitor.getHandlerId()
+      isDragging: monitor.isDragging()
     })
   }))
 
