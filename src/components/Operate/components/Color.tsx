@@ -2,6 +2,8 @@ import { Divider, Slider } from 'antd'
 import { useState } from 'react'
 import tinycolor from 'tinycolor2'
 import { AllColorsEnum, allColorsMap, HSVType } from '@/types/color'
+import { useCanvasStore } from '@/store/canvas'
+import { useShallow } from 'zustand/shallow'
 
 interface Props {
   handleStyleCSS: (value: any) => void
@@ -58,6 +60,13 @@ const Color = (props: Props) => {
     setCurrentColors,
     currentColors
   } = props
+
+  const { currentShape } = useCanvasStore(
+    useShallow((state) => ({
+      currentShape: state.currentShape
+    }))
+  )
+
   const [hue, setHue] = useState(0)
   const [saturation, setSaturation] = useState(0)
   const [value, setValue] = useState(0)
@@ -117,7 +126,27 @@ const Color = (props: Props) => {
 
   return (
     <div className="p-2">
-      <p className="text-base font-bold mb-2">AI 一键改色</p>
+      {currentShape?.toDataURL() && (
+        <>
+          <div className="w-full h-40 bg-white flex justify-center items-center overflow-hidden">
+            <img
+              src={currentShape?.toDataURL()}
+              alt=""
+              className="max-w-full max-h-full object-contain"
+            />
+          </div>
+          <Divider />
+        </>
+      )}
+      <div className="flex justify-between items-center mb-2">
+        <p className="text-base font-bold mb-2">AI 一键改色</p>
+        <p
+          className="cursor-pointer"
+          onClick={() => handleAIChangeColor()}
+        >
+          重置
+        </p>
+      </div>
 
       <div className="flex justify-center items-center w-full ">
         <div className="w-full grid grid-cols-3 gap-x-2 gap-y-2 mb-2 ">

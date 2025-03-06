@@ -32,7 +32,10 @@ import {
   immune10,
   immune11,
   immune12,
-  immune13
+  immune13,
+  immune14,
+  immune15,
+  immune16
 } from '@/assets/svg/svg9'
 import type { ShapeEnum } from '@/types/shape'
 import Konva from 'konva'
@@ -69,7 +72,10 @@ const Material = (props: Props) => {
     immune10,
     immune11,
     immune12,
-    immune13
+    immune13,
+    immune14,
+    immune15,
+    immune16
   ]
 
   const svgElement2 = [text1, text2, text3, text4]

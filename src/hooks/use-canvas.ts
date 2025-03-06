@@ -16,7 +16,7 @@ export const useCanvas = () => {
     }))
   )
 
-  const [stage, setState] = useState<Stage>()
+  const [stage, setState] = useState<Stage | null>(null)
 
   const [layer, setLayer] = useState<Layer>()
 
@@ -198,24 +198,24 @@ export const useCanvas = () => {
     })
 
     // Unable to listen for changes correctly
-    stage.on('dragenter', function (e) {
-      console.log('dragenter')
-    })
+    // stage.on('dragenter', function (e) {
+    //   console.log('dragenter')
+    // })
 
-    stage.on('copy', function (e) {
-      console.log('copy')
-    })
-    stage.on('cut', function (e) {
-      console.log('cut')
-    })
+    // stage.on('copy', function (e) {
+    //   console.log('copy')
+    // })
+    // stage.on('cut', function (e) {
+    //   console.log('cut')
+    // })
 
-    stage.on('pointerup', function (e) {
-      console.log('pointerup')
-    })
+    // stage.on('pointerup', function (e) {
+    //   console.log('pointerup')
+    // })
 
-    stage.on('pointerdown', function (e) {
-      console.log('pointerdown')
-    })
+    // stage.on('pointerdown', function (e) {
+    //   console.log('pointerdown')
+    // })
 
     // 'pointercancel": PointerEvent;
     // "pointerdown": PointerEvent;
@@ -226,17 +226,17 @@ export const useCanvas = () => {
     // "pointerover": PointerEvent;
     // "pointerup": PointerEvent;
 
-    stage.on('dragleave', function (e) {
-      console.log('dragleave')
-    })
+    // stage.on('dragleave', function (e) {
+    //   console.log('dragleave')
+    // })
 
-    stage.on('dragover', function (e) {
-      console.log('dragover')
-    })
+    // stage.on('dragover', function (e) {
+    //   console.log('dragover')
+    // })
 
-    stage.on('drop', function (e) {
-      console.log('drop')
-    })
+    // stage.on('drop', function (e) {
+    //   console.log('drop')
+    // })
 
     const container = stage.container()
 
@@ -263,21 +263,13 @@ export const useCanvas = () => {
     return { stage, layer, x1, y1, x2, y2 }
   }
 
-  const isValidUrl = (string: string) => {
-    try {
-      new URL(string)
-      return true
-    } catch (_) {
-      return false
-    }
-  }
   const handleSvg = (data: string, config?: Record<string, any>) => {
     return new Promise<Konva.Image | undefined>((resolve) => {
       if (!layer) return resolve(undefined)
 
       let url = data
 
-      if (!isValidUrl(data)) {
+      if (!CanvasUtils.isValidUrl(data)) {
         const blob = new Blob([data], { type: 'image/svg+xml' })
         url = URL.createObjectURL(blob)
       }
@@ -291,36 +283,13 @@ export const useCanvas = () => {
           ...config
         })
         transformer?.nodes([imageNode])
-
+        useCanvasStore.setState({ currentShape: imageNode })
         if (layer?.children) {
           transformer?.setZIndex(layer.children.length - 1)
         }
         resolve(imageNode)
       })
     })
-
-    // if (!layer) return
-    // let url = data
-    // if (!isValidUrl(data)) {
-    //   const blob = new Blob([data], { type: 'image/svg+xml' })
-    //   url = URL.createObjectURL(blob)
-    // }
-
-    // Konva.Image.fromURL(url, (imageNode) => {
-    //   console.log(imageNode, 'imageNode')
-    //   layer?.add(imageNode)
-    //   imageNode.setAttrs({
-    //     draggable: true,
-    //     data: url,
-    //     name: 'transformerShape',
-    //     ...(config || {})
-    //   })
-    //   transformer?.nodes([imageNode])
-
-    //   if (layer?.children) {
-    //     transformer?.setZIndex(layer.children.length - 1)
-    //   }
-    // })
   }
 
   const handleImg = (url: string, config?: Record<string, any>) => {
@@ -425,7 +394,7 @@ export const useCanvas = () => {
       const currentAttrs = await ele.getAttrs()
       console.log(currentAttrs, 'currentAttrs')
       const svgData = await ele.getAttrs()?.data
-      const { image, data, ...restAttrs } = currentAttrs
+      const { image, ...restAttrs } = currentAttrs
 
       if (svgData) {
         const response = await fetch(svgData)
@@ -435,7 +404,7 @@ export const useCanvas = () => {
         const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(newSvg)}`
         ele.destroy()
         transformer?.nodes([])
-        handleSvg(svgDataUrl, { ...restAttrs, data: svgDataUrl }).then((resSvg) => {
+        handleSvg(svgDataUrl, { ...restAttrs }).then((resSvg) => {
           if (resSvg) {
             allSvgNodes.push(resSvg)
             transformer?.nodes(allSvgNodes)
@@ -467,25 +436,10 @@ export const useCanvas = () => {
   }
 
   useEffect(() => {
-    stage?.on('click', function (e) {
-      console.log('click')
-    })
-
-    stage?.on('dragleave', function (e) {
-      console.log('dragleave')
-    })
-
-    stage?.on('dragover', function (e) {
-      console.log('dragover')
-    })
-
-    stage?.on('drop', function (e) {
-      console.log('drop')
-    })
     return () => {
       stage?.destroy()
     }
-  }, [stage])
+  }, [])
 
   return {
     initCanvas,

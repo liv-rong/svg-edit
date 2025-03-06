@@ -11,4 +11,13 @@ export class CanvasUtils {
     const { constructor, defaultConfig } = shapeType
     return new constructor({ ...baseShapeConfig, ...defaultConfig, ...customConfig })
   }
+
+  static isValidUrl = (string: string) => {
+    try {
+      new URL(string)
+      return true
+    } catch (_) {
+      return false
+    }
+  }
 }

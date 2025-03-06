@@ -9,6 +9,7 @@ const { Content } = Layout
 import { useEffect } from 'react'
 import type { ShapeEnum } from '@/types/shape'
 import { useDropImg } from '@/hooks/use-drop-img'
+import { useListenEvent } from '@/hooks/use-event'
 
 export const Route = createFileRoute('/')({
   component: Index
@@ -31,8 +32,11 @@ function Index() {
     handleAIChangeColor,
     handleReplaceColors,
     setCurrentColors,
-    currentColors
+    currentColors,
+    stage
   } = useCanvas()
+
+  useListenEvent(stage)
 
   const { drop, addItemDrop } = useDropImg()
 

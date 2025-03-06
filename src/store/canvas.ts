@@ -2,10 +2,11 @@ import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 import { OperateEnum } from '@/types/operate'
+import Konva from 'konva'
 
 interface State {
   canvasData: any
-  currentId: string | null
+  currentShape: null | Konva.Shape
   OperateType: OperateEnum | null
 }
 
@@ -13,7 +14,7 @@ interface Actions {}
 
 const initialState: State = {
   canvasData: null,
-  currentId: null,
+  currentShape: null,
   OperateType: null
 }
 
@@ -27,7 +28,7 @@ export const useCanvasStore = create<State & Actions>()(
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         canvasData: state.canvasData,
-        currentId: state.currentId
+        currentShape: state.currentShape
       })
     }
   )
