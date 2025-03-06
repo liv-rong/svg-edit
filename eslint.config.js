@@ -13,7 +13,9 @@ export default [
       'eslint:recommended',
       'plugin:@typescript-eslint/recommended',
       'plugin:react-hooks/recommended',
-      'eslintrc-auto-import.json'
+      'eslintrc-auto-import.json',
+      'plugin:tailwindcss/recommended',
+      'plugin:prettier/recommended'
     ],
     rules: {
       'react/react-in-jsx-scope': 'off',

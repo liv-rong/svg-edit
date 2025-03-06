@@ -80,7 +80,8 @@ export const useCanvas = () => {
     const selectionRectangle = new Konva.Rect({
       fill: 'rgba(0,0,255,0.1)',
       visible: false,
-      listening: false
+      listening: false,
+      id: 'selectionRectangle'
     })
     layer.add(selectionRectangle)
 
@@ -258,6 +259,21 @@ export const useCanvas = () => {
 
         layer.batchDraw()
       }
+
+      if ((e.ctrlKey || e.metaKey) && e.key === 'v') {
+        const selectedNodes = tr.nodes()
+        const clonedNodes = selectedNodes.map((node) => {
+          const clone = node.clone()
+          clone.position({
+            x: node.x() + 10,
+            y: node.y() + 10
+          })
+          layer?.add(clone)
+          return clone
+        })
+        tr.nodes(clonedNodes)
+        layer.batchDraw()
+      }
     })
 
     return { stage, layer, x1, y1, x2, y2 }
@@ -373,17 +389,52 @@ export const useCanvas = () => {
     const currentShape = transformer?.getNodes()
     currentShape?.forEach((ele) => {
       ele.clearCache()
-      ele.filters([Konva.Filters.HSV])
       ele.setAttrs({
         ...value
       })
+
+      console.log(ele.getAttrs())
+      console.log(ele.getAttr('scaleX'))
+
       ele.cache({
-        pixelRatio: 6,
-        imageSmoothingEnabled: true
+        pixelRatio: 4, // 设置更高的像素比
+        imageSmoothingEnabled: true // 启用图像平滑
       })
+      ele.filters([Konva.Filters.HSV])
     })
 
     layer?.batchDraw()
+  }
+  // // Lock elements function
+  // const lockElements = () => {
+  //   const selectedNodes = transformer?.nodes()
+  //   selectedNodes?.forEach((node) => {
+  //     node.draggable(false)
+  //     node.listening(false)
+  //   })
+  //   layer?.batchDraw()
+  // }
+  // 清空画布操作 修改正确 不应该删除 和 transformer 有管的元素
+  // 保持清空之后 再添加元素 可以 选择
+  const clearCanvas = () => {
+    // if (!layer) return
+    // console.log(layer.findOne('selectionRectangle'))
+    // console.log(layer.find('#selectionRectangle'))
+    // const selectionRectangle = layer.findOne('#selectionRectangle')
+    // // 获取当前变换器的节点
+    // const transformerNodes = transformer?.nodes() || []
+    // // 清除所有子元素，但保留变换器节点
+    // layer.destroyChildren()
+    // // 重新添加选择矩形和变换器
+    // if (selectionRectangle) {
+    //   layer.add(selectionRectangle);
+    // }
+    // if (transformer) {
+    //   layer.add(transformer)
+    //   // 重新设置变换器的节点
+    //   transformer.nodes(transformerNodes)
+    // }
+    // layer.batchDraw()
   }
 
   const handleAIChangeColor = (color: AllColorsEnum | null) => {
@@ -394,6 +445,7 @@ export const useCanvas = () => {
       const currentAttrs = await ele.getAttrs()
       const svgData = await ele.getAttrs()?.data
       const { image, ...restAttrs } = currentAttrs
+
       if (svgData) {
         const response = await fetch(svgData)
         const svgText = await response.text()
@@ -421,7 +473,7 @@ export const useCanvas = () => {
     currentShape?.forEach(async (ele) => {
       const currentAttrs = await ele.getAttrs()
       const svgData = await ele.getAttrs()?.data
-      const { image, data, ...restAttrs } = currentAttrs
+      const { image, ...restAttrs } = currentAttrs
       if (svgData) {
         const response = await fetch(svgData)
         const svgText = await response.text()
@@ -429,7 +481,7 @@ export const useCanvas = () => {
         const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(newSvg)}`
         ele.destroy()
         transformer?.nodes([])
-        handleSvg(svgDataUrl, { ...restAttrs, data: svgDataUrl })
+        handleSvg(svgDataUrl, { ...restAttrs })
       }
     })
   }
@@ -450,6 +502,7 @@ export const useCanvas = () => {
     handleReplaceColors,
     handleStyleCSS,
     setCurrentColors,
+    clearCanvas,
     stage,
     layer,
     currentColors

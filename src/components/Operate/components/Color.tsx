@@ -85,7 +85,7 @@ const Color = (props: Props) => {
       min: -180,
       handleValue: (value: number) => {
         setHue(value)
-        handleStyleCSS({ hue: value })
+        handleStyleCSS({ hue: mapRange(value, -180, 180, 0, 360) })
       }
     },
     {
@@ -202,7 +202,7 @@ const Color = (props: Props) => {
       </div>
 
       <div>
-        <p className="mb-2 ">配色自定义精修</p>
+        <p className="mb-2">配色自定义精修</p>
         <div className="flex justify-start items-center gap-2 w-full flex-wrap">
           {currentColors.map((item, index) => (
             <div key={index}>

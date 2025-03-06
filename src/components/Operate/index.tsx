@@ -5,13 +5,13 @@ import { OperateEnum } from '@/types/operate'
 import { AppstoreOutlined } from '@ant-design/icons'
 import type { ReactNode } from 'react'
 import Shape from './components/Shape'
-import Font from './components/Font'
 import Material from './components/Material'
 import Color from './components/Color'
 import { ShapeIcon, ColorIcon, TextIcon } from '@/assets/svg'
 import Konva from 'konva'
 import type { ShapeEnum } from '@/types/shape'
 import type { AllColorsEnum } from '@/types/color'
+import TextEdit from './components/TextEdit'
 
 interface OperateMapType {
   icon: ReactNode
@@ -91,10 +91,10 @@ const Option = (props: Props) => {
       }
     ],
     [
-      OperateEnum.Font,
+      OperateEnum.Text,
       {
         icon: <TextIcon className="text-2xl" />,
-        component: <Font />,
+        component: <TextEdit />,
         name: '字体'
       }
     ]
@@ -102,7 +102,7 @@ const Option = (props: Props) => {
 
   return (
     <Layout.Sider
-      className="!bg-white relative "
+      className="relative"
       width={'64px'}
       theme="light"
     >
@@ -110,9 +110,9 @@ const Option = (props: Props) => {
         <div
           key={key}
           className={classNames(
-            'border-b h-16 w-full border-gray-200 flex justify-center items-center cursor-pointer hover:bg-blue-50',
+            'border-b h-16 w-full border-gray-200 flex justify-center items-center cursor-pointer',
             {
-              'bg-blue-50': OperateType === key
+              'bg-[#9f7aea]/20': OperateType === key
             }
           )}
           onClick={() => useCanvasStore.setState({ OperateType: key })}

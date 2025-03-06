@@ -1,11 +1,11 @@
 const TanStackRouterDevtools =
-  process.env.NODE_ENV === "production"
+  process.env.NODE_ENV === 'production'
     ? () => null
     : lazy(() =>
-        import("@tanstack/router-devtools").then((res) => ({
-          default: res.TanStackRouterDevtools,
-        })),
-      );
+        import('@tanstack/router-devtools').then((res) => ({
+          default: res.TanStackRouterDevtools
+        }))
+      )
 
 export const Route = createRootRoute({
   component: () => (
@@ -15,5 +15,5 @@ export const Route = createRootRoute({
         <TanStackRouterDevtools />
       </Suspense>
     </>
-  ),
-});
+  )
+})

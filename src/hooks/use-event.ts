@@ -17,11 +17,13 @@ export const useListenEvent = (stage: Stage | null) => {
   }
 
   useEffect(() => {
-    stage?.on('click', function (e: Konva.KonvaEventObject<MouseEvent>) {
+    const handleStageClick = (e: Konva.KonvaEventObject<MouseEvent>) => {
       handleClick(e)
-    })
+    }
+
+    stage?.on('click', handleStageClick)
     return () => {
-      stage?.off('click')
+      stage?.off('click', handleStageClick)
     }
   }, [stage])
 
