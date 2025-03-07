@@ -34,9 +34,9 @@ export const useCanvas = () => {
     })
     setState(newStage)
 
-    const newlayer = new Konva.Layer()
-    setLayer(newlayer)
-    newStage.add(newlayer)
+    const newLayer = new Konva.Layer()
+    setLayer(newLayer)
+    newStage.add(newLayer)
 
     const rect1 = new Konva.Rect({
       x: 60,
@@ -48,7 +48,7 @@ export const useCanvas = () => {
       draggable: true,
       id: '1111111111111111'
     })
-    newlayer.add(rect1)
+    newLayer.add(rect1)
 
     var rect2 = new Konva.Rect({
       x: 250,
@@ -62,7 +62,7 @@ export const useCanvas = () => {
       strokeWidth: 2,
       id: '222'
     })
-    newlayer.add(rect2)
+    newLayer.add(rect2)
 
     const tr = new Konva.Transformer({
       borderStroke: 'blue',
@@ -71,10 +71,10 @@ export const useCanvas = () => {
       name: 'transformer'
     })
 
-    newlayer.draw()
+    newLayer.draw()
     setTransformer(tr)
 
-    newlayer.add(tr)
+    newLayer.add(tr)
 
     const selectionRectangle = new Konva.Rect({
       fill: 'rgba(0,0,255,0.1)',
@@ -82,7 +82,7 @@ export const useCanvas = () => {
       listening: false,
       id: 'selectionRectangle'
     })
-    newlayer.add(selectionRectangle)
+    newLayer.add(selectionRectangle)
 
     let x1 = 0,
       y1 = 0,
@@ -128,7 +128,7 @@ export const useCanvas = () => {
       }
       e.evt.preventDefault()
       selectionRectangle.visible(false)
-      const shapes = newlayer.find('.transformerShape')
+      const shapes = newLayer.find('.transformerShape')
       console.log(shapes, '')
       const box = selectionRectangle.getClientRect()
       const selected = shapes.filter((shape) =>
@@ -207,10 +207,8 @@ export const useCanvas = () => {
         selectedNodes.forEach((node) => {
           node.destroy()
         })
-
         tr.nodes([])
-
-        newlayer.batchDraw()
+        newLayer.batchDraw()
       }
 
       if ((e.ctrlKey || e.metaKey) && e.key === 'v') {
@@ -225,11 +223,11 @@ export const useCanvas = () => {
           return clone
         })
         tr.nodes(clonedNodes)
-        newlayer.batchDraw()
+        newLayer.batchDraw()
       }
     })
 
-    return { stage: newStage, layer: newlayer, x1, y1, x2, y2 }
+    return { stage: newStage, layer: newLayer, x1, y1, x2, y2 }
   }
 
   const handleSvg = (data: string, config?: Record<string, any>) => {
