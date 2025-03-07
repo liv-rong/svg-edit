@@ -32,7 +32,6 @@ function Index() {
     handleAIChangeColor,
     handleReplaceColors,
     setCurrentColors,
-    clearCanvas,
     currentColors,
     stage
   } = useCanvas()
@@ -61,7 +60,7 @@ function Index() {
       <Header
         addShape={addShape}
         handleStyleCSS={handleStyleCSS}
-        clearCanvas={clearCanvas}
+        initCanvas={initCanvas}
       />
       <Layout>
         <Option

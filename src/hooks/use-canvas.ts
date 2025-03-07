@@ -25,16 +25,18 @@ export const useCanvas = () => {
   const [currentColors, setCurrentColors] = useState<string[]>([])
 
   const initCanvas = () => {
-    const stage = new Konva.Stage({
+    stage?.destroy()
+    layer?.destroy()
+    const newStage = new Konva.Stage({
       container: 'container',
       width: 1200,
       height: 800
     })
-    setState(stage)
+    setState(newStage)
 
-    const layer = new Konva.Layer()
-    setLayer(layer)
-    stage.add(layer)
+    const newlayer = new Konva.Layer()
+    setLayer(newlayer)
+    newStage.add(newlayer)
 
     const rect1 = new Konva.Rect({
       x: 60,
@@ -46,7 +48,7 @@ export const useCanvas = () => {
       draggable: true,
       id: '1111111111111111'
     })
-    layer.add(rect1)
+    newlayer.add(rect1)
 
     var rect2 = new Konva.Rect({
       x: 250,
@@ -60,22 +62,19 @@ export const useCanvas = () => {
       strokeWidth: 2,
       id: '222'
     })
-    layer.add(rect2)
+    newlayer.add(rect2)
 
     const tr = new Konva.Transformer({
       borderStroke: 'blue',
       ignoreStroke: true,
-      // manually adjust size of transformer
       padding: 2,
       name: 'transformer'
     })
 
-    layer.draw()
+    newlayer.draw()
     setTransformer(tr)
 
-    layer.add(tr)
-
-    // tr.nodes([rect1, rect2])
+    newlayer.add(tr)
 
     const selectionRectangle = new Konva.Rect({
       fill: 'rgba(0,0,255,0.1)',
@@ -83,7 +82,7 @@ export const useCanvas = () => {
       listening: false,
       id: 'selectionRectangle'
     })
-    layer.add(selectionRectangle)
+    newlayer.add(selectionRectangle)
 
     let x1 = 0,
       y1 = 0,
@@ -91,31 +90,29 @@ export const useCanvas = () => {
       y2 = 0
     let selecting = false
 
-    stage.on('mousedown touchstart', (e) => {
-      if (e.target !== stage) {
+    newStage.on('mousedown touchstart', (e) => {
+      if (e.target !== newStage) {
         return
       }
       e.evt.preventDefault()
-      x1 = stage?.getPointerPosition()?.x ?? 0
-      y1 = stage?.getPointerPosition()?.y ?? 0
-      x2 = stage?.getPointerPosition()?.x ?? 0
-      y2 = stage?.getPointerPosition()?.y ?? 0
-
-      console.log(x1, y1, x2, y2)
+      x1 = newStage?.getPointerPosition()?.x ?? 0
+      y1 = newStage?.getPointerPosition()?.y ?? 0
+      x2 = newStage?.getPointerPosition()?.x ?? 0
+      y2 = newStage?.getPointerPosition()?.y ?? 0
 
       selectionRectangle.width(0)
       selectionRectangle.height(0)
       selecting = true
     })
 
-    stage.on('mousemove touchmove', (e) => {
+    newStage.on('mousemove touchmove', (e) => {
       if (!selecting) {
         return
       }
       e.evt.preventDefault()
-      x2 = stage?.getPointerPosition()?.x ?? 0
-      y2 = stage?.getPointerPosition()?.y ?? 0
-      selectionRectangle.setAttrs({
+      x2 = newStage?.getPointerPosition()?.x ?? 0
+      y2 = newStage?.getPointerPosition()?.y ?? 0
+      selectionRectangle?.setAttrs({
         visible: true,
         x: Math.min(x1, x2),
         y: Math.min(y1, y2),
@@ -124,15 +121,14 @@ export const useCanvas = () => {
       })
     })
 
-    stage.on('mouseup touchend', (e) => {
+    newStage.on('mouseup touchend', (e) => {
       selecting = false
       if (!selectionRectangle.visible()) {
         return
       }
       e.evt.preventDefault()
       selectionRectangle.visible(false)
-      // const shapes = stage.find('.rect').concat(stage.find('.path'))
-      const shapes = layer.find('.transformerShape')
+      const shapes = newlayer.find('.transformerShape')
       console.log(shapes, '')
       const box = selectionRectangle.getClientRect()
       const selected = shapes.filter((shape) =>
@@ -141,7 +137,7 @@ export const useCanvas = () => {
       tr.nodes(selected)
     })
 
-    stage.on('click tap', function (e) {
+    newStage.on('click tap', function (e) {
       console.log('click tap')
       // if we are selecting with rect, do nothing
       if (selectionRectangle.visible()) {
@@ -149,7 +145,7 @@ export const useCanvas = () => {
       }
 
       // if click on empty area - remove all selections
-      if (e.target === stage) {
+      if (e.target === newStage) {
         tr.nodes([])
         return
       }
@@ -167,7 +163,7 @@ export const useCanvas = () => {
         // if no key pressed and the node is not selected
         // select just one
 
-        // 判断目标值是不是img  如果是img 就计算出他的色系
+        // 判断目标值是不是img如果是img 就计算出他的色系
         if (e.target instanceof Konva.Image) {
           const imageNode = e.target as Konva.Image
           const imageUrl = imageNode.getAttr('data')
@@ -182,7 +178,6 @@ export const useCanvas = () => {
         } else {
           setCurrentColors([])
         }
-
         tr.nodes([e.target])
       } else if (metaPressed && isSelected) {
         // if we pressed keys and node was selected
@@ -198,49 +193,7 @@ export const useCanvas = () => {
       }
     })
 
-    // Unable to listen for changes correctly
-    // stage.on('dragenter', function (e) {
-    //   console.log('dragenter')
-    // })
-
-    // stage.on('copy', function (e) {
-    //   console.log('copy')
-    // })
-    // stage.on('cut', function (e) {
-    //   console.log('cut')
-    // })
-
-    // stage.on('pointerup', function (e) {
-    //   console.log('pointerup')
-    // })
-
-    // stage.on('pointerdown', function (e) {
-    //   console.log('pointerdown')
-    // })
-
-    // 'pointercancel": PointerEvent;
-    // "pointerdown": PointerEvent;
-    // 'pointerenter": PointerEvent;
-    // pointerleave": PointerEvent;
-    // pointermove": PointerEvent;
-    // pointerout": PointerEvent;
-    // "pointerover": PointerEvent;
-    // "pointerup": PointerEvent;
-
-    // stage.on('dragleave', function (e) {
-    //   console.log('dragleave')
-    // })
-
-    // stage.on('dragover', function (e) {
-    //   console.log('dragover')
-    // })
-
-    // stage.on('drop', function (e) {
-    //   console.log('drop')
-    // })
-
-    const container = stage.container()
-
+    const container = newStage.container()
     container.tabIndex = 1
     container.style.outline = 'none'
     container.focus()
@@ -257,7 +210,7 @@ export const useCanvas = () => {
 
         tr.nodes([])
 
-        layer.batchDraw()
+        newlayer.batchDraw()
       }
 
       if ((e.ctrlKey || e.metaKey) && e.key === 'v') {
@@ -272,11 +225,11 @@ export const useCanvas = () => {
           return clone
         })
         tr.nodes(clonedNodes)
-        layer.batchDraw()
+        newlayer.batchDraw()
       }
     })
 
-    return { stage, layer, x1, y1, x2, y2 }
+    return { stage: newStage, layer: newlayer, x1, y1, x2, y2 }
   }
 
   const handleSvg = (data: string, config?: Record<string, any>) => {
@@ -292,7 +245,7 @@ export const useCanvas = () => {
 
       Konva.Image.fromURL(url, (imageNode) => {
         layer?.add(imageNode)
-        imageNode.setAttrs({
+        imageNode?.setAttrs({
           draggable: true,
           data: url,
           name: 'transformerShape',
@@ -311,14 +264,14 @@ export const useCanvas = () => {
   const handleImg = (url: string, config?: Record<string, any>) => {
     if (!layer) return
     Konva.Image.fromURL(url, (image) => {
-      image.setAttrs({
+      image?.setAttrs({
         x: 200,
         y: 50,
         name: 'transformerShape',
         draggable: true
       })
       layer?.add(image)
-      image.setAttrs({
+      image?.setAttrs({
         draggable: true,
         data: url,
         name: 'transformerShape',
@@ -389,22 +342,18 @@ export const useCanvas = () => {
     const currentShape = transformer?.getNodes()
     currentShape?.forEach((ele) => {
       ele.clearCache()
-      ele.setAttrs({
+      ele?.setAttrs({
         ...value
       })
-
-      console.log(ele.getAttrs())
-      console.log(ele.getAttr('scaleX'))
-
       ele.cache({
         pixelRatio: 4, // 设置更高的像素比
         imageSmoothingEnabled: true // 启用图像平滑
       })
       ele.filters([Konva.Filters.HSV])
     })
-
     layer?.batchDraw()
   }
+
   // // Lock elements function
   // const lockElements = () => {
   //   const selectedNodes = transformer?.nodes()
@@ -416,26 +365,6 @@ export const useCanvas = () => {
   // }
   // 清空画布操作 修改正确 不应该删除 和 transformer 有管的元素
   // 保持清空之后 再添加元素 可以 选择
-  const clearCanvas = () => {
-    // if (!layer) return
-    // console.log(layer.findOne('selectionRectangle'))
-    // console.log(layer.find('#selectionRectangle'))
-    // const selectionRectangle = layer.findOne('#selectionRectangle')
-    // // 获取当前变换器的节点
-    // const transformerNodes = transformer?.nodes() || []
-    // // 清除所有子元素，但保留变换器节点
-    // layer.destroyChildren()
-    // // 重新添加选择矩形和变换器
-    // if (selectionRectangle) {
-    //   layer.add(selectionRectangle);
-    // }
-    // if (transformer) {
-    //   layer.add(transformer)
-    //   // 重新设置变换器的节点
-    //   transformer.nodes(transformerNodes)
-    // }
-    // layer.batchDraw()
-  }
 
   const handleAIChangeColor = (color: AllColorsEnum | null) => {
     let colors = color ? (allColorsMap.get(color)?.colors ?? []) : []
@@ -502,7 +431,6 @@ export const useCanvas = () => {
     handleReplaceColors,
     handleStyleCSS,
     setCurrentColors,
-    clearCanvas,
     stage,
     layer,
     currentColors
