@@ -10,6 +10,7 @@ import { useEffect } from 'react'
 import type { ShapeEnum } from '@/types/shape'
 import { useDropImg } from '@/hooks/use-drop-img'
 import { useListenEvent } from '@/hooks/use-event'
+import type { ImgConfigType } from '@/types/export'
 
 export const Route = createFileRoute('/')({
   component: Index
@@ -31,6 +32,7 @@ function Index() {
     handleStyleCSS,
     handleAIChangeColor,
     handleReplaceColors,
+    handleExport,
     setCurrentColors,
     currentColors,
     stage
@@ -61,6 +63,7 @@ function Index() {
         addShape={addShape}
         handleStyleCSS={handleStyleCSS}
         initCanvas={initCanvas}
+        handleExport={handleExport}
       />
       <Layout>
         <Option

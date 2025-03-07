@@ -8,21 +8,57 @@ import TrashCanIcon from '~icons/mdi/trash-can-outline'
 import IconStyle from './components/IconStyle'
 import { ShapeEnum } from '@/types/shape'
 import type Konva from 'konva'
+import { OperateModelEnum, OperateModelValue } from '@/types/operate'
+import Export from './components/Export'
+import type { ImgConfigType } from '@/types/export'
+import { BrowserUtils } from '@/utils/browser'
 
 interface Props {
   addShape: (type: ShapeEnum, customConfig?: Partial<Konva.ShapeConfig>) => void
   handleStyleCSS: (value: any) => void
   initCanvas: () => void
+  handleExport: (config?: ImgConfigType) => Promise<string | undefined>
 }
 
 const Header = (props: Props) => {
-  const { addShape, handleStyleCSS, initCanvas } = props
+  const { addShape, handleStyleCSS, initCanvas, handleExport } = props
 
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const handleClean = () => {
-    setIsModalOpen(true)
-  }
+  const [modelType, setModelType] = useState<OperateModelEnum | null>()
+
+  const [imgPreview, setImgPreview] = useState('')
+
+  const operateModelMap = new Map<OperateModelEnum, OperateModelValue>([
+    [
+      OperateModelEnum.Clean,
+      {
+        title: '清空画布',
+        onOk: () => {
+          initCanvas()
+          setIsModalOpen(false)
+        },
+        components: <p>确定清空画板吗</p>
+      }
+    ],
+    [
+      OperateModelEnum.Export,
+      {
+        title: '导出图片',
+        onOk: async () => {
+          BrowserUtils.downloadFile(imgPreview, 'index')
+          setIsModalOpen(false)
+        },
+        components: (
+          <Export
+            handleExport={handleExport}
+            imgPreview={imgPreview}
+            setImgPreview={setImgPreview}
+          />
+        )
+      }
+    ]
+  ])
 
   return (
     <Layout.Header className="!bg-white border-b h-16 border-gray-300 gap-2 flex justify-center items-center">
@@ -51,25 +87,31 @@ const Header = (props: Props) => {
       />
       <IconStyle
         tooltip="导出"
+        onClick={() => {
+          setIsModalOpen(true)
+          setModelType(OperateModelEnum.Export)
+        }}
         icon={<ExportIcon className="text-xl text-slate-700" />}
       />
       <IconStyle
         tooltip="清空画布"
-        onClick={handleClean}
+        onClick={() => {
+          setIsModalOpen(true)
+          setModelType(OperateModelEnum.Clean)
+        }}
         icon={<TrashCanIcon className="text-xl text-slate-700" />}
       />
-      <Modal
-        title="清空画板"
-        open={isModalOpen}
-        centered
-        onOk={() => {
-          setIsModalOpen(false)
-          initCanvas()
-        }}
-        onCancel={() => setIsModalOpen(false)}
-      >
-        <p>确定清空画板吗</p>
-      </Modal>
+      {modelType && (
+        <Modal
+          title={operateModelMap.get(modelType)?.title}
+          open={isModalOpen}
+          centered
+          onOk={operateModelMap.get(modelType)?.onOk}
+          onCancel={() => setIsModalOpen(false)}
+        >
+          {operateModelMap.get(modelType)?.components}
+        </Modal>
+      )}
     </Layout.Header>
   )
 }

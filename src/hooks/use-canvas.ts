@@ -8,6 +8,7 @@ import { CanvasUtils } from '@/utils/canvas'
 import { ShapeEnum } from '@/types/shape'
 import { AllColorsEnum, allColorsMap } from '@/types/color'
 import { ColorUtils } from '@/utils/color'
+import type { ImgConfigType } from '@/types/export'
 
 export const useCanvas = () => {
   const { canvasData } = useCanvasStore(
@@ -413,6 +414,23 @@ export const useCanvas = () => {
     })
   }
 
+  const handleExport = async (config?: ImgConfigType): Promise<string | undefined> => {
+    return new Promise((resolve, reject) => {
+      if (!stage) return reject(undefined)
+      if (config?.mimeType === 'image/jpeg') {
+        const canvas = stage.toCanvas(config)
+        const context = canvas.getContext('2d')
+        if (context) {
+          context.globalCompositeOperation = 'destination-over'
+          context.fillStyle = '#FFFFFF'
+          context.fillRect(0, 0, canvas.width, canvas.height)
+        }
+        resolve(canvas.toDataURL(config?.mimeType))
+      }
+      return resolve(stage.toDataURL(config))
+    })
+  }
+
   useEffect(() => {
     return () => {
       stage?.destroy()
@@ -429,6 +447,7 @@ export const useCanvas = () => {
     handleReplaceColors,
     handleStyleCSS,
     setCurrentColors,
+    handleExport,
     stage,
     layer,
     currentColors

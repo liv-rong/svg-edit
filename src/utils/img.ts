@@ -1,3 +1,5 @@
+import type { Stage } from 'konva/lib/Stage'
+
 export class ImgUtils {
   /**
    * 尝试加载图片 并转换为 base64 格式
@@ -68,4 +70,6 @@ export class ImgUtils {
 
     return scaleRatio
   }
+
+  // static handleExport = (stage: Stage) => {}
 }
