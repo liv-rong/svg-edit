@@ -30,8 +30,8 @@ export const useCanvas = () => {
     layer?.destroy()
     const newStage = new Konva.Stage({
       container: 'container',
-      width: 1200,
-      height: 800
+      width: 600,
+      height: 400
     })
     setState(newStage)
 
@@ -365,6 +365,16 @@ export const useCanvas = () => {
   // 清空画布操作 修改正确 不应该删除 和 transformer 有管的元素
   // 保持清空之后 再添加元素 可以 选择
 
+  //写个函数 求最小值
+  const handleClearCanvas = () => {
+    const selectedNodes = transformer?.nodes()
+    if (selectedNodes) {
+      selectedNodes.forEach((node) => {
+        node.remove()
+      })
+    }
+  }
+
   const handleAIChangeColor = (color: AllColorsEnum | null) => {
     let colors = color ? (allColorsMap.get(color)?.colors ?? []) : []
     const currentShape = transformer?.getNodes()
@@ -432,6 +442,7 @@ export const useCanvas = () => {
   }
 
   useEffect(() => {
+    initCanvas()
     return () => {
       stage?.destroy()
     }

@@ -12,6 +12,7 @@ import Konva from 'konva'
 import type { ShapeEnum } from '@/types/shape'
 import type { AllColorsEnum } from '@/types/color'
 import TextEdit from './components/TextEdit'
+import ArrowLeftIcon from '~icons/ic/baseline-keyboard-arrow-left'
 
 interface OperateMapType {
   icon: ReactNode
@@ -101,32 +102,38 @@ const Option = (props: Props) => {
   ])
 
   return (
-    <Layout.Sider
-      className="relative"
-      width={'64px'}
-      theme="light"
+    <div
+      className={classNames(
+        'relative bg-white flex items-start justify-between h-[calc(100vh-64px)]',
+        [OperateType ? 'w-[308px]' : 'w-[64px]']
+      )}
     >
-      {Array.from(OperateMap.entries()).map(([key, value]) => (
-        <div
-          key={key}
-          className={classNames(
-            'border-b h-16 w-full border-gray-200 flex justify-center items-center cursor-pointer',
-            {
-              'bg-[#9f7aea]/20': OperateType === key
-            }
-          )}
-          onClick={() => useCanvasStore.setState({ OperateType: key })}
-        >
-          <span>{value.icon}</span>
-        </div>
-      ))}
+      <div className="w-16 h-full">
+        {Array.from(OperateMap.entries()).map(([key, value]) => (
+          <div
+            key={key}
+            className={classNames(
+              'border-b h-16 w-full border-gray-200 flex justify-center items-center cursor-pointer',
+              {
+                'bg-[#9f7aea]/20': OperateType === key
+              }
+            )}
+            onClick={() => useCanvasStore.setState({ OperateType: key })}
+          >
+            <span>{value.icon}</span>
+          </div>
+        ))}
+      </div>
       {OperateType && (
-        <div className="absolute w-[240px] h-full bg-white shadow left-16 top-0 p-1 overflow-auto scrollbar-hidden">
+        <div className="w-[240px] h-full bg-white shadow relative p-1 overflow-auto scrollbar-hidden">
           <div className="text-lg px-1 font-bold">{OperateMap.get(OperateType)?.name}</div>
           {OperateMap.get(OperateType)?.component}
+          {/* <div className="absolute top-1/2 right-0 translate-x-1/2 translate-y-1/2 border shadow rounded-full cursor-pointer hover:bg-[#9f7aea]/20 z-1000">
+            <ArrowLeftIcon />
+          </div> */}
         </div>
       )}
-    </Layout.Sider>
+    </div>
   )
 }
 

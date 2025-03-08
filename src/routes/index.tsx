@@ -10,7 +10,6 @@ import { useEffect } from 'react'
 import type { ShapeEnum } from '@/types/shape'
 import { useDropImg } from '@/hooks/use-drop-img'
 import { useListenEvent } from '@/hooks/use-event'
-import type { ImgConfigType } from '@/types/export'
 
 export const Route = createFileRoute('/')({
   component: Index
@@ -43,11 +42,6 @@ function Index() {
   const { drop, addItemDrop } = useDropImg()
 
   useEffect(() => {
-    initCanvas()
-    return () => {}
-  }, [])
-
-  useEffect(() => {
     const { x, y, value, type } = addItemDrop
     if (type === 'svg') {
       handleSvg(value, { x, y })
@@ -66,23 +60,25 @@ function Index() {
         handleExport={handleExport}
       />
       <Layout>
-        <Option
-          addShape={addShape}
-          handleSvg={handleSvg}
-          handleImg={handleImg}
-          handleSvgParser={handleSvgParser}
-          handleStyleCSS={handleStyleCSS}
-          handleAIChangeColor={handleAIChangeColor}
-          setCurrentColors={setCurrentColors}
-          currentColors={currentColors}
-          handleReplaceColors={handleReplaceColors}
-        />
-        <Content className="overflow-y-auto flex justify-center items-center">
-          <div
-            id="container"
-            ref={drop}
-            className="bg-white"
-          ></div>
+        <Content className="overflow-y-auto flex justify-between items-center">
+          <Option
+            addShape={addShape}
+            handleSvg={handleSvg}
+            handleImg={handleImg}
+            handleSvgParser={handleSvgParser}
+            handleStyleCSS={handleStyleCSS}
+            handleAIChangeColor={handleAIChangeColor}
+            setCurrentColors={setCurrentColors}
+            currentColors={currentColors}
+            handleReplaceColors={handleReplaceColors}
+          />
+          <div className="h-[calc(100vh-64px)] flex-1 flex justify-center items-center">
+            <div
+              id="container"
+              ref={drop}
+              className="bg-white"
+            ></div>
+          </div>
         </Content>
       </Layout>
     </Layout>

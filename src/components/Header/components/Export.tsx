@@ -35,7 +35,7 @@ const Export = (props: Props) => {
         }}
         options={[
           { value: 'image/png', label: 'PNG' },
-          { value: 'image/jpeg', label: 'JPG' }
+          { value: 'image/jpeg', label: 'JPEG' }
         ]}
       />
       {imgPreview && (

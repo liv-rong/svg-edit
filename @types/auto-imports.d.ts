@@ -6,6 +6,7 @@
 // biome-ignore lint: disable
 export {}
 declare global {
+  const BrowserUtils: (typeof import('../src/utils/browser'))['BrowserUtils']
   const Button: (typeof import('antd'))['Button']
   const CSSProperties: (typeof import('react'))['CSSProperties']
   const Canvas: (typeof import('../src/components/Canvas/index'))['default']
@@ -17,6 +18,7 @@ declare global {
   const CommonIcon: (typeof import('../src/components/Common/CommonIcon'))['default']
   const Drag: (typeof import('../src/components/Common/Drag'))['default']
   const Dropdown: (typeof import('antd'))['Dropdown']
+  const Export: (typeof import('../src/components/Header/components/Export'))['default']
   const Font: (typeof import('../src/components/Operate/components/Font'))['default']
   const Header: (typeof import('../src/components/Header/index'))['default']
   const IconStyle: (typeof import('../src/components/Header/components/IconStyle'))['default']
@@ -99,6 +101,9 @@ declare global {
 }
 // for type re-export
 declare global {
+  // @ts-ignore
+  export type { BrowserUtils } from '../src/utils/browser'
+  import('../src/utils/browser')
   // @ts-ignore
   export type { CanvasUtils } from '../src/utils/canvas'
   import('../src/utils/canvas')
