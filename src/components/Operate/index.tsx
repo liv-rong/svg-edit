@@ -108,7 +108,7 @@ const Option = (props: Props) => {
         [OperateType ? 'w-[308px]' : 'w-[64px]']
       )}
     >
-      <div className="w-16 h-full">
+      <div className="w-16 h-full bg-white">
         {Array.from(OperateMap.entries()).map(([key, value]) => (
           <div
             key={key}
@@ -125,12 +125,20 @@ const Option = (props: Props) => {
         ))}
       </div>
       {OperateType && (
-        <div className="w-[240px] h-full bg-white shadow relative p-1 overflow-auto scrollbar-hidden">
-          <div className="text-lg px-1 font-bold">{OperateMap.get(OperateType)?.name}</div>
-          {OperateMap.get(OperateType)?.component}
-          {/* <div className="absolute top-1/2 right-0 translate-x-1/2 translate-y-1/2 border shadow rounded-full cursor-pointer hover:bg-[#9f7aea]/20 z-1000">
-            <ArrowLeftIcon />
-          </div> */}
+        <div className="flex-1 h-full bg-white shadow relative">
+          <div className="h-full overflow-auto scrollbar-hidden">
+            <div className="text-lg px-1 font-bold m-2">{OperateMap.get(OperateType)?.name}</div>
+            {OperateMap.get(OperateType)?.component}
+          </div>
+
+          <div
+            onClick={() => {
+              useCanvasStore.setState({ OperateType: null })
+            }}
+            className="bg-white absolute top-1/2 right-0 translate-x-1/2 translate-y-1/2 border border-[#9f7aea] shadow rounded-full cursor-pointer hover:scale-110"
+          >
+            <ArrowLeftIcon className="text-[#9f7aea]" />
+          </div>
         </div>
       )}
     </div>

@@ -10,6 +10,7 @@ import { useEffect } from 'react'
 import type { ShapeEnum } from '@/types/shape'
 import { useDropImg } from '@/hooks/use-drop-img'
 import { useListenEvent } from '@/hooks/use-event'
+import { useDo } from '@/hooks/use-do'
 
 export const Route = createFileRoute('/')({
   component: Index
@@ -33,6 +34,7 @@ function Index() {
     handleReplaceColors,
     handleExport,
     setCurrentColors,
+    setStage,
     currentColors,
     stage
   } = useCanvas()
@@ -40,6 +42,8 @@ function Index() {
   useListenEvent(stage)
 
   const { drop, addItemDrop } = useDropImg()
+
+  const { saveStateToHistory, undo, redo } = useDo(stage)
 
   useEffect(() => {
     const { x, y, value, type } = addItemDrop
@@ -58,6 +62,8 @@ function Index() {
         handleStyleCSS={handleStyleCSS}
         initCanvas={initCanvas}
         handleExport={handleExport}
+        undo={undo}
+        redo={redo}
       />
       <Layout>
         <Content className="overflow-y-auto flex justify-between items-center">

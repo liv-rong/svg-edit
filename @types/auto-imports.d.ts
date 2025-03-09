@@ -85,6 +85,7 @@ declare global {
   const useContext: (typeof import('react'))['useContext']
   const useDebugValue: (typeof import('react'))['useDebugValue']
   const useDeferredValue: (typeof import('react'))['useDeferredValue']
+  const useDo: (typeof import('../src/hooks/use-do'))['useDo']
   const useDropImg: (typeof import('../src/hooks/use-drop-img'))['useDropImg']
   const useEffect: (typeof import('react'))['useEffect']
   const useId: (typeof import('react'))['useId']

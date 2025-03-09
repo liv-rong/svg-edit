@@ -17,7 +17,7 @@ export const useCanvas = () => {
     }))
   )
 
-  const [stage, setState] = useState<Stage | null>(null)
+  const [stage, setStage] = useState<Stage | null>(null)
 
   const [layer, setLayer] = useState<Layer>()
 
@@ -33,7 +33,7 @@ export const useCanvas = () => {
       width: 600,
       height: 400
     })
-    setState(newStage)
+    setStage(newStage)
 
     const newLayer = new Konva.Layer()
     setLayer(newLayer)
@@ -130,7 +130,6 @@ export const useCanvas = () => {
       e.evt.preventDefault()
       selectionRectangle.visible(false)
       const shapes = newLayer.find('.transformerShape')
-      console.log(shapes, '')
       const box = selectionRectangle.getClientRect()
       const selected = shapes.filter((shape) =>
         Konva.Util.haveIntersection(box, shape.getClientRect())
@@ -139,8 +138,6 @@ export const useCanvas = () => {
     })
 
     newStage.on('click tap', function (e) {
-      console.log('click tap')
-      // if we are selecting with rect, do nothing
       if (selectionRectangle.visible()) {
         return
       }
@@ -366,14 +363,6 @@ export const useCanvas = () => {
   // 保持清空之后 再添加元素 可以 选择
 
   //写个函数 求最小值
-  const handleClearCanvas = () => {
-    const selectedNodes = transformer?.nodes()
-    if (selectedNodes) {
-      selectedNodes.forEach((node) => {
-        node.remove()
-      })
-    }
-  }
 
   const handleAIChangeColor = (color: AllColorsEnum | null) => {
     let colors = color ? (allColorsMap.get(color)?.colors ?? []) : []
@@ -388,7 +377,6 @@ export const useCanvas = () => {
         const response = await fetch(svgData)
         const svgText = await response.text()
         const newSvg = color ? ColorUtils.applyThemeToSvg(svgText, colors[4]) : svgText
-        console.log(newSvg, 'newSvg')
         setCurrentColors(ColorUtils.getColorsFromSvg(newSvg))
         const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(newSvg)}`
         ele.destroy()
@@ -459,6 +447,7 @@ export const useCanvas = () => {
     handleStyleCSS,
     setCurrentColors,
     handleExport,
+    setStage,
     stage,
     layer,
     currentColors

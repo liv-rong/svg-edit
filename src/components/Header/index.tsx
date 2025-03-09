@@ -18,10 +18,12 @@ interface Props {
   handleStyleCSS: (value: any) => void
   initCanvas: () => void
   handleExport: (config?: ImgConfigType) => Promise<string | undefined>
+  undo: () => void
+  redo: () => void
 }
 
 const Header = (props: Props) => {
-  const { addShape, handleStyleCSS, initCanvas, handleExport } = props
+  const { addShape, handleStyleCSS, initCanvas, handleExport, undo, redo } = props
 
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -65,10 +67,12 @@ const Header = (props: Props) => {
       <IconStyle
         tooltip="下一步"
         icon={<UndoIcon className="text-xl text-slate-700" />}
+        onClick={undo}
       />
       <IconStyle
         tooltip="上一步"
         icon={<RedoIcon className="text-xl text-slate-700" />}
+        onClick={redo}
       />
       <IconStyle
         tooltip="加文字"
@@ -78,10 +82,10 @@ const Header = (props: Props) => {
       <IconStyle
         tooltip="锁定"
         onClick={() => {
-          // handleStyleCSS({
-          //   draggable: false,
-          //   listening: false
-          // })
+          handleStyleCSS({
+            draggable: false,
+            scale: false
+          })
         }}
         icon={<LockIcon className="text-xl text-slate-700" />}
       />

@@ -84,8 +84,8 @@ const Material = (props: Props) => {
     'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString)
 
   return (
-    <div className="space-y-1">
-      {svgElement2.map((item, index) => (
+    <div className="space-y-1 ">
+      {/* {svgElement2.map((item, index) => (
         <div key={index}>
           <img
             onClick={() => handleSvgLoad(item)}
@@ -94,42 +94,35 @@ const Material = (props: Props) => {
             className="h-16 w-16 border bg-white cursor-pointer"
           />
         </div>
-      ))}
-      <div className="border-t">
-        <p>svg整体导入</p>
-        <div className="grid grid-cols-3 gap-2">
+      ))} */}
+      <div className="">
+        <div className="grid grid-cols-3 gap-3 px-1">
           {svgElement.map((item, index) => (
             <DraggableComponent
               svg={item()}
               key={index}
+              className="border h-17 rounded border-gray-200 hover:border-[#9f7aea]/50 cursor-pointer hover:scale-105"
+              onClick={() => handleSvg(svgDataUri(item()))}
             >
-              <div
-                onClick={() => handleSvg(svgDataUri(item()))}
-                className="flex items-center border border-gray-300  justify-center h-16 w-16 overflow-hidden cursor-pointer hover:border-blue-200"
-              >
-                <img
-                  src={svgDataUri(item())}
-                  alt="SVG Image"
-                  className="svg-image"
-                />
-              </div>
+              <img
+                src={svgDataUri(item())}
+                alt="SVG Image"
+                className="svg-image w-fit h-full object-contain"
+              />
             </DraggableComponent>
           ))}
           {svgImmune.map((item, index) => (
             <DraggableComponent
               svg={item()}
               key={index}
+              className="border h-17 rounded border-gray-200 hover:border-[#9f7aea]/50 cursor-pointer hover:scale-105"
+              onClick={() => handleSvg(svgDataUri(item()))}
             >
-              <div
-                onClick={() => handleSvg(svgDataUri(item()))}
-                className="flex items-center  border border-gray-300  justify-center h-16 w-16 overflow-hidden cursor-pointer hover:border-blue-200"
-              >
-                <img
-                  src={svgDataUri(item())}
-                  alt="SVG Image"
-                  className="svg-image"
-                />
-              </div>
+              <img
+                src={svgDataUri(item())}
+                alt="SVG Image"
+                className="svg-image w-fit h-full object-contain"
+              />
             </DraggableComponent>
           ))}
         </div>

@@ -158,35 +158,37 @@ const Color = (props: Props) => {
       </div>
 
       <div className="flex justify-center items-center w-full ">
-        <div className="w-full grid grid-cols-3 gap-x-2 gap-y-2 mb-2 ">
+        <div className="w-full grid grid-cols-3 gap-2 mb-2">
           {Object.values(AllColorsEnum).map((item) => (
             <div
               key={item}
-              className="w-8 h-8 grid grid-cols-2 grid-rows-2 gap-y-0.5 cursor-pointer"
+              className="h-10  flex justify-center items-center "
               onClick={() => {
                 handleAIChangeColor(item)
               }}
             >
-              <div
-                style={{
-                  background: allColorsMap.get(item)?.colors[5]
-                }}
-              />
-              <div
-                style={{
-                  background: allColorsMap.get(item)?.colors[4]
-                }}
-              />
-              <div
-                style={{
-                  background: allColorsMap.get(item)?.colors[2]
-                }}
-              />
-              <div
-                style={{
-                  background: allColorsMap.get(item)?.colors[3]
-                }}
-              />
+              <div className="grid grid-cols-2 size-8 grid-rows-2 gap-y-0.5 cursor-pointer">
+                <div
+                  style={{
+                    background: allColorsMap.get(item)?.colors[5]
+                  }}
+                />
+                <div
+                  style={{
+                    background: allColorsMap.get(item)?.colors[4]
+                  }}
+                />
+                <div
+                  style={{
+                    background: allColorsMap.get(item)?.colors[2]
+                  }}
+                />
+                <div
+                  style={{
+                    background: allColorsMap.get(item)?.colors[3]
+                  }}
+                />
+              </div>
             </div>
           ))}
         </div>

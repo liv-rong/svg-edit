@@ -2,10 +2,18 @@ import { useDrag, DragSourceMonitor } from 'react-dnd'
 import { DragDropData, DragDropDataType } from '@/types/dragDrop'
 
 interface DraggableComponentProps extends DragDropDataType {
-  children: React.ReactNode
+  children?: React.ReactNode
+  className?: string
+  onClick?: () => void
 }
 
-const DraggableComponent: React.FC<DraggableComponentProps> = ({ svg, children, shape }) => {
+const DraggableComponent: React.FC<DraggableComponentProps> = ({
+  svg,
+  children,
+  shape,
+  className,
+  onClick
+}) => {
   const [collected, drag, dragPreview] = useDrag(() => ({
     type: DragDropData.type,
     item: { svg, shape },
@@ -18,7 +26,10 @@ const DraggableComponent: React.FC<DraggableComponentProps> = ({ svg, children, 
     <div
       ref={drag}
       {...collected}
-      className={classNames([collected.isDragging ? 'opacity-50' : ''])}
+      className={classNames('flex justify-center items-center', className, [
+        collected.isDragging ? 'opacity-50' : ''
+      ])}
+      onClick={onClick}
     >
       {children}
     </div>
