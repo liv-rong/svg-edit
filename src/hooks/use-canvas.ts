@@ -187,17 +187,17 @@ export const useCanvas = () => {
         //   tr.nodes([e.target])
         // }
 
-        // IsTextGroup ? tr.nodes([resParent]) : tr.nodes([e.target])
+        IsTextGroup ? tr.nodes([resParent]) : tr.nodes([e.target])
 
-        if (IsTextGroup) {
-          resParent.children.forEach((child) => {
-            if (child.hasName(TextEditGroupName.textEditRect)) {
-              tr.nodes([child])
-            }
-          })
-        } else {
-          tr.nodes([e.target])
-        }
+        // if (IsTextGroup) {
+        //   resParent.children.forEach((child) => {
+        //     if (child.hasName(TextEditGroupName.textEditRect)) {
+        //       tr.nodes([child])
+        //     }
+        //   })
+        // } else {
+        //   tr.nodes([e.target])
+        // }
       } else if (metaPressed && isSelected) {
         // if we pressed keys and node was selected
         // we need to remove it from selection:
@@ -327,14 +327,14 @@ export const useCanvas = () => {
       x: 0,
       y: 0,
       width: 400,
-      // height: 300,
+      height: 300,
       fill: '#000',
       strokeWidth: 0,
       // Add background color
       backgroundColor: 'blue',
       align: 'center',
       verticalAlign: 'middle',
-      // wrap: 'word',
+      wrap: 'word',
       text: 'Ensure text is not hidden when it overflows'
       // ellipsis: false // Ensure text is not hidden when it overflows
     })
@@ -387,14 +387,16 @@ export const useCanvas = () => {
         resRect.width(resRect.width() * scaleX)
         resRect.height(resRect.height() * scaleY)
         resShape.width(resShape.width() * scaleX)
+        resShape.height(resShape.height() * scaleY)
         // resShape.height(resShape.height() * scaleY)
-        // resShape.fontSize(resShape.fontSize())
+        resShape.fontSize(resShape.fontSize())
         // resShape.x((resRect.width() * scaleX - resShape.width()) / 2)
         // resShape.y((resRect.height() * scaleY - resShape.height()) / 2)
       })
       group.on('dblclick', (e) => {
         console.log(e, 'dblclick')
-        // CanvasUtils.handleTextEdit(stage, e.target as Konva.Text)
+        // transformer?.nodes([resRect])
+        CanvasUtils.handleTextEdit(stage, e.target as Konva.Text)
       })
 
       group.add(resRect).add(resShape)
