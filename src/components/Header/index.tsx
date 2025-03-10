@@ -78,6 +78,7 @@ const Header = (props: Props) => {
         tooltip="加文字"
         onClick={() => addShape(ShapeEnum.Text)}
         icon={<TextIcon className="text-xl text-slate-700" />}
+        className=""
       />
       <IconStyle
         tooltip="锁定"

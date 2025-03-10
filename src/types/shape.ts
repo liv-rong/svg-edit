@@ -19,13 +19,19 @@ export enum ShapeEnum {
   Shape = 'Shape'
 }
 
+export enum TextEditGroupName {
+  textEditGroup = 'textEditGroup',
+  textEditRect = 'textEditRect',
+  textEdit = 'textEdit'
+}
+
 export const baseShapeConfig = {
   x: 20,
   y: 20,
   fill: 'white',
-  stroke: 'black',
   strokeWidth: 2,
   name: 'transformerShape',
+  strokeScaleEnabled: false,
   draggable: true
 }
 
@@ -86,7 +92,11 @@ export const ShapeMap = new Map<ShapeEnum, ShapeType<any>>([
   [
     ShapeEnum.Text,
     {
-      defaultConfig: { text: 'Simple Text', fontSize: 30, fill: 'black' },
+      defaultConfig: {
+        text: '编辑文字',
+        fontSize: 32,
+        fill: 'green'
+      },
       constructor: Konva.Text
     }
   ]

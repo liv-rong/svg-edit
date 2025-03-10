@@ -5,7 +5,7 @@ import type { Stage } from 'konva/lib/Stage'
 import { Layer } from 'konva/lib/Layer'
 import { ElementDataType } from '@/types/operate'
 import { CanvasUtils } from '@/utils/canvas'
-import { ShapeEnum } from '@/types/shape'
+import { ShapeEnum, TextEditGroupName } from '@/types/shape'
 import { AllColorsEnum, allColorsMap } from '@/types/color'
 import { ColorUtils } from '@/utils/color'
 import type { ImgConfigType } from '@/types/export'
@@ -65,12 +65,7 @@ export const useCanvas = () => {
     })
     newLayer.add(rect2)
 
-    const tr = new Konva.Transformer({
-      borderStroke: 'blue',
-      ignoreStroke: true,
-      padding: 2,
-      name: 'transformer'
-    })
+    const tr = CanvasUtils.addTransformer()
 
     newLayer.draw()
     setTransformer(tr)
@@ -176,7 +171,33 @@ export const useCanvas = () => {
         } else {
           setCurrentColors([])
         }
-        tr.nodes([e.target])
+
+        const res = e.target
+        const resParent = e.target.parent
+        //判断是不是 text-group
+        const IsTextGroup =
+          resParent instanceof Konva.Group && resParent.hasName(TextEditGroupName.textEditGroup)
+        console.log(IsTextGroup, 'IsTextGroup')
+        // if (IsTextGroup) {
+        //   resParent?.getChildren().forEach((child) => {
+        //     const childRect = child.hasName(TextEditGroupName.textEditRect)
+        //     childRect && tr.nodes([child])
+        //   })
+        // } else {
+        //   tr.nodes([e.target])
+        // }
+
+        // IsTextGroup ? tr.nodes([resParent]) : tr.nodes([e.target])
+
+        if (IsTextGroup) {
+          resParent.children.forEach((child) => {
+            if (child.hasName(TextEditGroupName.textEditRect)) {
+              tr.nodes([child])
+            }
+          })
+        } else {
+          tr.nodes([e.target])
+        }
       } else if (metaPressed && isSelected) {
         // if we pressed keys and node was selected
         // we need to remove it from selection:
@@ -226,35 +247,6 @@ export const useCanvas = () => {
     })
 
     return { stage: newStage, layer: newLayer, x1, y1, x2, y2 }
-  }
-
-  const handleSvg = (data: string, config?: Record<string, any>) => {
-    return new Promise<Konva.Image | undefined>((resolve) => {
-      if (!layer) return resolve(undefined)
-
-      let url = data
-
-      if (!CanvasUtils.isValidUrl(data)) {
-        const blob = new Blob([data], { type: 'image/svg+xml' })
-        url = URL.createObjectURL(blob)
-      }
-
-      Konva.Image.fromURL(url, (imageNode) => {
-        layer?.add(imageNode)
-        imageNode?.setAttrs({
-          draggable: true,
-          data: url,
-          name: 'transformerShape',
-          ...config
-        })
-        transformer?.nodes([imageNode])
-        useCanvasStore.setState({ currentShape: imageNode })
-        if (layer?.children) {
-          transformer?.setZIndex(layer.children.length - 1)
-        }
-        resolve(imageNode)
-      })
-    })
   }
 
   const handleImg = (url: string, config?: Record<string, any>) => {
@@ -327,10 +319,88 @@ export const useCanvas = () => {
   }
 
   const addShape = (type: ShapeEnum, customConfig?: Partial<Konva.ShapeConfig>) => {
-    if (!layer) return
-    const resShape = CanvasUtils.createShape(type, customConfig)
+    if (!layer || !stage) return
+    const resShape = CanvasUtils.createShape(type, {
+      ...customConfig,
+      draggable: false,
+      name: TextEditGroupName.textEdit,
+      x: 0,
+      y: 0,
+      width: 400,
+      // height: 300,
+      fill: '#000',
+      strokeWidth: 0,
+      // Add background color
+      backgroundColor: 'blue',
+      align: 'center',
+      verticalAlign: 'middle',
+      // wrap: 'word',
+      text: 'Ensure text is not hidden when it overflows'
+      // ellipsis: false // Ensure text is not hidden when it overflows
+    })
+
+    // const res = new Konva.Text({
+    //   direction?: string;
+    // text?: string;
+    // fontFamily?: string;
+    // fontSize?: number;
+    // fontStyle?: string;
+    // fontVariant?: string;
+    // textDecoration?: string;
+    // align?: string;
+    // verticalAlign?: string;
+    // padding?: number;
+    // lineHeight?: number;
+    // letterSpacing?: number;
+    // wrap?: string;
+    // ellipsis?: boolean;
+    // })
     if (!resShape) return
-    layer?.add(resShape)
+    if (resShape instanceof Konva.Text) {
+      const resRect = CanvasUtils.createShape(ShapeEnum.Rect, {
+        width: 400,
+        height: 300,
+        draggable: false,
+        name: TextEditGroupName.textEditRect,
+        x: 0,
+        y: 0
+      })
+      console.log(resRect)
+      if (!resRect) return
+
+      const group = new Konva.Group({
+        x: 0,
+        y: 0,
+        draggable: true,
+        name: TextEditGroupName.textEditGroup
+      })
+
+      group.on('transform', () => {
+        const scaleX = group.scaleX()
+        const scaleY = group.scaleY()
+        group.scaleX(1)
+        group.scaleY(1)
+        // resRect.scaleX(scaleX)
+        // resRect.scaleY(scaleY)
+        // resShape.scaleX(scaleX)
+        // resShape.scaleY(scaleY)
+        resRect.width(resRect.width() * scaleX)
+        resRect.height(resRect.height() * scaleY)
+        resShape.width(resShape.width() * scaleX)
+        // resShape.height(resShape.height() * scaleY)
+        // resShape.fontSize(resShape.fontSize())
+        // resShape.x((resRect.width() * scaleX - resShape.width()) / 2)
+        // resShape.y((resRect.height() * scaleY - resShape.height()) / 2)
+      })
+      group.on('dblclick', (e) => {
+        console.log(e, 'dblclick')
+        // CanvasUtils.handleTextEdit(stage, e.target as Konva.Text)
+      })
+
+      group.add(resRect).add(resShape)
+      layer?.add(group)
+    }
+
     transformer?.setZIndex(layer?.children ? layer.children.length - 1 : 0)
   }
 
@@ -409,6 +479,35 @@ export const useCanvas = () => {
         transformer?.nodes([])
         handleSvg(svgDataUrl, { ...restAttrs })
       }
+    })
+  }
+
+  const handleSvg = (data: string, config?: Record<string, any>) => {
+    return new Promise<Konva.Image | undefined>((resolve) => {
+      if (!layer) return resolve(undefined)
+
+      let url = data
+
+      if (!CanvasUtils.isValidUrl(data)) {
+        const blob = new Blob([data], { type: 'image/svg+xml' })
+        url = URL.createObjectURL(blob)
+      }
+
+      Konva.Image.fromURL(url, (imageNode) => {
+        layer?.add(imageNode)
+        imageNode?.setAttrs({
+          draggable: true,
+          data: url,
+          name: 'transformerShape',
+          ...config
+        })
+        transformer?.nodes([imageNode])
+        useCanvasStore.setState({ currentShape: imageNode })
+        if (layer?.children) {
+          transformer?.setZIndex(layer.children.length - 1)
+        }
+        resolve(imageNode)
+      })
     })
   }
 

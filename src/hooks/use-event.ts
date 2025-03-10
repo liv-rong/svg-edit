@@ -16,12 +16,17 @@ export const useListenEvent = (stage: Stage | null) => {
     }
   }
 
+  //使得konva的文字可以编辑
+
   useEffect(() => {
     const handleStageClick = (e: Konva.KonvaEventObject<MouseEvent>) => {
       handleClick(e)
     }
 
+    const handleStageDbClick = (e: Konva.KonvaEventObject<MouseEvent>) => {}
+
     stage?.on('click', handleStageClick)
+
     return () => {
       stage?.off('click', handleStageClick)
     }

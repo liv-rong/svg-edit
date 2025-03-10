@@ -6,3 +6,5 @@ Avenir
 Sider
 softclipcurve
 tabler
+dblclick
+rotater
